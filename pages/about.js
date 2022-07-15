@@ -1,5 +1,5 @@
-import Layout from '../components/layout'
-import Sidebar from '../components/sidebar'
+import Layout from "../components/layout";
+import Sidebar from "../components/sidebar";
 
 export default function About() {
   return (
@@ -24,19 +24,14 @@ export default function About() {
       </p>
       <h3>Try It Out</h3>
       <p>
-        To visualize this, try tying in the search input in the{' '}
+        To visualize this, try tying in the search input in the{" "}
         <code>Sidebar</code> and then changing routes. You'll notice the input
         state is persisted.
       </p>
     </section>
-  )
+  );
 }
 
 About.getLayout = function getLayout(page) {
-  return (
-    <Layout>
-      <Sidebar />
-      {page}
-    </Layout>
-  )
-}
+  return <Layout>{page}</Layout>;
+};

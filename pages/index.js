@@ -1,10 +1,13 @@
-import Layout from '../components/layout'
-import Sidebar from '../components/sidebar'
-
+import Layout from "../components/layout";
+import Sidebar from "../components/sidebar";
+import { Button, ButtonGroup } from "@chakra-ui/react";
+import ModalTest from "../components/modalTest";
 export default function Index() {
   return (
     <section>
       <h2>Layout Example (Index)</h2>
+
+      <ModalTest />
       <p>
         This example adds a property <code>getLayout</code> to your page,
         allowing you to return a React component for the layout. This allows you
@@ -24,12 +27,13 @@ export default function Index() {
       </p>
       <h3>Try It Out</h3>
       <p>
-        To visualize this, try tying in the search input in the{' '}
+        To visualize this, try tying in the search input in the{" "}
         <code>Sidebar</code> and then changing routes. You'll notice the input
         state is persisted.
       </p>
+      <Button colorScheme="blue">Button</Button>
     </section>
-  )
+  );
 }
 
 Index.getLayout = function getLayout(page) {
@@ -38,5 +42,5 @@ Index.getLayout = function getLayout(page) {
       <Sidebar />
       {page}
     </Layout>
-  )
-}
+  );
+};

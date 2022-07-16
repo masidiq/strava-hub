@@ -1,10 +1,11 @@
-import Layout from '../components/layout'
-import Sidebar from '../components/sidebar'
-
-export default function Contact() {
+import Layout from "../components/Layout";
+import { Text } from "@chakra-ui/react";
+export default function Page() {
   return (
     <section>
-      <h2>Layout Example (Contact)</h2>
+      <Text fontWeight="bold" fontSize="xl">
+        GBLA Loop
+      </Text>
       <p>
         This example adds a property <code>getLayout</code> to your page,
         allowing you to return a React component for the layout. This allows you
@@ -24,19 +25,14 @@ export default function Contact() {
       </p>
       <h3>Try It Out</h3>
       <p>
-        To visualize this, try tying in the search input in the{' '}
+        To visualize this, try tying in the search input in the{" "}
         <code>Sidebar</code> and then changing routes. You'll notice the input
         state is persisted.
       </p>
     </section>
-  )
+  );
 }
 
-Contact.getLayout = function getLayout(page) {
-  return (
-    <Layout>
-      <Sidebar />
-      {page}
-    </Layout>
-  )
-}
+Page.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};

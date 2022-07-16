@@ -1,10 +1,11 @@
-import Layout from "../components/layout";
-import Sidebar from "../components/sidebar";
-
-export default function About() {
+import Layout from "../components/Layout";
+import { Text } from "@chakra-ui/react";
+export default function Page() {
   return (
     <section>
-      <h2>Layout Example (About)</h2>
+      <Text fontWeight="bold" fontSize="xl">
+        KBP Loop
+      </Text>
       <p>
         This example adds a property <code>getLayout</code> to your page,
         allowing you to return a React component for the layout. This allows you
@@ -32,6 +33,6 @@ export default function About() {
   );
 }
 
-About.getLayout = function getLayout(page) {
+Page.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
 };

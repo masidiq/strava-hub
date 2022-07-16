@@ -1,13 +1,15 @@
 import Head from "next/head";
-import styles from "./layout.module.css";
+import styles from "../styles/layout.module.css";
+import Navbar from "./Navbar";
 
 export default function Layout({ children }) {
   return (
     <>
       <Head>
-        <title>Strava Hub</title>
+        <title>Gowkeun</title>
       </Head>
       <main className={styles.main}>{children}</main>
+      <Navbar />
     </>
   );
 }

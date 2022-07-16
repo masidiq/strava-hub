@@ -1,13 +1,11 @@
-import Layout from "../components/layout";
-import Sidebar from "../components/sidebar";
-import { Button, ButtonGroup } from "@chakra-ui/react";
-import ModalTest from "../components/modalTest";
-export default function Index() {
+import Layout from "../components/Layout";
+import { Text } from "@chakra-ui/react";
+export default function Page() {
   return (
     <section>
-      <h2>Layout Example (Index)</h2>
-
-      <ModalTest />
+      <Text fontWeight="bold" fontSize="xl">
+        Other
+      </Text>
       <p>
         This example adds a property <code>getLayout</code> to your page,
         allowing you to return a React component for the layout. This allows you
@@ -16,7 +14,7 @@ export default function Index() {
       </p>
       <p>
         When navigating between pages, we want to persist page state (input
-        values, scroll position, etc) for a Single-Page Application (SPA)
+        values, scroll position, etc.) for a Single-Page Application (SPA)
         experience.
       </p>
       <p>
@@ -31,16 +29,10 @@ export default function Index() {
         <code>Sidebar</code> and then changing routes. You'll notice the input
         state is persisted.
       </p>
-      <Button colorScheme="blue">Button</Button>
     </section>
   );
 }
 
-Index.getLayout = function getLayout(page) {
-  return (
-    <Layout>
-      <Sidebar />
-      {page}
-    </Layout>
-  );
+Page.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
 };

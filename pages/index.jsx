@@ -1,10 +1,6 @@
-import Layout from "../components/Layout";
-import { Button, ButtonGroup } from "@chakra-ui/react";
-import ModalTest from "../components/modalTest";
-import { Text } from "@chakra-ui/react";
-import { PhoneIcon } from "@chakra-ui/icons";
+import Layout from "../components/layout";
 import { Divider } from "@chakra-ui/react";
-export default function Page() {
+export default function Index() {
   return (
     <section>
       <Text fontSize="3xl" fontWeight="semibold">
@@ -41,6 +37,6 @@ export default function Page() {
   );
 }
 
-Page.getLayout = function getLayout(page) {
+Index.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
 };

@@ -1,4 +1,4 @@
-import Layout from "../components/Layout";
+import Layout from "../components/layout";
 import { Text } from "@chakra-ui/react";
 export default function Page() {
   return (

@@ -6,39 +6,45 @@ table.athlete {
     thead{
 
         font-size: 11px;
-        background-color: #f7f7f7;
+        border-bottom:1px solid #e3e3e3;
         color: #919191;
   
     }
 
     tbody{
         tr {
-            border:1px solid #ddd;
+            border-bottom:1px solid #e3e3e3;
+            th{
+                padding:5px 0;
+            }
             td{
+
+                // no
                 &:nth-child(1){
                     padding:0 5px;   
                     text-align: center;
                 }
-                &:nth-child(1){
-                    padding:10px 0px;   
+
+                // picture
+                &:nth-child(2){
+                    padding:7px 0px;   
                     
+                }
+
+             
+              
+                 //sped
+                //  &:nth-child(4){
+                //     padding:15px 0px;   
+                    
+                // }
+
+                 //time
+                 &:nth-child(5){
+                    padding-right:20px; 
+                    text-align: right;
                 }
             }
         }
-    }
-}
-
-
-
-.nameContainer {
-    position: relative;
-
-    .nameTruncated {
-        position: absolute;
-        max-width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        top: 5px;
     }
 }

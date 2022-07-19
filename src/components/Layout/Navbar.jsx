@@ -2,15 +2,27 @@ import styles from "../../styles/navbar.module.scss";
 
 import { NavLink } from "react-router-dom";
 export default function Navbar() {
+  let activeStyle = {
+    fontWeight: "bold",
+  };
+
   return (
     <>
       <nav className={styles.navbar}>
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink
+              to="/"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/salasa-kahiji">
+            <NavLink
+              to="/salasa-kahiji"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
               <div>
                 Salasa <br />
                 Kahiji
@@ -18,7 +30,10 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/kbp-loop">
+            <NavLink
+              to="/kbp-loop"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
               <div>
                 {" "}
                 KBP <br />
@@ -27,7 +42,10 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/gbla-loop">
+            <NavLink
+              to="/gbla-loop"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
               <div>
                 GBLA <br />
                 Loop
@@ -35,7 +53,12 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/other">Other</NavLink>
+            <NavLink
+              to="/other"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              Other
+            </NavLink>
           </li>
         </ul>
       </nav>

@@ -1,4 +1,4 @@
-
+$maxwidth : "700px";
 .navbar{
  border-top:1px solid #ddd;
   width: 100%;
@@ -9,7 +9,7 @@
   background-color: white;
 
    ul {
-    max-width: 600px;
+    max-width: $maxwidth;
     margin: 0 auto;
     list-style-type: none;
     display: grid;
@@ -22,6 +22,9 @@
       cursor: pointer;
       border-right:1px solid #ddd;
 
+      &:last-child{
+        border-right: none;
+      }
       &.active {
         color: #000;
         font-weight: bold;

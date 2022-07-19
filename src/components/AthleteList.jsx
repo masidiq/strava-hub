@@ -1,7 +1,8 @@
 import styles from "../styles/AthleteList.module.scss";
 import { Avatar } from "@chakra-ui/react";
 import moment from "moment";
-import { Text, Heading } from "@chakra-ui/react";
+import { Text, Flex, Box } from "@chakra-ui/react";
+
 export default function AthleteList(props) {
   function relativeDateView(date) {
     if (!date) {
@@ -17,51 +18,78 @@ export default function AthleteList(props) {
       <table className={styles.athlete}>
         <thead>
           <tr>
-            <th style={{ width: "35px" }}>Rank</th>
+            <th style={{ width: "45px", padding: "5px 0" }}>Rank</th>
             <th style={{ width: "50px" }}></th>
             <th style={{ textAlign: "left" }}>Athlete</th>
-            <th style={{ width: "90px" }}>Speed</th>
-            <th style={{ width: "95px" }}>Time</th>
+            <th style={{ width: "66px" }}>Speed</th>
+            <th
+              style={{
+                width: "100px",
+                textAlign: "right",
+                paddingRight: "27px",
+              }}
+            >
+              Time
+            </th>
           </tr>
         </thead>
         <tbody>
           {props.athletes.map((athlete, index) => (
             <tr key={index}>
-              <td>{index + 1}</td>
+              <td>
+                <Text fontSize="sm">{index + 1}</Text>
+              </td>
               <td>
                 <Avatar size="sm" name={athlete.Name} src={athlete.ImageUrl} />
               </td>
               <td>
                 <div>
                   <div>
-                    <Text noOfLines={1}>{athlete.Name}</Text>
+                    <Text noOfLines={1} fontSize="sm">
+                      {athlete.Name}
+                    </Text>
 
                     {athlete.Pr && (
                       <div>
                         <Text noOfLines={1} color="#8b8b8b" fontSize="xs">
-                          {" "}
                           {athlete.Pr} <span> • </span>
                           {relativeDateView(athlete.PrDate)}
                         </Text>
                       </div>
                     )}
 
-                    {!athlete.Pr && <div>-</div>}
+                    {!athlete.Pr && (
+                      <div>
+                        <Text noOfLines={1} color="#8b8b8b" fontSize="xs">
+                          -
+                        </Text>
+                      </div>
+                    )}
                   </div>
                 </div>
               </td>
               <td>
-                <Text textAlign="right" noOfLines={1}>
+                <Text textAlign="right" noOfLines={1} fontSize="sm">
                   {athlete.Speed}{" "}
-                  <Text as="span" color={"grey"} fontSize="xs">
+                  <Text as="span" color="#8b8b8b" fontSize="xs">
                     km/h
                   </Text>
                 </Text>
               </td>
               <td>
-                <Text textAlign="right" noOfLines={1}>
-                  {athlete.Time}
-                </Text>
+                <Flex alignItems="center" justifyContent="flex-end">
+                  {athlete.IsNewPr == true && (
+                    <Box mr="10px">
+                      <div className="icon-pr"></div>
+                    </Box>
+                  )}
+
+                  <Box>
+                    <Text textAlign="right" noOfLines={1} fontSize="sm">
+                      {athlete.Time}
+                    </Text>
+                  </Box>
+                </Flex>
               </td>
             </tr>
           ))}

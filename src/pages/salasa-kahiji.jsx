@@ -1,4 +1,4 @@
-import { Text, Box, Flex } from "@chakra-ui/react";
+import { Text, Heading, Box, Flex } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import segmentSvc from "../services/segmentService";
 
@@ -24,10 +24,17 @@ export default function Page() {
   return (
     <content>
       <Box position="sticky" top="0" bg="white" zIndex={1}>
-        <Text fontWeight="bold" fontSize="xl">
-          Selasaan Race RSHS - GH Lembang
-        </Text>
-        <Box>SEMGN</Box>
+        <Box p="10px">
+          {" "}
+          <Heading fontWeight="semibold" size="md">
+            Selasaan Race RSHS - GH Lembang
+          </Heading>
+          <Box>
+            <Text fontSize="sm" color="grey">
+              Jarak 50km
+            </Text>
+          </Box>
+        </Box>
 
         <Box bg="#f7f7f7" w="full" color="#898989" p="5px 10px" fontSize="11px">
           <Flex justifyContent="space-between">

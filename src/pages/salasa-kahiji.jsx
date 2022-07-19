@@ -1,8 +1,8 @@
-import Layout from "../components/layout";
 import { Text } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import segmentSvc from "../services/segmentService";
-import { Button } from "@chakra-ui/react";
+
+import AthleteList from "../components/AthleteList";
 
 export default function Page() {
   const [segment, setSegment] = useState({
@@ -27,15 +27,7 @@ export default function Page() {
         SALASA KAHIJI
       </Text>
 
-      <ul>
-        {segment.Athletes.map((athlete, index) => (
-          <li key={index}>{athlete.Name}</li>
-        ))}
-      </ul>
+      <AthleteList athletes={segment.Athletes} />
     </section>
   );
 }
-
-Page.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>;
-};

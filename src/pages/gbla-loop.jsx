@@ -1,10 +1,9 @@
-import Layout from "../components/layout";
 import { Text } from "@chakra-ui/react";
 export default function Page() {
   return (
     <section>
       <Text fontWeight="bold" fontSize="xl">
-        KBP Loop
+        GBLA Loop
       </Text>
       <p>
         This example adds a property <code>getLayout</code> to your page,

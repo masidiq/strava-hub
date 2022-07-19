@@ -1,4 +1,11 @@
-import { Text, Heading, Box, Flex } from "@chakra-ui/react";
+import {
+  Text,
+  Heading,
+  Box,
+  Flex,
+  useColorMode,
+  Button,
+} from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import segmentSvc from "../services/segmentService";
 
@@ -8,6 +15,8 @@ export default function Page() {
   const [segment, setSegment] = useState({
     Athletes: [],
   });
+
+  const { toggleColorMode } = useColorMode();
 
   function loadData() {
     segmentSvc.getOne().then((response) => {
@@ -23,7 +32,12 @@ export default function Page() {
 
   return (
     <content>
-      <Box position="sticky" top="0" bg="white" zIndex={1}>
+      <Box
+        position="sticky"
+        top="0"
+        zIndex={1}
+        bg="var(--chakra-colors-chakra-body-bg);"
+      >
         <Box p="10px">
           {" "}
           <Heading fontWeight="semibold" size="md">
@@ -33,6 +47,9 @@ export default function Page() {
             <Text fontSize="sm" color="grey">
               Jarak 50km
             </Text>
+            <Button onClick={toggleColorMode} mt={1}>
+              Toggle Color Mode
+            </Button>
           </Box>
         </Box>
 

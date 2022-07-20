@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./app";
+
 import "./styles/index.css";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
-import MainLayout from "./components/Layout/MainLayout";
-import Home from "./pages/index";
+import Layout from "./components/Layout";
+import Home from "./pages/home";
 import SalasaKahiji from "./pages/salasa-kahiji";
 import GblaLoop from "./pages/gbla-loop";
 import KbpLoop from "./pages/kbp-loop";
-import Other from "./pages/other";
+import SegmentList from "./pages/segment-list";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -34,12 +34,12 @@ root.render(
   <ChakraProvider theme={customTheme}>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainLayout />}>
+        <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="salasa-kahiji" element={<SalasaKahiji />} />
           <Route path="gbla-loop" element={<GblaLoop />} />
           <Route path="kbp-loop" element={<KbpLoop />} />
-          <Route path="other" element={<Other />} />
+          <Route path="segment-list" element={<SegmentList />} />
         </Route>
       </Routes>
     </BrowserRouter>

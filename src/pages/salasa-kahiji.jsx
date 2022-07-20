@@ -9,20 +9,23 @@ export default function Page() {
     Athletes: [],
   });
 
-  function loadData() {
+  let segmentDetail = {
+    name: "RSHS GH - Lembang",
+    distance: "12.3",
+    elevation: "200",
+    gradient: "0%",
+  };
+
+  // INITIAL
+  useEffect(() => {
     segmentSvc.getOne().then((response) => {
       setSegment(response);
-      console.log("get segment");
     });
-  }
-
-  useEffect(() => {
-    loadData();
   }, []);
 
   return (
     <>
-      <SegmentHeader />
+      <SegmentHeader {...segmentDetail} />
       <AthleteList athletes={segment.Athletes} />
     </>
   );

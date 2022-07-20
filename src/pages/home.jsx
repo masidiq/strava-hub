@@ -10,16 +10,17 @@ import {
   Flex,
 } from "@chakra-ui/react";
 
-import { MoonIcon } from "@chakra-ui/icons";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import Navbar from "../components/Navbar";
 export default function Home() {
-  const { toggleColorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <>
       <section>
         <Flex justifyContent="space-between" alignItems="center">
           <Box p="10px">
-            <Text fontSize="3xl" fontWeight="semibold">
+            <Text fontSize="lg" fontWeight="semibold">
               GOWW
             </Text>
             <Text fontSize="sm" color="muted" marginTop={-1}>
@@ -27,7 +28,7 @@ export default function Home() {
             </Text>
           </Box>
           <IconButton
-            icon={<MoonIcon />}
+            icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
             onClick={toggleColorMode}
             isRound={true}
           />

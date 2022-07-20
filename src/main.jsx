@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./app";
 import "./styles/index.css";
-import { ChakraProvider, Button } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 import MainLayout from "./components/Layout/MainLayout";
 import Home from "./pages/index";
@@ -10,12 +10,28 @@ import SalasaKahiji from "./pages/salasa-kahiji";
 import GblaLoop from "./pages/gbla-loop";
 import KbpLoop from "./pages/kbp-loop";
 import Other from "./pages/other";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
+const customTheme = extendTheme({
+  semanticTokens: {
+    colors: {
+      error: "red.500",
+      muted: {
+        default: "gray.500",
+        _dark: "gray.400",
+      },
+
+      ["bg.gray"]: {
+        default: "gray.100",
+        _dark: "gray.700",
+      },
+    },
+  },
+});
+
 root.render(
-  <ChakraProvider>
+  <ChakraProvider theme={customTheme}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainLayout />}>

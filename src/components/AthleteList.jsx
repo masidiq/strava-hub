@@ -1,7 +1,16 @@
-import styles from "../styles/AthleteList.module.scss";
 import { Avatar } from "@chakra-ui/react";
 import moment from "moment";
-import { Text, Flex, Box } from "@chakra-ui/react";
+import {
+  Text,
+  Flex,
+  Box,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+} from "@chakra-ui/react";
 
 export default function AthleteList(props) {
   function relativeDateView(date) {
@@ -15,34 +24,32 @@ export default function AthleteList(props) {
 
   return (
     <>
-      <table className={styles.athlete}>
-        <thead>
-          <tr>
-            <th style={{ width: "45px", padding: "5px 0" }}>Rank</th>
-            <th style={{ width: "50px" }}></th>
-            <th style={{ textAlign: "left" }}>Athlete</th>
-            <th style={{ width: "66px" }}>Speed</th>
-            <th
-              style={{
-                width: "100px",
-                textAlign: "right",
-                paddingRight: "27px",
-              }}
-            >
+      <Table size="sm" colorScheme="teal">
+        <Thead>
+          <Tr>
+            <Th w="30px" textAlign="center" p={0}>
+              Rank
+            </Th>
+            <Th w="35px"></Th>
+            <Th>Athlete</Th>
+            <Th w="95px" textAlign="right" pr="25px">
+              Speed
+            </Th>
+            <Th w="110px" pr="18px" textAlign="right">
               Time
-            </th>
-          </tr>
-        </thead>
-        <tbody>
+            </Th>
+          </Tr>
+        </Thead>
+        <Tbody>
           {props.athletes.map((athlete, index) => (
-            <tr key={index}>
-              <td>
+            <Tr key={index}>
+              <Td textAlign="center">
                 <Text fontSize="sm">{index + 1}</Text>
-              </td>
-              <td>
+              </Td>
+              <Td p={0}>
                 <Avatar size="sm" name={athlete.Name} src={athlete.ImageUrl} />
-              </td>
-              <td>
+              </Td>
+              <Td>
                 <div>
                   <div>
                     <Text noOfLines={1} fontSize="sm">
@@ -51,7 +58,7 @@ export default function AthleteList(props) {
 
                     {athlete.Pr && (
                       <div>
-                        <Text noOfLines={1} color="#8b8b8b" fontSize="xs">
+                        <Text noOfLines={1} color="muted" fontSize="xs">
                           {athlete.Pr} <span> • </span>
                           {relativeDateView(athlete.PrDate)}
                         </Text>
@@ -60,23 +67,28 @@ export default function AthleteList(props) {
 
                     {!athlete.Pr && (
                       <div>
-                        <Text noOfLines={1} color="#8b8b8b" fontSize="xs">
+                        <Text noOfLines={1} color="muted" fontSize="xs">
                           -
                         </Text>
                       </div>
                     )}
                   </div>
                 </div>
-              </td>
-              <td>
+              </Td>
+              <Td>
                 <Text textAlign="right" noOfLines={1} fontSize="sm">
                   {athlete.Speed}{" "}
-                  <Text as="span" color="#8b8b8b" fontSize="xs">
+                  <Text
+                    as="span"
+                    color="muted"
+                    fontSize="10px"
+                    letterSpacing={1}
+                  >
                     km/h
                   </Text>
                 </Text>
-              </td>
-              <td>
+              </Td>
+              <Td>
                 <Flex alignItems="center" justifyContent="flex-end">
                   {athlete.IsNewPr == true && (
                     <Box mr="10px">
@@ -90,11 +102,11 @@ export default function AthleteList(props) {
                     </Text>
                   </Box>
                 </Flex>
-              </td>
-            </tr>
+              </Td>
+            </Tr>
           ))}
-        </tbody>
-      </table>
+        </Tbody>
+      </Table>
     </>
   );
 }

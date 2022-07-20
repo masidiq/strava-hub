@@ -31,7 +31,7 @@ export default function Page() {
   }, []);
 
   return (
-    <content>
+    <>
       <Box
         position="sticky"
         top="0"
@@ -39,12 +39,11 @@ export default function Page() {
         bg="var(--chakra-colors-chakra-body-bg);"
       >
         <Box p="10px">
-          {" "}
           <Heading fontWeight="semibold" size="md">
             Selasaan Race RSHS - GH Lembang
           </Heading>
           <Box>
-            <Text fontSize="sm" color="grey">
+            <Text fontSize="sm" color="muted">
               Jarak 50km
             </Text>
             <Button onClick={toggleColorMode} mt={1}>
@@ -53,8 +52,14 @@ export default function Page() {
           </Box>
         </Box>
 
-        <Box bg="#f7f7f7" w="full" color="#898989" p="5px 10px" fontSize="11px">
-          <Flex justifyContent="space-between">
+        <Box
+          w="full"
+          p="5px 10px"
+          fontSize="11px"
+          colorScheme="teal"
+          bgColor="bg.gray"
+        >
+          <Flex justifyContent="space-between" color="muted">
             <Text>Total 220</Text>
             <Text>Last updated on 12:33</Text>
           </Flex>
@@ -62,6 +67,6 @@ export default function Page() {
       </Box>
 
       <AthleteList athletes={segment.Athletes} />
-    </content>
+    </>
   );
 }

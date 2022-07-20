@@ -7,8 +7,14 @@ import {
   Select,
   useColorMode,
   HStack,
+  Tab,
+  Tabs,
+  TabList,
+  TabPanel,
+  TabPanels,
 } from "@chakra-ui/react";
 
+import { ArrowForwardIcon } from "@chakra-ui/icons";
 export default function SegmentHeader(props) {
   return (
     <>
@@ -19,9 +25,20 @@ export default function SegmentHeader(props) {
         bg="var(--chakra-colors-chakra-body-bg);"
       >
         <Box p="10px">
-          <Heading fontWeight="semibold" size="md">
-            {props.name}
-          </Heading>
+          <Flex justifyContent="space-between" alignItems="center">
+            <Heading fontWeight="semibold" size="md" mb="10px" noOfLines={1}>
+              {props.name}
+            </Heading>
+            <Button
+              size="xs"
+              as="a"
+              target="_blank"
+              href={"https://www.strava.com/segments/30711569"}
+              rightIcon={<ArrowForwardIcon />}
+            >
+              Strava
+            </Button>
+          </Flex>
           <Flex justifyContent="space-between" alignItems="center">
             <Box>
               <Select>
@@ -32,29 +49,39 @@ export default function SegmentHeader(props) {
               </Select>
             </Box>
             <Box>
-              <HStack spacing="24px">
+              <HStack spacing="10px" textAlign="right" ml="10px">
                 <Box>
-                  <Text fontSize="sm" color="muted">
+                  <Text fontSize="xs" color="muted">
                     Jarak
                   </Text>
-                  <Text fontSize="sm" color="muted">
-                    {props.distance} km
+                  <Text>
+                    {props.distance}
+                    <Text as="span" fontSize="xs" color="muted">
+                      km
+                    </Text>
                   </Text>
                 </Box>
                 <Box>
-                  <Text fontSize="sm" color="muted">
+                  <Text fontSize="xs" color="muted">
                     Elevasi
                   </Text>
-                  <Text fontSize="sm" color="muted">
-                    {props.elevation} m
+                  <Text>
+                    {props.elevation}
+                    <Text as="span" fontSize="xs" color="muted">
+                      m
+                    </Text>
                   </Text>
                 </Box>
                 <Box>
-                  <Text fontSize="sm" color="muted">
+                  <Text fontSize="xs" color="muted">
                     Gradien
                   </Text>
-                  <Text fontSize="sm" color="muted">
+
+                  <Text>
                     {props.gradient}
+                    <Text as="span" fontSize="xs" color="muted">
+                      %
+                    </Text>
                   </Text>
                 </Box>
               </HStack>

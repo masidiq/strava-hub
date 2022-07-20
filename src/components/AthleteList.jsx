@@ -32,10 +32,10 @@ export default function AthleteList(props) {
             </Th>
             <Th w="35px"></Th>
             <Th>Athlete</Th>
-            <Th w="95px" textAlign="right" pr="25px">
+            <Th w="75px" textAlign="right" pr="25px" pl={0}>
               Speed
             </Th>
-            <Th w="110px" pr="18px" textAlign="right">
+            <Th w="100px" pr="18px" textAlign="right">
               Time
             </Th>
           </Tr>
@@ -49,7 +49,7 @@ export default function AthleteList(props) {
               <Td p={0}>
                 <Avatar size="sm" name={athlete.Name} src={athlete.ImageUrl} />
               </Td>
-              <Td>
+              <Td pr={0}>
                 <div>
                   <div>
                     <Text noOfLines={1} fontSize="sm">
@@ -75,7 +75,7 @@ export default function AthleteList(props) {
                   </div>
                 </div>
               </Td>
-              <Td>
+              <Td pl="0" pr="5px">
                 <Text textAlign="right" noOfLines={1} fontSize="sm">
                   {athlete.Speed}{" "}
                   <Text
@@ -88,7 +88,7 @@ export default function AthleteList(props) {
                   </Text>
                 </Text>
               </Td>
-              <Td>
+              <Td pl="0">
                 <Flex alignItems="center" justifyContent="flex-end">
                   {athlete.IsNewPr == true && (
                     <Box mr="10px">

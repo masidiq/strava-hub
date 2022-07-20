@@ -13,7 +13,7 @@ export default function Page() {
     name: "RSHS GH - Lembang",
     distance: "12.3",
     elevation: "200",
-    gradient: "0%",
+    gradient: "0",
   };
 
   // INITIAL

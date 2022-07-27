@@ -10,6 +10,9 @@ import SalasaKahiji from "./pages/salasa-kahiji";
 import GblaLoop from "./pages/gbla-loop";
 import KbpLoop from "./pages/kbp-loop";
 import SegmentList from "./pages/segment-list";
+
+import Admin from "./pages/admin";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -36,6 +39,7 @@ root.render(
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route path="admin" element={<Admin />} />
           <Route path="salasa-kahiji" element={<SalasaKahiji />} />
           <Route path="gbla-loop" element={<GblaLoop />} />
           <Route path="kbp-loop" element={<KbpLoop />} />

@@ -1,27 +1,16 @@
 import axios from "axios";
-const host = "https://localhost:44391/api";
+const storageHost = import.meta.env.VITE_HOST_STORAGE;
+const backEndHost = import.meta.env.VITE_HOST_API;
 
 let endpoint = {
-  home: "https://localhost:44391",
-  syncToday: host + "/syncToday",
-  syncAllTime: host + "/syncAllTime",
-  syncWomen: host + "/syncWomen",
-  syncAge: host + "/syncAge",
-  getProgress: host + "/progress",
+  syncToday: backEndHost + "/syncToday",
+  syncAllTime: backEndHost + "/syncAllTime",
+  syncWomen: backEndHost + "/syncWomen",
+  syncAge: backEndHost + "/syncAge",
+  getProgress: backEndHost + "/progress",
 };
 
 export default {
-  async ping() {
-    return await axios
-      .get(endpoint.home)
-      .then((response) => {
-        return response.data;
-      })
-      .catch((error) => {
-        throw error.response.data;
-      });
-  },
-
   async syncAllTime(segmentId) {
     let paramUrlStr = {
       params: {

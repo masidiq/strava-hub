@@ -1,12 +1,12 @@
 import styles from "../styles/layout.module.scss";
-import Navbar from "./Navbar";
+import AdminNavbar from "./AdminNavbar";
 import { Outlet } from "react-router-dom";
 import { Container } from "@chakra-ui/react";
 
 export default function Layout() {
   return (
     <>
-      <Navbar />
+      <AdminNavbar title="Admin" />
       <Container maxW="xl" pt="20px">
         <Outlet />
       </Container>

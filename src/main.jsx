@@ -5,12 +5,13 @@ import "./styles/index.css";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 import Layout from "./components/Layout";
+import AdminLayout from "./components/AdminLayout";
 import Home from "./pages/home";
 import SalasaKahiji from "./pages/salasa-kahiji";
 import GblaLoop from "./pages/gbla-loop";
 import KbpLoop from "./pages/kbp-loop";
 import SegmentList from "./pages/segment-list";
-
+import AdminSegment from "./pages/admin/segment";
 import Admin from "./pages/admin";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -32,6 +33,9 @@ const customTheme = extendTheme({
     },
   },
 });
+import { createStandaloneToast } from "@chakra-ui/toast";
+
+const { ToastContainer } = createStandaloneToast();
 
 root.render(
   <ChakraProvider theme={customTheme}>
@@ -39,13 +43,20 @@ root.render(
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="admin" element={<Admin />} />
+
           <Route path="salasa-kahiji" element={<SalasaKahiji />} />
           <Route path="gbla-loop" element={<GblaLoop />} />
           <Route path="kbp-loop" element={<KbpLoop />} />
           <Route path="segment-list" element={<SegmentList />} />
         </Route>
+
+        <Route path="admin" element={<AdminLayout />}>
+          <Route path="" element={<Admin />} />
+          <Route path="segment" element={<AdminSegment />} />
+        </Route>
       </Routes>
     </BrowserRouter>
+
+    <ToastContainer />
   </ChakraProvider>
 );

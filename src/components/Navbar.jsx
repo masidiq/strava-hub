@@ -46,20 +46,20 @@ export default function Navbar() {
           </Box>
 
           {/* RIGHT */}
-          {/* <Flex ml="auto" alignItems="center">
-            <Button variant="ghost" fontWeight="light" as={Link} to="/">
+          <Flex ml="auto" alignItems="center">
+            {/* <Button variant="ghost" fontWeight="light" as={Link} to="/">
               Home
             </Button>
             <Button variant="ghost" fontWeight="light" as={Link} to="/segment">
               Segment
-            </Button>{" "}
+            </Button>{" "} */}
             <IconButton
               size="sm"
               icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               onClick={toggleColorMode}
               isRound={true}
             />
-          </Flex> */}
+          </Flex>
         </Flex>
       </Container>
     </Box>

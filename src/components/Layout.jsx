@@ -7,7 +7,7 @@ export default function Layout() {
   return (
     <>
       <Navbar />
-      <Container maxW="xl" pt="20px">
+      <Container maxW="xl" pt="18px" px="0">
         <Outlet />
       </Container>
     </>

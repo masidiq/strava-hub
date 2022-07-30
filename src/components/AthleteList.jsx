@@ -25,7 +25,7 @@ export default function AthleteList(props) {
   return (
     <>
       <Table size="sm" colorScheme="teal">
-        <Thead>
+        <Thead background="bg.gray">
           <Tr>
             <Th w="30px" textAlign="center" p={0}>
               Rank

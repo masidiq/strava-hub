@@ -48,7 +48,8 @@ export default function SegmentList() {
     <>
       {/* <PageHeader title={title} hideBackButton /> */}
 
-      <Stack mt="20px">
+      <Stack px="15px">
+        <Text fontWeight="bold">Daftar Segment</Text>
         {segmentList.map((item, i) => (
           <SegmentRow key={item.Id} item={item} />
         ))}

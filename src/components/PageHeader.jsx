@@ -26,7 +26,7 @@ export default function PageHeader(props) {
       right="0"
       left="0"
       height={{ base: "60px", md: "auto" }}
-      borderWidth={{ base: "1px", md: "0" }}
+      borderBottomWidth={{ base: "1px", md: "0" }}
     >
       {!props.hideBackButton && (
         <IconButton

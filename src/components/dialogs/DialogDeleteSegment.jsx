@@ -10,6 +10,7 @@ import {
   AlertDescription,
   Button,
   useDisclosure,
+  Text,
 } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import segmentService from "../../services/segmentService";
@@ -20,9 +21,6 @@ export default function DialogDeleteSegment(props) {
 
   let segmentName = "";
   const cancelRef = useRef();
-  if (props.segment) {
-    segmentName = props.segment.Name;
-  }
 
   useEffect(() => {
     if (props.isOpen) {
@@ -52,7 +50,14 @@ export default function DialogDeleteSegment(props) {
             Yakin mau hapus segment?
           </AlertDialogHeader>
 
-          <AlertDialogBody>{segmentName}</AlertDialogBody>
+          <AlertDialogBody>
+            {props.segment && (
+              <>
+                <Text>{props.segment.Name}</Text>
+                <Text fontSize="sm">{props.segment.Id}</Text>
+              </>
+            )}
+          </AlertDialogBody>
 
           <AlertDialogFooter>
             <Button ref={cancelRef} onClick={closeThis}>

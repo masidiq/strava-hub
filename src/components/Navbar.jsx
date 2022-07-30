@@ -46,14 +46,11 @@ export default function Navbar() {
           </Box>
 
           {/* RIGHT */}
-          <Flex ml="auto" alignItems="center">
-            <Button variant="ghost" fontWeight="light">
+          {/* <Flex ml="auto" alignItems="center">
+            <Button variant="ghost" fontWeight="light" as={Link} to="/">
               Home
             </Button>
-            <Button variant="ghost" fontWeight="light">
-              Salasaan
-            </Button>
-            <Button variant="ghost" fontWeight="light">
+            <Button variant="ghost" fontWeight="light" as={Link} to="/segment">
               Segment
             </Button>{" "}
             <IconButton
@@ -62,7 +59,7 @@ export default function Navbar() {
               onClick={toggleColorMode}
               isRound={true}
             />
-          </Flex>
+          </Flex> */}
         </Flex>
       </Container>
     </Box>

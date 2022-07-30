@@ -12,20 +12,22 @@ export default {
       status: "error",
       duration: 5000,
       isClosable: true,
+      position: "top",
     });
   },
 
   async getJson(url, param) {
-    var completeUrl = Object.keys(param).forEach((key) => {
+    Object.keys(param).forEach((key) => {
       url = url.replace("{" + key + "}", param[key]);
     });
 
     return await axios
-      .get(completeUrl)
+      .get(url)
       .then((response) => {
         return response.data;
       })
       .catch((error) => {
+        this.showError(error);
         throw error.response.data;
       });
   },
@@ -64,7 +66,8 @@ export default {
         return response.data;
       })
       .catch((error) => {
-        throw error.response.data;
+        this.showError(error);
+        throw error;
       });
   },
 
@@ -78,7 +81,8 @@ export default {
         return response.data;
       })
       .catch((error) => {
-        throw error.response.data;
+        this.showError(error);
+        throw error;
       });
   },
 };

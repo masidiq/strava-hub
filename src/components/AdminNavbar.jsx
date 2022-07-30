@@ -48,14 +48,6 @@ export default function Navbar() {
 
           {/* RIGHT */}
           <HStack ml="auto" alignItems="center">
-            <Button
-              variant="ghost"
-              fontWeight="light"
-              as={Link}
-              to="/admin/segment"
-            >
-              Segment
-            </Button>{" "}
             <IconButton
               size="sm"
               icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}

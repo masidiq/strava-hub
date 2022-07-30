@@ -1,131 +1,159 @@
 import {
+  FormControl,
+  FormLabel,
+  Input,
   Box,
+  FormErrorMessage,
+  FormHelperText,
   Button,
   Flex,
-  Heading,
-  HStack,
-  Icon,
-  Stack,
-  Tag,
   Text,
-  useDisclosure,
+  HStack,
+  RadioGroup,
+  Stack,
+  Radio,
+  Select,
+  Progress,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import AddSegmentModal from "../../components/AddSegmentModal";
-import segmentService from "../../services/segmentService";
-import Card from "../../components/atom/Card";
-import DialogDeleteSegment from "../../components/dialogs/DialogDeleteSegment";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import PageHeader from "../../components/PageHeader";
-
-import { AiOutlineRise } from "react-icons/ai";
-import { TbChartLine } from "react-icons/tb";
-import { GiPathDistance } from "react-icons/gi";
+import adminService from "../../services/adminService";
+import segmentService from "../../services/segmentService";
 export default function Segment() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [title, setTitle] = useState("Segment");
-  const [segmentList, setSegmentList] = useState([]);
-  const [loading, setIsLoading] = useState(false);
+  const { id } = useParams();
+  const [segment, setSegment] = useState({
+    name: "",
+  });
+  const [syncType, setSyncType] = useState("today");
+  const [progress, setProgress] = useState({
+    id: null,
+    percent: 0,
+    message: "",
+  });
 
-  const [selectedSegment, setSelectedSegment] = useState(null);
+  let progressId = null;
+  let [isLoading, setIsLoading] = useState(false);
+  const submit = async () => {
+    if (syncType == "today") doSyncToday();
+    else if (syncType == "profile") doSyncProfile();
+    else if (syncType == "age") doSyncAge();
+    else if (syncType == "women") doSyncWomen();
+    else if (syncType == "alltime") doSyncAlltime();
+  };
 
-  const [isShowDelete, setIsShowDelete] = useState(false);
-  const getList = async () => {
+  const doSyncAlltime = async () => {
+    const result = await adminService.syncAllTime(id);
+    progressId = result.id;
+    setProgress((prevState) => ({
+      ...result,
+    }));
+    callProgress();
+  };
+
+  const doSyncToday = async () => {
     setIsLoading(true);
+    const result = await adminService.syncToday(id);
+    progressId = result.id;
+    setProgress((prevState) => ({
+      ...result,
+    }));
+    callProgress();
+  };
 
-    const result = await segmentService.getList();
-    setIsLoading(false);
-    setSegmentList(result);
-    setTitle("Segment (" + result.length + ")");
+  const doSyncProfile = async () => {
+    setIsLoading(true);
+    const result = await adminService.syncToday(id);
+    progressId = result.id;
+    setProgress((prevState) => ({
+      ...result,
+    }));
+    callProgress();
+  };
+
+  const doSyncWomen = async () => {
+    setIsLoading(true);
+    const result = await adminService.syncWomen(id);
+    progressId = result.id;
+    setProgress((prevState) => ({
+      ...result,
+    }));
+    callProgress();
+  };
+
+  const doSyncAge = async () => {
+    setIsLoading(true);
+    const result = await adminService.syncAge(id);
+    progressId = result.id;
+    setProgress((prevState) => ({
+      ...result,
+    }));
+    callProgress();
+  };
+
+  const callProgress = async () => {
+    const result = await adminService.getProgress(progressId);
+    setIsLoading(true);
+    setProgress((prevState) => ({
+      ...result,
+    }));
+    if (result.percent < 100) {
+      setTimeout(() => callProgress(), 2000);
+    } else {
+      setIsLoading(false);
+    }
+  };
+
+  const getSegment = async () => {
+    const result = await segmentService.get(id);
+    setSegment((e) => ({
+      ...result,
+    }));
   };
 
   useEffect(() => {
-    getList(true);
+    getSegment();
   }, []);
-
-  function showConfirmDeleteSegment(seg) {
-    setSelectedSegment(seg);
-    setIsShowDelete(true);
-  }
 
   return (
     <>
-      <PageHeader
-        title={title}
-        rightSlot={
-          <Button onClick={onOpen} colorScheme="blue" size="sm">
-            Tambah
-          </Button>
-        }
-      />
-
-      <AddSegmentModal
-        isOpen={isOpen}
-        onOpen={onOpen}
-        onClose={onClose}
-        reloadList={getList}
-      />
-
-      <DialogDeleteSegment
-        isOpen={isShowDelete}
-        segment={selectedSegment}
-        reloadList={getList}
-        onClosed={() => {
-          setIsShowDelete(false);
-        }}
-      />
-
-      <Stack mt="20px">
-        {segmentList.map((item, i) => (
-          <Card key={i} py="10px">
-            <Flex justify="space-between" alignItems="center">
+      {" "}
+      <PageHeader title={segment.Name} subTitle={segment.Id} />
+      <Box p="20px">
+        <Stack spacing="20px">
+          <Box>
+            <RadioGroup onChange={setSyncType} value={syncType}>
               <Stack>
-                <Text noOfLines={1}> {item.Name}</Text>
-                <HStack spacing="20px" ml="10px" color="muted">
-                  <HStack spacing="5px">
-                    <GiPathDistance as={Icon} />
-                    <Text fontSize="xs">
-                      {item.Distance}
-                      {""}
-                      <Text fontSize="9px" as="span" color="muted">
-                        km
-                      </Text>
-                    </Text>
-                  </HStack>
-                  <HStack spacing="3px">
-                    <TbChartLine as={Icon} />
-                    <Text fontSize="xs">
-                      {item.ElevDifference}
-                      <Text fontSize="9px" as="span" mr="5px" color="muted">
-                        m
-                      </Text>
-                    </Text>
-                  </HStack>
-                  <HStack spacing="3px">
-                    <AiOutlineRise as={Icon} />
-                    <Text fontSize="xs">
-                      {item.Gradient}
-                      {""}
-                      <Text fontSize="9px" as="span" color="muted">
-                        %
-                      </Text>
-                    </Text>
-                  </HStack>
-                </HStack>
+                <Radio value="today">Refresh Leaderboard Today</Radio>
+                <Radio value="profile">Get Missing Profile Picture</Radio>
+                <Radio value="age">Refresh Class Age</Radio>
+                <Radio value="women">Refresh Women Info</Radio>
+                <Radio value="alltime">All Time PR</Radio>
               </Stack>
-              <Button
-                onClick={() => {
-                  showConfirmDeleteSegment(item);
-                }}
-                size="xs"
-                color="red"
-              >
-                Hapus
-              </Button>
-            </Flex>
-          </Card>
-        ))}
-      </Stack>
-      <Box></Box>
+            </RadioGroup>
+          </Box>
+          <Button
+            colorScheme="blue"
+            w="100%"
+            mt="20px"
+            isLoading={isLoading}
+            onClick={submit}
+          >
+            Sync
+          </Button>
+          <Box>
+            <Progress value={progress.percent} size="xs" colorScheme="teal" />
+            <Text>
+              {progress.percent}%{" - "}
+              {progress.message && (
+                <Text as="span" fontSize="xs" color="muted">
+                  {progress.message}
+                </Text>
+              )}
+            </Text>
+          </Box>
+        </Stack>
+      </Box>
     </>
   );
 }

@@ -10,7 +10,8 @@ import Home from "./pages/home";
 import SalasaKahiji from "./pages/salasa-kahiji";
 import GblaLoop from "./pages/gbla-loop";
 import KbpLoop from "./pages/kbp-loop";
-import SegmentList from "./pages/segment-list";
+import SegmentList from "./pages/segment";
+import SegmentDetail from "./pages/segment/_id";
 import AdminSegment from "./pages/admin/segment";
 import Admin from "./pages/admin";
 
@@ -42,17 +43,21 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<SegmentList />} />
 
           <Route path="salasa-kahiji" element={<SalasaKahiji />} />
           <Route path="gbla-loop" element={<GblaLoop />} />
           <Route path="kbp-loop" element={<KbpLoop />} />
-          <Route path="segment-list" element={<SegmentList />} />
+
+          <Route path="segment">
+            <Route path="" element={<SegmentList />} />
+            <Route path=":id" element={<SegmentDetail />} />
+          </Route>
         </Route>
 
         <Route path="admin" element={<AdminLayout />}>
           <Route path="" element={<Admin />} />
-          <Route path="segment" element={<AdminSegment />} />
+          <Route path="segment/:id" element={<AdminSegment />} />
         </Route>
       </Routes>
     </BrowserRouter>

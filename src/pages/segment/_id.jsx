@@ -20,7 +20,7 @@ export default function _id() {
     Name: null,
   });
   const [listDate, setListDate] = useState([]);
-  const { id } = useParams();
+  const { id, paramDate } = useParams();
   const [selectedDate, setSelectedDate] = useState();
 
   const getData = async () => {
@@ -29,6 +29,7 @@ export default function _id() {
 
     var result = await segmentService.getListDate(id);
     setListDate(result);
+    setSelectedDate(paramDate);
 
     var segmentResult = await segmentService.getLeaderboard(
       id,
@@ -94,10 +95,6 @@ export default function _id() {
             <Text>{segmentDetail.Gradient}%</Text>
           </Box>
         </HStack>
-        <Box textAlign="right">
-          <Text fontSize="12px">{segmentDetail.TotalAttempt} percobaan</Text>
-          <Text fontSize="12px"> oleh {segmentDetail.TotalPeople} orang</Text>
-        </Box>
       </Flex>
       {segment && <AthleteList athletes={segment.Athletes} />}
     </>

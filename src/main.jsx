@@ -17,7 +17,7 @@ import Admin from "./pages/admin";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
+import "moment/dist/locale/id";
 const customTheme = extendTheme({
   semanticTokens: {
     colors: {
@@ -43,7 +43,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/" element={<SegmentList />} />
+          <Route path="/" element={<Home />} />
 
           <Route path="salasa-kahiji" element={<SalasaKahiji />} />
           <Route path="gbla-loop" element={<GblaLoop />} />
@@ -52,6 +52,7 @@ root.render(
           <Route path="segment">
             <Route path="" element={<SegmentList />} />
             <Route path=":id" element={<SegmentDetail />} />
+            <Route path=":id/:date" element={<SegmentDetail />} />
           </Route>
         </Route>
 

@@ -15,6 +15,7 @@ import {
   useDisclosure,
   Button,
   Hide,
+  HStack,
 } from "@chakra-ui/react";
 
 import { Link } from "react-router-dom";
@@ -34,7 +35,7 @@ export default function Navbar() {
       w="full"
     >
       <Container maxW="xl">
-        <Flex py="6px" alignItems="center">
+        <Flex py="6px" alignItems="center" h="60px">
           <Box as={Link} to="/">
             <Flex alignItems="center">
               <Text fontWeight="semibold" fontSize="xl">
@@ -46,20 +47,20 @@ export default function Navbar() {
           </Box>
 
           {/* RIGHT */}
-          <Flex ml="auto" alignItems="center">
-            {/* <Button variant="ghost" fontWeight="light" as={Link} to="/">
+          <HStack ml="auto" alignItems="center">
+            <Button variant="ghost" fontWeight="light" as={Link} to="/">
               Home
             </Button>
             <Button variant="ghost" fontWeight="light" as={Link} to="/segment">
               Segment
-            </Button>{" "} */}
+            </Button>{" "}
             <IconButton
               size="sm"
               icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               onClick={toggleColorMode}
               isRound={true}
             />
-          </Flex>
+          </HStack>
         </Flex>
       </Container>
     </Box>

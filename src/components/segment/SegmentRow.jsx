@@ -12,7 +12,7 @@ import { AiOutlineRise } from "react-icons/ai";
 import { GiPathDistance } from "react-icons/gi";
 import { TbChartLine } from "react-icons/tb";
 import { Link } from "react-router-dom";
-
+import { BsChevronRight } from "react-icons/bs";
 export default function SegmentRow(props) {
   let item = {
     Id: "",
@@ -24,9 +24,9 @@ export default function SegmentRow(props) {
   }
 
   return (
-    <Box w="full" borderWidth="1px" borderRadius="lg" p="15px">
+    <Box {...props} _hover={{ background: "bg.gray" }}>
       <Flex justify="space-between" alignItems="center">
-        <Stack as={Link} to={"/segment/" + item.Id} w="full">
+        <Stack w="full">
           <Text noOfLines={1} height="22px">
             {item.Name}
           </Text>
@@ -62,6 +62,8 @@ export default function SegmentRow(props) {
             </HStack>
           </HStack>
         </Stack>
+
+        <BsChevronRight as={Icon} color="gray" />
       </Flex>
     </Box>
   );

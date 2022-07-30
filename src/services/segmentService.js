@@ -3,6 +3,7 @@ const storageHost = import.meta.env.VITE_HOST_STORAGE;
 const backEndHost = import.meta.env.VITE_HOST_API;
 
 const endpoint = {
+  getFeeds: storageHost + "/feeds.json",
   getListDate: storageHost + "/date-list/{segmentId}.json",
   getLeaderboard: storageHost + "/leaderboard/{segmentId}/{date}.json",
   get: storageHost + "/segments/{segmentId}.json",
@@ -11,32 +12,21 @@ const endpoint = {
 };
 
 export default {
+  async getFeeds() {
+    return await eqHttp.get(endpoint.getFeeds);
+  },
   async getListDate(id) {
     let param = {
       segmentId: id,
     };
-    return await eqHttp
-      .getJson(endpoint.getListDate, param)
-      .then((response) => {
-        return response;
-      })
-      .catch((error) => {
-        throw error.response.data;
-      });
+    return await eqHttp.getJson(endpoint.getListDate, param);
   },
   async getLeaderboard(id, date) {
     let param = {
       segmentId: id,
       date: date,
     };
-    return await eqHttp
-      .getJson(endpoint.getLeaderboard, param)
-      .then((response) => {
-        return response;
-      })
-      .catch((error) => {
-        throw error;
-      });
+    return await eqHttp.getJson(endpoint.getLeaderboard, param);
   },
 
   async get(id) {

@@ -53,16 +53,12 @@ export default function Index() {
 
   return (
     <>
-      <PageHeader
-        title={title}
-        subTitle="Atur segment yang tampil"
-        hideBackButton
-        rightSlot={
-          <Button onClick={onOpen} colorScheme="blue" size="sm">
-            Tambah
-          </Button>
-        }
-      />
+      <Flex alignItems="center" justify="space-between">
+        <Text>Atur Segment</Text>
+        <Button onClick={onOpen} colorScheme="blue" size="sm">
+          Tambah
+        </Button>
+      </Flex>
 
       <AddSegmentModal
         isOpen={isOpen}

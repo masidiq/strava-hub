@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Divider,
   Flex,
   Heading,
   HStack,
@@ -17,6 +18,7 @@ import PageHeader from "@/components/PageHeader";
 
 import SegmentRow from "@/components/segment/SegmentRow";
 import SegmentRowSkeleton from "@/components/segment/SegmentRowSkeleton";
+import { Link } from "react-router-dom";
 
 export default function SegmentList() {
   const [title, setTitle] = useState("Segment");
@@ -46,12 +48,18 @@ export default function SegmentList() {
 
   return (
     <>
-      {/* <PageHeader title={title} hideBackButton /> */}
+      <PageHeader title={title} />
 
-      <Stack px="15px">
-        <Text fontWeight="bold">Daftar Segment</Text>
+      <Stack spacing={0}>
         {segmentList.map((item, i) => (
-          <SegmentRow key={item.Id} item={item} />
+          <SegmentRow
+            p="15px 20px"
+            borderBottomWidth={1}
+            key={item.Id}
+            item={item}
+            as={Link}
+            to={"/segment/" + item.Id}
+          />
         ))}
 
         {segmentList.length == 0 && (

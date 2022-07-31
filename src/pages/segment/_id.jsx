@@ -5,7 +5,12 @@ import {
   HStack,
   Select,
   Stack,
+  Table,
+  Tbody,
   Text,
+  Th,
+  Thead,
+  Tr,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -14,6 +19,7 @@ import PageHeader from "../../components/PageHeader";
 import segmentService from "../../services/segmentService";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import moment from "moment";
+import AthleteRowSkeleton from "../../components/segment/AthleteRowSkeleton";
 export default function _id() {
   const navigate = useNavigate();
   const [segment, setSegment] = useState(null);
@@ -23,9 +29,10 @@ export default function _id() {
   const [listDate, setListDate] = useState([]);
   let { id, date } = useParams();
   const [selectedDate, setSelectedDate] = useState();
-
+  const [isLoading, setIsLoading] = useState(false);
   const getData = async () => {
     console.log("Load Data");
+    setIsLoading(true);
     var segResult = await segmentService.get(id);
     segSegmentDetail(segResult);
 
@@ -39,7 +46,7 @@ export default function _id() {
     setSelectedDate(date);
 
     var segmentResult = await segmentService.getLeaderboard(id, date);
-
+    setIsLoading(false);
     setSegment(segmentResult);
   };
 
@@ -102,7 +109,40 @@ export default function _id() {
           </Box>
         </HStack>
       </Flex>
-      {segment && <AthleteList athletes={segment.Athletes} />}
+
+      <Table size="sm" colorScheme="teal">
+        <Thead background="bg.gray">
+          <Tr>
+            <Th w="30px" textAlign="center" p={0}>
+              Rank
+            </Th>
+            <Th w="35px"></Th>
+            <Th>Athlete</Th>
+            <Th w="75px" textAlign="right" pr="25px" pl={0}>
+              Speed
+            </Th>
+            <Th w="100px" pr="18px" textAlign="right">
+              Time
+            </Th>
+          </Tr>
+        </Thead>
+        {isLoading && (
+          <Tbody>
+            <AthleteRowSkeleton />
+            <AthleteRowSkeleton />
+            <AthleteRowSkeleton />
+            <AthleteRowSkeleton />
+            <AthleteRowSkeleton />
+            <AthleteRowSkeleton />
+            <AthleteRowSkeleton />
+            <AthleteRowSkeleton />
+            <AthleteRowSkeleton />
+            <AthleteRowSkeleton />
+          </Tbody>
+        )}
+
+        {segment && <AthleteList athletes={segment.Athletes} />}
+      </Table>
     </>
   );
 }

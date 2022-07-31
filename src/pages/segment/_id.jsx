@@ -42,6 +42,7 @@ export default function _id() {
 
     setSegment(segmentResult);
   };
+
   useEffect(() => {
     getData();
   }, [date]);

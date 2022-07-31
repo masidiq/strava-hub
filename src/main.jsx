@@ -17,7 +17,14 @@ import Admin from "./pages/admin";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
+import moment from "moment";
 import "moment/dist/locale/id";
+moment.defaultFormat = "YYYY-MM-DD";
+
+function displayShort(d) {
+  return moment(d).format("D MMM");
+}
+
 const customTheme = extendTheme({
   semanticTokens: {
     colors: {

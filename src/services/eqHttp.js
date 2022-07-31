@@ -16,10 +16,14 @@ export default {
     });
   },
 
-  async getJson(url, param) {
+  async getJson(url, param, notUseCache) {
     Object.keys(param).forEach((key) => {
       url = url.replace("{" + key + "}", param[key]);
     });
+
+    if (notUseCache) {
+      url += "?t=" + new Date().getTime();
+    }
 
     return await axios
       .get(url)

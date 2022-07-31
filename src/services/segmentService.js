@@ -1,3 +1,5 @@
+import moment from "moment";
+import eqDate from "../helpers/eqDate";
 import eqHttp from "./eqHttp";
 const storageHost = import.meta.env.VITE_HOST_STORAGE;
 const backEndHost = import.meta.env.VITE_HOST_API;
@@ -22,11 +24,17 @@ export default {
     return await eqHttp.getJson(endpoint.getListDate, param);
   },
   async getLeaderboard(id, date) {
+    let notUseCache = false;
+
+    if (eqDate.sameWithToday(date)) {
+      notUseCache = true;
+    }
+
     let param = {
       segmentId: id,
       date: date,
     };
-    return await eqHttp.getJson(endpoint.getLeaderboard, param);
+    return await eqHttp.getJson(endpoint.getLeaderboard, param, notUseCache);
   },
 
   async get(id) {

@@ -21,6 +21,7 @@ import Card from "../components/atom/Card";
 import { BsChevronRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import SegmentRow from "../components/segment/SegmentRow";
+import eqDate from "../helpers/eqDate";
 export default function Home() {
   const [feeds, setFeeds] = useState([]);
 
@@ -41,9 +42,6 @@ export default function Home() {
     setFeeds(result);
   };
 
-  function displayDate(datePlain) {
-    return moment(datePlain).format("dddd, D MMMM");
-  }
   useEffect(() => {
     getFeeds();
   }, []);
@@ -51,7 +49,7 @@ export default function Home() {
     <Stack mt="10px" px="20px" spacing="10px">
       {feeds.map((item, index) => (
         <Box key={item.DateId}>
-          <Text fontWeight="semibold">{displayDate(item.DateId)}</Text>
+          <Text fontWeight="semibold">{eqDate.displayDate(item.DateId)}</Text>
           <Card p="0" mt="10px">
             <VStack spacing={0} divider={<Divider />} align="stretch">
               {item.Segments.map((segment, segIdx) => (

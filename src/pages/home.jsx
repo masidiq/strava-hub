@@ -42,7 +42,7 @@ export default function Home() {
   };
 
   function displayDate(datePlain) {
-    return moment(datePlain).locale("fr").format("dddd, D MMMM");
+    return moment(datePlain).format("dddd, D MMMM");
   }
   useEffect(() => {
     getFeeds();
@@ -51,7 +51,7 @@ export default function Home() {
     <Stack mt="10px" px="20px" spacing="10px">
       {feeds.map((item, index) => (
         <Box key={item.DateId}>
-          <Text fontWeight="semibold">{displayDate(item)}</Text>
+          <Text fontWeight="semibold">{displayDate(item.DateId)}</Text>
           <Card p="0" mt="10px">
             <VStack spacing={0} divider={<Divider />} align="stretch">
               {item.Segments.map((segment, segIdx) => (

@@ -5,7 +5,7 @@ export default function SegmentRowSkeleton(props) {
     return Math.floor(Math.random() * 40 + 30) + "%";
   }
   return (
-    <Box w="full" borderWidth="1px" borderRadius="lg" p="15px" fadeDuration={1}>
+    <Box w="full" borderWidth="1px" borderRadius="lg" p="15px">
       <Flex justify="space-between" alignItems="center">
         <Stack w="full">
           <Skeleton height="20px" w={randomWidth} />

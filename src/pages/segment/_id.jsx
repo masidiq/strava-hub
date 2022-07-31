@@ -13,6 +13,7 @@ import AthleteList from "../../components/AthleteList";
 import PageHeader from "../../components/PageHeader";
 import segmentService from "../../services/segmentService";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
+import moment from "moment";
 export default function _id() {
   const navigate = useNavigate();
   const [segment, setSegment] = useState(null);
@@ -20,27 +21,30 @@ export default function _id() {
     Name: null,
   });
   const [listDate, setListDate] = useState([]);
-  const { id, paramDate } = useParams();
+  let { id, date } = useParams();
   const [selectedDate, setSelectedDate] = useState();
 
   const getData = async () => {
+    console.log("Load Data");
     var segResult = await segmentService.get(id);
     segSegmentDetail(segResult);
 
     var result = await segmentService.getListDate(id);
     setListDate(result);
-    setSelectedDate(paramDate);
 
-    var segmentResult = await segmentService.getLeaderboard(
-      id,
-      result[0].DateId
-    );
+    if (!date) {
+      date = moment().format("YYYY-MM-DD");
+    }
+
+    setSelectedDate(date);
+
+    var segmentResult = await segmentService.getLeaderboard(id, date);
 
     setSegment(segmentResult);
   };
   useEffect(() => {
     getData();
-  }, []);
+  }, [date]);
 
   function goTo(dateId) {
     navigate("/segment/" + id + "/" + dateId);
@@ -53,6 +57,7 @@ export default function _id() {
           <Box>
             <Select
               size="xs"
+              minW="90px"
               w="fit-content"
               value={selectedDate}
               onChange={(e) => {

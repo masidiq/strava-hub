@@ -22,13 +22,15 @@ import { BsChevronRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import SegmentRow from "../components/segment/SegmentRow";
 import eqDate from "../helpers/eqDate";
+import SegmentRowSkeleton from "../components/segment/SegmentRowSkeleton";
+import FeedSkeleton from "./../components/segment/FeedSkeleton";
 export default function Home() {
   const [feeds, setFeeds] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(true);
   const getFeeds = async () => {
     var masterSegments = await segmentService.getList();
     var result = await segmentService.getFeeds();
-
+    setIsLoading(false);
     result.forEach((feed) => {
       feed.Segments.forEach((seg) => {
         var segDetail = masterSegments.filter((o) => o.Id == seg.SegmentId)[0];
@@ -46,25 +48,35 @@ export default function Home() {
     getFeeds();
   }, []);
   return (
-    <Stack mt="10px" px="20px" spacing="10px">
-      {feeds.map((item, index) => (
-        <Box key={item.DateId}>
-          <Text fontWeight="semibold">{eqDate.displayDate(item.DateId)}</Text>
-          <Card p="0" mt="10px">
-            <VStack spacing={0} divider={<Divider />} align="stretch">
-              {item.Segments.map((segment, segIdx) => (
-                <SegmentRow
-                  p="10px 15px"
-                  item={segment}
-                  key={segment.SegmentId}
-                  as={Link}
-                  to={"/segment/" + segment.SegmentId + "/" + item.DateId}
-                />
-              ))}
-            </VStack>
-          </Card>
-        </Box>
-      ))}
-    </Stack>
+    <Box mt="10px" px="20px">
+      <Stack spacing="10px">
+        {feeds.map((item, index) => (
+          <Box key={item.DateId}>
+            <Text fontWeight="semibold">{eqDate.displayDate(item.DateId)}</Text>
+            <Card p="0" mt="10px">
+              <VStack spacing={0} divider={<Divider />} align="stretch">
+                {item.Segments.map((segment, segIdx) => (
+                  <SegmentRow
+                    p="10px 15px"
+                    item={segment}
+                    key={segment.SegmentId}
+                    as={Link}
+                    to={"/segment/" + segment.SegmentId + "/" + item.DateId}
+                  />
+                ))}
+              </VStack>
+            </Card>
+          </Box>
+        ))}
+      </Stack>
+
+      {isLoading && (
+        <Stack spacing="10px">
+          <FeedSkeleton rows={2} />
+          <FeedSkeleton rows={3} />
+          <FeedSkeleton rows={1} />
+        </Stack>
+      )}
+    </Box>
   );
 }

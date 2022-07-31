@@ -2,10 +2,10 @@ import { Box, Flex, HStack, Skeleton, Stack } from "@chakra-ui/react";
 
 export default function SegmentRowSkeleton(props) {
   function randomWidth() {
-    return Math.floor(Math.random() * 40 + 30) + "%";
+    return Math.floor(Math.random() * 50 + 30) + "%";
   }
   return (
-    <Box w="full" borderWidth="1px" borderRadius="lg" p="15px">
+    <Box p="15px">
       <Flex justify="space-between" alignItems="center">
         <Stack w="full">
           <Skeleton height="20px" w={randomWidth} />
@@ -16,6 +16,7 @@ export default function SegmentRowSkeleton(props) {
             <Skeleton height="20px" w="40px" />
           </HStack>
         </Stack>
+        <Skeleton height="20px" w="20px" number={3} />
       </Flex>
     </Box>
   );

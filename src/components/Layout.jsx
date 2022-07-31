@@ -7,7 +7,7 @@ export default function Layout() {
   return (
     <>
       <Navbar />
-      <Container maxW="xl" px="0" pt={{ md: "20px" }}>
+      <Container maxW="xl" px="0" pb="20px" pt={{ md: "20px" }}>
         <Outlet />
       </Container>
     </>

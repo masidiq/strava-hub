@@ -20,10 +20,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 import moment from "moment";
 import "moment/dist/locale/id";
 moment.defaultFormat = "YYYY-MM-DD";
-
-function displayShort(d) {
-  return moment(d).format("D MMM");
-}
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 const customTheme = extendTheme({
   semanticTokens: {
@@ -46,30 +44,34 @@ import { createStandaloneToast } from "@chakra-ui/toast";
 const { ToastContainer } = createStandaloneToast();
 
 root.render(
-  <ChakraProvider theme={customTheme}>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="/" element={<Home />} />
+  <React.StrictMode>
+    <Provider store={store}>
+      <ChakraProvider theme={customTheme}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route path="/" element={<Home />} />
 
-          <Route path="salasa-kahiji" element={<SalasaKahiji />} />
-          <Route path="gbla-loop" element={<GblaLoop />} />
-          <Route path="kbp-loop" element={<KbpLoop />} />
+              <Route path="salasa-kahiji" element={<SalasaKahiji />} />
+              <Route path="gbla-loop" element={<GblaLoop />} />
+              <Route path="kbp-loop" element={<KbpLoop />} />
 
-          <Route path="segment">
-            <Route path="" element={<SegmentList />} />
-            <Route path=":id" element={<SegmentDetail />} />
-            <Route path=":id/:date" element={<SegmentDetail />} />
-          </Route>
-        </Route>
+              <Route path="segment">
+                <Route path="" element={<SegmentList />} />
+                <Route path=":id" element={<SegmentDetail />} />
+                <Route path=":id/:date" element={<SegmentDetail />} />
+              </Route>
+            </Route>
 
-        <Route path="admin" element={<AdminLayout />}>
-          <Route path="" element={<Admin />} />
-          <Route path="segment/:id" element={<AdminSegment />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+            <Route path="admin" element={<AdminLayout />}>
+              <Route path="" element={<Admin />} />
+              <Route path="segment/:id" element={<AdminSegment />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
 
-    <ToastContainer />
-  </ChakraProvider>
+        <ToastContainer />
+      </ChakraProvider>
+    </Provider>
+  </React.StrictMode>
 );

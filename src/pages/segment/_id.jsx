@@ -7,6 +7,9 @@ import {
   Skeleton,
   Stack,
   Table,
+  Tag,
+  TagCloseButton,
+  TagLabel,
   Tbody,
   Text,
   Th,
@@ -22,8 +25,14 @@ import { ArrowForwardIcon } from "@chakra-ui/icons";
 import moment from "moment";
 import AthleteRowSkeleton from "../../components/segment/AthleteRowSkeleton";
 import eqDate from "../../helpers/eqDate";
+import FilterAthlete from "../../components/segment/FilterAthlete";
+
+import { useSelector, useDispatch } from "react-redux";
+import { set, doFilter } from "../../redux/athleteStore";
+
 export default function _id() {
   const navigate = useNavigate();
+
   const [segment, setSegment] = useState(null);
   const [segmentDetail, segSegmentDetail] = useState({
     Name: null,
@@ -32,6 +41,12 @@ export default function _id() {
   let { id, date } = useParams();
   const [selectedDate, setSelectedDate] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [openCount, doOpen] = useState(0);
+
+  const athleteList = useSelector((state) => state.athlete.filteredList);
+
+  const dispatch = useDispatch();
+  const filters = useSelector((state) => state.athlete.availableFilters);
   const getData = async () => {
     console.log("Load Data");
     setIsLoading(true);
@@ -48,8 +63,9 @@ export default function _id() {
     setSelectedDate(date);
 
     var segmentResult = await segmentService.getLeaderboard(id, date);
+
+    dispatch(set(segmentResult.Athletes));
     setIsLoading(false);
-    setSegment(segmentResult);
   };
 
   useEffect(() => {
@@ -102,49 +118,43 @@ export default function _id() {
         }
       />
 
+      <FilterAthlete openCount={openCount} />
       <Flex
         p="10px"
-        px={{ base: "20px", md: 0 }}
+        px={{ base: "10px", md: 0 }}
         justify="space-between"
         alignItems="center"
       >
-        <Button variant="outline" size="sm">
+        <Button
+          variant="outline"
+          size="sm"
+          flex="0 0 auto"
+          mr="5px"
+          onClick={() => doOpen((prev) => prev + 1)}
+        >
           Filter
         </Button>
-        <HStack overflow="auto">
-          <Button variant="outline" size="sm" flex="0 0 auto">
-            Filter
-          </Button>
-          <Button variant="outline" size="sm" flex="0 0 auto">
-            Filter
-          </Button>
-          <Button variant="outline" size="sm" flex="0 0 auto">
-            Filter
-          </Button>
-          <Button variant="outline" size="sm" flex="0 0 auto">
-            Filter
-          </Button>
-          <Button variant="outline" size="sm" flex="0 0 auto">
-            Filter
-          </Button>
-          <Button variant="outline" size="sm" flex="0 0 auto">
-            Filter
-          </Button>
-          <Button variant="outline" size="sm" flex="0 0 auto">
-            Filter
-          </Button>
-          <Button variant="outline" size="sm" flex="0 0 auto">
-            Filter
-          </Button>
-          <Button variant="outline" size="sm" flex="0 0 auto">
-            Filter
-          </Button>
-          <Button variant="outline" size="sm" flex="0 0 auto">
-            Filter
-          </Button>
-          <Button variant="outline" size="sm" flex="0 0 auto">
-            Filter
-          </Button>
+
+        <HStack overflow="auto" w="full" alignItems="center">
+          {filters.map(
+            (item, i) =>
+              item.isActive && (
+                <Tag
+                  size="sm"
+                  borderRadius="full"
+                  variant="outline"
+                  colorScheme="blue"
+                  key={i}
+                  flex="0 0 auto"
+                >
+                  <TagLabel> {item.shortName}</TagLabel>
+                  <TagCloseButton
+                    ml="0"
+                    onClick={(e) => dispatch(doFilter(item.code))}
+                  />
+                </Tag>
+              )
+          )}
         </HStack>
         <HStack spacing="25px" textAlign="right">
           <Box>
@@ -205,7 +215,9 @@ export default function _id() {
           </Tbody>
         )}
 
-        {segment && !isLoading && <AthleteList athletes={segment.Athletes} />}
+        {athleteList.length > 0 && !isLoading && (
+          <AthleteList athletes={athleteList} />
+        )}
       </Table>
     </>
   );

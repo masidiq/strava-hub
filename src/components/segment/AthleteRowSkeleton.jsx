@@ -13,7 +13,6 @@ import {
 export default function AthleteRowSkeleton(props) {
   const [wName, setWName] = useState("0%");
   function randomWidth() {
-    console.log("ASD");
     return Math.floor(Math.random() * 60 + 30) + "%";
   }
 

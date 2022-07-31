@@ -26,7 +26,7 @@ export default function AthleteRowSkeleton(props) {
         <Skeleton h="20px" w="20px" />
       </Td>
       <Td p={0}>
-        <SkeletonCircle size="8" />
+        <SkeletonCircle size="32px" />
       </Td>
       <Td pr={0}>
         <Skeleton h="15px" w={wName} />

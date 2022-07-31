@@ -6,9 +6,12 @@ const { toast } = createStandaloneToast();
 
 export default {
   showError(error) {
+    let errorMsg = error.message;
+    if (error.code == "ERR_NETWORK") {
+      errorMsg = "Periksa koneksi internet anda";
+    }
     toast({
-      title: error.name,
-      description: error.message,
+      description: errorMsg,
       status: "error",
       duration: 5000,
       isClosable: true,
@@ -36,10 +39,24 @@ export default {
       });
   },
 
-  async get(url, param) {
-    let paramUrlStr = {
-      params: param,
-    };
+  async get(url, param, notUseCache) {
+    let paramUrlStr = null;
+
+    if (notUseCache) {
+      if (param) {
+        param.t = new Date().getTime();
+      } else {
+        param = {
+          t: new Date().getTime(),
+        };
+      }
+    }
+
+    if (param) {
+      paramUrlStr = {
+        params: param,
+      };
+    }
 
     return await axios
       .get(url, paramUrlStr)
@@ -47,7 +64,8 @@ export default {
         return response.data;
       })
       .catch((error) => {
-        throw error.response.data;
+        this.showError(error);
+        throw error;
       });
   },
 

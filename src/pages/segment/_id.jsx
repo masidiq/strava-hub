@@ -4,6 +4,7 @@ import {
   Flex,
   HStack,
   Select,
+  Skeleton,
   Stack,
   Table,
   Tbody,
@@ -64,21 +65,28 @@ export default function _id() {
         title={segmentDetail.Name}
         subTitle={
           <Box>
-            <Select
-              size="xs"
-              minW="90px"
-              w="fit-content"
-              value={selectedDate}
-              onChange={(e) => {
-                goTo(e.target.value);
-              }}
+            <Skeleton
+              isLoaded={listDate.length > 0}
+              minW="50px"
+              maxW="150px"
+              mt="2px"
             >
-              {listDate.map((item, i) => (
-                <option key={i} value={item}>
-                  {eqDate.displayDate(item)}
-                </option>
-              ))}
-            </Select>
+              <Select
+                size="xs"
+                minW="120px"
+                w="fit-content"
+                value={selectedDate}
+                onChange={(e) => {
+                  goTo(e.target.value);
+                }}
+              >
+                {listDate.map((item, i) => (
+                  <option key={i} value={item}>
+                    {eqDate.displayDate(item)}
+                  </option>
+                ))}
+              </Select>
+            </Skeleton>
           </Box>
         }
         rightSlot={
@@ -97,17 +105,24 @@ export default function _id() {
       <Flex p="10px 20px" justify="space-between" alignItems="center">
         <HStack spacing="40px">
           <Box>
-            <Text fontSize="xs">Jarak</Text>
-            <Text>{segmentDetail.Distance}km</Text>
+            <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">
+              <Text fontSize="xs">Jarak</Text>
+
+              <Text>{segmentDetail.Distance}km</Text>
+            </Skeleton>
           </Box>
-          <Box>
-            <Text fontSize="xs">Elevasi</Text>
-            <Text>{segmentDetail.ElevGain}m</Text>
-          </Box>
-          <Box>
-            <Text fontSize="xs">Gradien</Text>
-            <Text>{segmentDetail.Gradient}%</Text>
-          </Box>
+          <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">
+            <Box>
+              <Text fontSize="xs">Elevasi</Text>
+              <Text>{segmentDetail.ElevGain}m</Text>
+            </Box>
+          </Skeleton>
+          <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">
+            <Box>
+              <Text fontSize="xs">Gradien</Text>
+              <Text>{segmentDetail.Gradient}%</Text>
+            </Box>
+          </Skeleton>
         </HStack>
       </Flex>
 

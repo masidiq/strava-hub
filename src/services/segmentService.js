@@ -15,7 +15,12 @@ const endpoint = {
 
 export default {
   async getFeeds() {
-    return await eqHttp.get(endpoint.getFeeds);
+    let notUseCache = false;
+
+    if (eqDate.isMorning()) {
+      notUseCache = true;
+    }
+    return await eqHttp.get(endpoint.getFeeds, null, notUseCache);
   },
   async getListDate(id) {
     let param = {

@@ -18,4 +18,13 @@ export default {
       return false;
     }
   },
+  isMorning() {
+    var currentHour = moment().format("HH");
+
+    if (currentHour >= 6 && currentHour < 10) {
+      return true;
+    } else {
+      return false;
+    }
+  },
 };

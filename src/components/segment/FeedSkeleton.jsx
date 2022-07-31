@@ -20,7 +20,7 @@ export default function FeedSkeleton(props) {
       <Card p="0" mt="10px">
         <VStack spacing={0} divider={<Divider />} align="stretch">
           {Array.from(Array(props.rows), (e, i) => {
-            return <SegmentRowSkeleton />;
+            return <SegmentRowSkeleton key={i} />;
           })}
         </VStack>
       </Card>

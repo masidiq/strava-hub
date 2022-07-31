@@ -102,8 +102,51 @@ export default function _id() {
         }
       />
 
-      <Flex p="10px 20px" justify="space-between" alignItems="center">
-        <HStack spacing="40px">
+      <Flex
+        p="10px"
+        px={{ base: "20px", md: 0 }}
+        justify="space-between"
+        alignItems="center"
+      >
+        <Button variant="outline" size="sm">
+          Filter
+        </Button>
+        <HStack overflow="auto">
+          <Button variant="outline" size="sm" flex="0 0 auto">
+            Filter
+          </Button>
+          <Button variant="outline" size="sm" flex="0 0 auto">
+            Filter
+          </Button>
+          <Button variant="outline" size="sm" flex="0 0 auto">
+            Filter
+          </Button>
+          <Button variant="outline" size="sm" flex="0 0 auto">
+            Filter
+          </Button>
+          <Button variant="outline" size="sm" flex="0 0 auto">
+            Filter
+          </Button>
+          <Button variant="outline" size="sm" flex="0 0 auto">
+            Filter
+          </Button>
+          <Button variant="outline" size="sm" flex="0 0 auto">
+            Filter
+          </Button>
+          <Button variant="outline" size="sm" flex="0 0 auto">
+            Filter
+          </Button>
+          <Button variant="outline" size="sm" flex="0 0 auto">
+            Filter
+          </Button>
+          <Button variant="outline" size="sm" flex="0 0 auto">
+            Filter
+          </Button>
+          <Button variant="outline" size="sm" flex="0 0 auto">
+            Filter
+          </Button>
+        </HStack>
+        <HStack spacing="25px" textAlign="right">
           <Box>
             <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">
               <Text fontSize="xs">Jarak</Text>

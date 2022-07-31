@@ -20,6 +20,7 @@ import segmentService from "../../services/segmentService";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import moment from "moment";
 import AthleteRowSkeleton from "../../components/segment/AthleteRowSkeleton";
+import eqDate from "../../helpers/eqDate";
 export default function _id() {
   const navigate = useNavigate();
   const [segment, setSegment] = useState(null);
@@ -40,7 +41,7 @@ export default function _id() {
     setListDate(result);
 
     if (!date) {
-      date = moment().format("YYYY-MM-DD");
+      date = result[0];
     }
 
     setSelectedDate(date);
@@ -73,8 +74,8 @@ export default function _id() {
               }}
             >
               {listDate.map((item, i) => (
-                <option key={i} value={item.DateId}>
-                  {item.Title}
+                <option key={i} value={item}>
+                  {eqDate.displayDate(item)}
                 </option>
               ))}
             </Select>
@@ -138,10 +139,15 @@ export default function _id() {
             <AthleteRowSkeleton />
             <AthleteRowSkeleton />
             <AthleteRowSkeleton />
+            <AthleteRowSkeleton />
+            <AthleteRowSkeleton />
+            <AthleteRowSkeleton />
+            <AthleteRowSkeleton />
+            <AthleteRowSkeleton />
           </Tbody>
         )}
 
-        {segment && <AthleteList athletes={segment.Athletes} />}
+        {segment && !isLoading && <AthleteList athletes={segment.Athletes} />}
       </Table>
     </>
   );

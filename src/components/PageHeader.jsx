@@ -45,7 +45,9 @@ export default function PageHeader(props) {
       <Box>
         {!props.title && <Skeleton height="20px" w="40px"></Skeleton>}
 
-        <Heading size={{ base: "sm", md: "md" }}>{props.title}</Heading>
+        <Heading noOfLines={1} size={{ base: "sm", md: "md" }}>
+          {props.title}
+        </Heading>
 
         {props.subTitle}
       </Box>

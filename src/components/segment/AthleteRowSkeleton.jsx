@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Box,
   Flex,
@@ -10,10 +11,15 @@ import {
 } from "@chakra-ui/react";
 
 export default function AthleteRowSkeleton(props) {
+  const [wName, setWName] = useState("0%");
   function randomWidth() {
     console.log("ASD");
     return Math.floor(Math.random() * 60 + 30) + "%";
   }
+
+  useEffect(() => {
+    setWName(randomWidth);
+  }, []);
   return (
     <Tr>
       <Td textAlign="center">
@@ -23,7 +29,7 @@ export default function AthleteRowSkeleton(props) {
         <SkeletonCircle size="8" />
       </Td>
       <Td pr={0}>
-        <Skeleton h="15px" w="190px" />
+        <Skeleton h="15px" w={wName} />
         <Skeleton h="12px" w="130px" mt="5px" />
       </Td>
       <Td pl="0" pr="5px">

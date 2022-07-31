@@ -37,7 +37,7 @@ export default function PageHeader(props) {
           ml="5px"
           isRound
           onClick={() => {
-            navigate("/");
+            navigate(-1);
           }}
         />
       )}

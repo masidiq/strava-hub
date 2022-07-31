@@ -9,6 +9,14 @@ export default {
     }
     return dMoment.format("dddd, D MMM ");
   },
+
+  displayTime(d) {
+    if (!d) {
+      return "";
+    }
+    var dMoment = moment(d);
+    return dMoment.format("HH:mm");
+  },
   sameWithToday(d) {
     let dateNow = moment();
 

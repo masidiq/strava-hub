@@ -1,11 +1,14 @@
 import {
   Box,
+  Text,
   Button,
   Drawer,
   DrawerBody,
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
+  Flex,
+  SimpleGrid,
   useDisclosure,
   Wrap,
 } from "@chakra-ui/react";
@@ -34,7 +37,7 @@ export default function FilterAthlete(props) {
       <DrawerContent>
         <DrawerHeader borderBottomWidth="1px">Filter</DrawerHeader>
         <DrawerBody>
-          <Wrap>
+          <SimpleGrid spacing={2} columns={2}>
             {availableFilters.map((item, i) => (
               <Button
                 variant="outline"
@@ -42,10 +45,13 @@ export default function FilterAthlete(props) {
                 onClick={(e) => dispatch(doFilter(item.code))}
                 isActive={item.isActive}
               >
-                {item.name}
+                <Flex justifyContent="space-between" w="full">
+                  <Text>{item.name}</Text>
+                  <Text color="muted">{item.total}</Text>
+                </Flex>
               </Button>
             ))}
-          </Wrap>
+          </SimpleGrid>
         </DrawerBody>
       </DrawerContent>
     </Drawer>

@@ -79,7 +79,7 @@ export default function SegmentList() {
         as="a"
         href="https://docs.google.com/forms/d/e/1FAIpQLSdDBrHNZogYoT7DbASBneAgMA7py1ilapSrPOYQzN3DW5Q1Xg/viewform?usp=sf_link"
       >
-        Request / Update Segment
+        Tambah Segment
       </Button>
       <Button
         w="full"

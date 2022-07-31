@@ -32,8 +32,6 @@ import { set, doFilter } from "../../redux/athleteStore";
 
 export default function _id() {
   const navigate = useNavigate();
-
-  const [segment, setSegment] = useState(null);
   const [segmentDetail, segSegmentDetail] = useState({
     Name: null,
   });
@@ -42,7 +40,7 @@ export default function _id() {
   const [selectedDate, setSelectedDate] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [openCount, doOpen] = useState(0);
-
+  const [lastUpdate, setLastUpdate] = useState(null);
   const athleteList = useSelector((state) => state.athlete.filteredList);
 
   const dispatch = useDispatch();
@@ -65,6 +63,8 @@ export default function _id() {
     var segmentResult = await segmentService.getLeaderboard(id, date);
 
     dispatch(set(segmentResult.Athletes));
+
+    setLastUpdate(segmentResult.LastUpdated);
     setIsLoading(false);
   };
 
@@ -125,15 +125,17 @@ export default function _id() {
         justify="space-between"
         alignItems="center"
       >
-        <Button
-          variant="outline"
-          size="sm"
-          flex="0 0 auto"
-          mr="5px"
-          onClick={() => doOpen((prev) => prev + 1)}
-        >
-          Filter
-        </Button>
+        {filters.length > 1 && (
+          <Button
+            variant="outline"
+            size="sm"
+            flex="0 0 auto"
+            mr="5px"
+            onClick={() => doOpen((prev) => prev + 1)}
+          >
+            Filter
+          </Button>
+        )}
 
         <HStack overflow="auto" w="full" alignItems="center">
           {filters.map(
@@ -156,27 +158,29 @@ export default function _id() {
               )
           )}
         </HStack>
-        <HStack spacing="25px" textAlign="right">
-          <Box>
-            <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">
-              <Text fontSize="xs">Jarak</Text>
+        {filters.filter((o) => o.isActive).length < 4 && (
+          <HStack spacing="25px" textAlign="right">
+            <Box>
+              <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">
+                <Text fontSize="xs">Jarak</Text>
 
-              <Text>{segmentDetail.Distance}km</Text>
+                <Text>{segmentDetail.Distance}km</Text>
+              </Skeleton>
+            </Box>
+            <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">
+              <Box>
+                <Text fontSize="xs">Elevasi</Text>
+                <Text>{segmentDetail.ElevGain}m</Text>
+              </Box>
             </Skeleton>
-          </Box>
-          <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">
-            <Box>
-              <Text fontSize="xs">Elevasi</Text>
-              <Text>{segmentDetail.ElevGain}m</Text>
-            </Box>
-          </Skeleton>
-          <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">
-            <Box>
-              <Text fontSize="xs">Gradien</Text>
-              <Text>{segmentDetail.Gradient}%</Text>
-            </Box>
-          </Skeleton>
-        </HStack>
+            <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">
+              <Box>
+                <Text fontSize="xs">Gradien</Text>
+                <Text>{segmentDetail.Gradient}%</Text>
+              </Box>
+            </Skeleton>
+          </HStack>
+        )}
       </Flex>
 
       <Table size="sm" colorScheme="teal">
@@ -219,6 +223,23 @@ export default function _id() {
           <AthleteList athletes={athleteList} />
         )}
       </Table>
+
+      <Flex
+        position="fixed"
+        w="xl"
+        maxW="full"
+        bottom={0}
+        bg="bg.gray"
+        alignItems="center"
+        py="5px"
+        px="10px"
+        fontSize="xs"
+        justify="space-between"
+        color="muted"
+      >
+        <Text>Total {athleteList.length}</Text>
+        <Text>Last Update {eqDate.displayTime(lastUpdate)}</Text>
+      </Flex>
     </>
   );
 }

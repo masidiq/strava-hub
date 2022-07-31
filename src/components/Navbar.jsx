@@ -48,11 +48,8 @@ export default function Navbar() {
 
           {/* RIGHT */}
           <HStack ml="auto" alignItems="center">
-            <Button variant="ghost" fontWeight="light" as={Link} to="/">
-              Home
-            </Button>
             <Button variant="ghost" fontWeight="light" as={Link} to="/segment">
-              Segment
+              Daftar Segment
             </Button>{" "}
             <IconButton
               size="sm"

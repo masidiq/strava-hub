@@ -26,12 +26,13 @@ import moment from "moment";
 import AthleteRowSkeleton from "../../components/segment/AthleteRowSkeleton";
 import eqDate from "../../helpers/eqDate";
 import FilterAthlete from "../../components/segment/FilterAthlete";
-
+import { IoFilterOutline } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
 import { set, doFilter } from "../../redux/athleteStore";
 
 export default function _id() {
   const navigate = useNavigate();
+  const [pageLoaded, setPageLoaded] = useState(false);
   const [segmentDetail, segSegmentDetail] = useState({
     Name: null,
   });
@@ -45,6 +46,7 @@ export default function _id() {
 
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.athlete.availableFilters);
+  const genderFilter = useSelector((state) => state.athlete.filter);
   const getData = async () => {
     console.log("Load Data");
     setIsLoading(true);
@@ -66,6 +68,7 @@ export default function _id() {
 
     setLastUpdate(segmentResult.LastUpdated);
     setIsLoading(false);
+    setPageLoaded(true);
   };
 
   useEffect(() => {
@@ -125,19 +128,51 @@ export default function _id() {
         justify="space-between"
         alignItems="center"
       >
-        {filters.length > 1 && (
+        {pageLoaded && filters.length > 1 && (
           <Button
             variant="outline"
-            size="sm"
+            size="xs"
             flex="0 0 auto"
             mr="5px"
             onClick={() => doOpen((prev) => prev + 1)}
+            leftIcon={<IoFilterOutline />}
           >
             Filter
           </Button>
         )}
 
-        <HStack overflow="auto" w="full" alignItems="center">
+        <HStack overflow="auto" w="full" alignItems="center" pb="2px" mt="2px">
+          {genderFilter.isWomen.isActive && (
+            <Tag
+              size="sm"
+              borderRadius="full"
+              variant="outline"
+              colorScheme="blue"
+              flex="0 0 auto"
+            >
+              <TagLabel>Wanita</TagLabel>
+              <TagCloseButton
+                ml="0"
+                onClick={(e) => dispatch(doFilter("women"))}
+              />
+            </Tag>
+          )}
+
+          {genderFilter.isMan.isActive && (
+            <Tag
+              size="sm"
+              borderRadius="full"
+              variant="outline"
+              colorScheme="blue"
+              flex="0 0 auto"
+            >
+              <TagLabel>Pria</TagLabel>
+              <TagCloseButton
+                ml="0"
+                onClick={(e) => dispatch(doFilter("man"))}
+              />
+            </Tag>
+          )}
           {filters.map(
             (item, i) =>
               item.isActive && (
@@ -233,7 +268,7 @@ export default function _id() {
         alignItems="center"
         py="5px"
         px="10px"
-        fontSize="xs"
+        fontSize="10px"
         justify="space-between"
         color="muted"
       >

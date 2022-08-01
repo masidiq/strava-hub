@@ -59,7 +59,6 @@ export default function _id() {
     if (!date) {
       date = result[0];
     }
-
     setSelectedDate(date);
 
     var segmentResult = await segmentService.getLeaderboard(id, date);
@@ -77,7 +76,7 @@ export default function _id() {
 
   function goTo(dateId) {
     window.history.replaceState(null, "", "/segment/" + id + "/" + dateId);
-    setSelectedDate(dateId);
+    date = dateId;
     getData();
   }
   return (

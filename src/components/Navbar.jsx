@@ -35,7 +35,7 @@ export default function Navbar() {
       w="full"
     >
       <Container maxW="xl">
-        <Flex py="6px" alignItems="center" h="60px">
+        <Flex py="6px" alignItems="center" h={{ base: "60px", md: "auto" }}>
           <Box as={Link} to="/">
             <Flex alignItems="center">
               <Text fontWeight="semibold" fontSize="xl">

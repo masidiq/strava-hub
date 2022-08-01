@@ -128,71 +128,79 @@ export default function _id() {
         justify="space-between"
         alignItems="center"
       >
+        <Box></Box>
         {pageLoaded && filters.length > 1 && (
-          <Button
-            variant="outline"
-            size="xs"
-            flex="0 0 auto"
-            mr="5px"
-            onClick={() => doOpen((prev) => prev + 1)}
-            leftIcon={<IoFilterOutline />}
-          >
-            Filter
-          </Button>
-        )}
-
-        <HStack overflow="auto" w="full" alignItems="center" pb="2px" mt="2px">
-          {genderFilter.isWomen.isActive && (
-            <Tag
-              size="sm"
-              borderRadius="full"
+          <>
+            <Button
               variant="outline"
-              colorScheme="blue"
+              size="xs"
               flex="0 0 auto"
+              mr="5px"
+              onClick={() => doOpen((prev) => prev + 1)}
+              leftIcon={<IoFilterOutline />}
             >
-              <TagLabel>Wanita</TagLabel>
-              <TagCloseButton
-                ml="0"
-                onClick={(e) => dispatch(doFilter("women"))}
-              />
-            </Tag>
-          )}
-
-          {genderFilter.isMan.isActive && (
-            <Tag
-              size="sm"
-              borderRadius="full"
-              variant="outline"
-              colorScheme="blue"
-              flex="0 0 auto"
+              Filter
+            </Button>
+            <HStack
+              overflow="auto"
+              w="full"
+              alignItems="center"
+              pb="2px"
+              mt="2px"
             >
-              <TagLabel>Pria</TagLabel>
-              <TagCloseButton
-                ml="0"
-                onClick={(e) => dispatch(doFilter("man"))}
-              />
-            </Tag>
-          )}
-          {filters.map(
-            (item, i) =>
-              item.isActive && (
+              {genderFilter.isWomen.isActive && (
                 <Tag
                   size="sm"
                   borderRadius="full"
                   variant="outline"
                   colorScheme="blue"
-                  key={i}
                   flex="0 0 auto"
                 >
-                  <TagLabel> {item.shortName}</TagLabel>
+                  <TagLabel>Wanita</TagLabel>
                   <TagCloseButton
                     ml="0"
-                    onClick={(e) => dispatch(doFilter(item.code))}
+                    onClick={(e) => dispatch(doFilter("women"))}
                   />
                 </Tag>
-              )
-          )}
-        </HStack>
+              )}
+
+              {genderFilter.isMan.isActive && (
+                <Tag
+                  size="sm"
+                  borderRadius="full"
+                  variant="outline"
+                  colorScheme="blue"
+                  flex="0 0 auto"
+                >
+                  <TagLabel>Pria</TagLabel>
+                  <TagCloseButton
+                    ml="0"
+                    onClick={(e) => dispatch(doFilter("man"))}
+                  />
+                </Tag>
+              )}
+              {filters.map(
+                (item, i) =>
+                  item.isActive && (
+                    <Tag
+                      size="sm"
+                      borderRadius="full"
+                      variant="outline"
+                      colorScheme="blue"
+                      key={i}
+                      flex="0 0 auto"
+                    >
+                      <TagLabel> {item.shortName}</TagLabel>
+                      <TagCloseButton
+                        ml="0"
+                        onClick={(e) => dispatch(doFilter(item.code))}
+                      />
+                    </Tag>
+                  )
+              )}
+            </HStack>
+          </>
+        )}
         {filters.filter((o) => o.isActive).length < 4 && (
           <HStack spacing="25px" textAlign="right">
             <Box>

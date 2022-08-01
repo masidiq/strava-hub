@@ -77,6 +77,7 @@ export default function _id() {
 
   function goTo(dateId) {
     window.history.replaceState(null, "", "/segment/" + id + "/" + dateId);
+    setSelectedDate(dateId);
     getData();
   }
   return (

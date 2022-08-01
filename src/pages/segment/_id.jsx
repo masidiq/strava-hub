@@ -76,7 +76,8 @@ export default function _id() {
   }, [date]);
 
   function goTo(dateId) {
-    navigate("/segment/" + id + "/" + dateId);
+    window.history.replaceState(null, "", "/segment/" + id + "/" + dateId);
+    getData();
   }
   return (
     <>

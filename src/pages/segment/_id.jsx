@@ -230,15 +230,15 @@ export default function _id() {
       <Table size="sm" colorScheme="teal">
         <Thead background="bg.gray">
           <Tr>
-            <Th w="30px" textAlign="center" p={0}>
+            <Th textAlign="left" pl="3px" colSpan={2}>
               Rank
             </Th>
-            <Th w="35px"></Th>
-            <Th>Athlete</Th>
-            <Th w="75px" textAlign="right" pr="25px" pl={0}>
+
+            <Th pl="10px">Athlete</Th>
+            <Th w="75px" textAlign="right" pr="15px" pl={0}>
               Speed
             </Th>
-            <Th w="100px" pr="18px" textAlign="right">
+            <Th w="61px" pr="5px" textAlign="right">
               Time
             </Th>
           </Tr>

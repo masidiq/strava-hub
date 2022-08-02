@@ -27,13 +27,13 @@ export default function AthleteList(props) {
     <Tbody>
       {props.athletes.map((athlete, index) => (
         <Tr key={index}>
-          <Td textAlign="center">
-            <Text fontSize="sm">{index + 1}</Text>
+          <Td textAlign="center" pl="3px" pr="5px" w="33px">
+            <Text fontSize="xs">{index + 1}</Text>
           </Td>
-          <Td p={0}>
+          <Td w="35px" p={0}>
             <Avatar size="sm" name={athlete.Name} src={athlete.ImageUrl} />
           </Td>
-          <Td pr={0}>
+          <Td pr={0} pl="10px">
             <div>
               <div>
                 <Text noOfLines={1} fontSize="sm">
@@ -60,23 +60,26 @@ export default function AthleteList(props) {
             </div>
           </Td>
           <Td pl="0" pr="5px">
-            <Text textAlign="right" noOfLines={1} fontSize="sm">
+            <Text textAlign="right" noOfLines={1} fontSize="xs">
               {athlete.Speed}{" "}
-              <Text as="span" color="muted" fontSize="10px" letterSpacing={1}>
+              <Text as="span" color="muted" fontSize="10px" letterSpacing="0px">
                 km/h
               </Text>
             </Text>
           </Td>
-          <Td pl="0">
+          <Td pl={0} pr="5px">
             <Flex alignItems="center" justifyContent="flex-end">
               {athlete.IsNewPr == true && (
-                <Box mr="10px">
+                <Box mr="3px" textAlign="left">
                   <div className="icon-pr"></div>
                 </Box>
               )}
-
               <Box>
-                <Text textAlign="right" noOfLines={1} fontSize="sm">
+                <Text
+                  textAlign="right"
+                  noOfLines={1}
+                  fontSize={athlete.Time.length < 6 ? "xs" : "11px"}
+                >
                   {athlete.Time}
                 </Text>
               </Box>

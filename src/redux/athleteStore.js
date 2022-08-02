@@ -108,7 +108,7 @@ function populateAgeFilters(state) {
         case "55+":
           filterName = "55 tahun ++";
           break;
-        case "65_70":
+        case "65_69":
           filterName = "65-70 tahun";
           break;
         case "70_74":

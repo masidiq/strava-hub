@@ -9,6 +9,25 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 import moment from "moment";
 import "moment/dist/locale/id";
 moment.defaultFormat = "YYYY-MM-DD";
+moment.locale("id", {
+  relativeTime: {
+    future: "dalam %s",
+    past: "%s lalu",
+    s: "beberapa detik",
+    ss: "%d detik",
+    m: "semenit",
+    mm: "%d menit",
+    h: "sejam",
+    hh: "%d jam",
+    d: "sehari",
+    dd: "%d hari",
+    M: "1 bulan",
+    MM: "%d bulan",
+    y: "1 tahun",
+    yy: "%d tahun",
+  },
+});
+
 import store from "./redux/store";
 import { Provider } from "react-redux";
 
@@ -17,13 +36,20 @@ const customTheme = extendTheme({
     colors: {
       error: "red.500",
       muted: {
-        default: "gray.500",
-        _dark: "gray.400",
+        default: "#9d9d9d",
+        _dark: "#7c7c7c",
       },
 
       ["bg.gray"]: {
         default: "gray.100",
         _dark: "gray.700",
+      },
+      ["bg.default"]: {
+        default: "var(--chakra-colors-chakra-body-bg)",
+      },
+      ["bg.base"]: {
+        default: "#f9f9f9",
+        _dark: "#14181e",
       },
     },
   },

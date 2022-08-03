@@ -26,7 +26,7 @@ export default function AthleteList(props) {
   return (
     <Tbody>
       {props.athletes.map((athlete, index) => (
-        <Tr key={index}>
+        <Tr key={index} bg="bg.default">
           <Td textAlign="center" pl="3px" pr="5px" w="33px">
             <Text fontSize="xs">{index + 1}</Text>
           </Td>

@@ -9,6 +9,7 @@ export default function Card(props) {
       borderRadius="lg"
       p="15px"
       {...props}
+      bg="bg.default"
     />
   );
 }

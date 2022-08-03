@@ -99,6 +99,7 @@ export default function _id() {
                 onChange={(e) => {
                   goTo(e.target.value);
                 }}
+                bg="bg.default"
               >
                 {listDate.map((item, i) => (
                   <option key={i} value={item}>
@@ -115,7 +116,8 @@ export default function _id() {
             as="a"
             target="_blank"
             href={"https://www.strava.com/segments/" + segmentDetail.Id}
-            rightIcon={<ArrowForwardIcon />}
+            rightIcon={<ArrowForwardIcon ml="-5px" />}
+            colorScheme="orange"
           >
             strava
           </Button>
@@ -128,13 +130,21 @@ export default function _id() {
         px={{ base: "10px", md: 0 }}
         justify="space-between"
         alignItems="center"
+        position="sticky"
+        top={{ base: "60px", md: "50px" }}
+        background={{
+          base: "bg.default",
+          md: "bg.base",
+        }}
+        zIndex="1"
+        borderBottomWidth={{ base: "1px", md: "0px" }}
       >
         <Box></Box>
         {pageLoaded && filters.length > 1 && (
           <>
             <Button
               variant="outline"
-              size="xs"
+              size="sm"
               flex="0 0 auto"
               mr="5px"
               onClick={() => doOpen((prev) => prev + 1)}
@@ -203,31 +213,42 @@ export default function _id() {
           </>
         )}
         {filters.filter((o) => o.isActive).length < 4 && (
-          <HStack spacing="25px" textAlign="right">
+          <HStack spacing={{ base: "5px", md: "25px" }} textAlign="right">
             <Box>
               <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">
-                <Text fontSize="xs">Jarak</Text>
+                <Text color="muted" fontSize="xs">
+                  Jarak
+                </Text>
 
-                <Text>{segmentDetail.Distance}km</Text>
+                <Text fontSize="sm">{segmentDetail.Distance}km</Text>
               </Skeleton>
             </Box>
             <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">
               <Box>
-                <Text fontSize="xs">Elevasi</Text>
-                <Text>{segmentDetail.ElevGain}m</Text>
+                <Text color="muted" fontSize="xs">
+                  Elevasi
+                </Text>
+                <Text fontSize="sm">{segmentDetail.ElevGain}m</Text>
               </Box>
             </Skeleton>
             <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">
               <Box>
-                <Text fontSize="xs">Gradien</Text>
-                <Text>{segmentDetail.Gradient}%</Text>
+                <Text color="muted" fontSize="xs">
+                  Gradien
+                </Text>
+                <Text fontSize="sm">{segmentDetail.Gradient}%</Text>
               </Box>
             </Skeleton>
           </HStack>
         )}
       </Flex>
 
-      <Table size="sm" colorScheme="teal">
+      <Table
+        size="sm"
+        colorScheme="teal"
+        borderTopRadius={{ md: "lg" }}
+        overflow="hidden"
+      >
         <Thead background="bg.gray">
           <Tr>
             <Th textAlign="left" pl="3px" colSpan={2}>
@@ -269,7 +290,8 @@ export default function _id() {
       </Table>
 
       <Flex
-        position="fixed"
+        mt="-1px"
+        position="sticky"
         w="xl"
         maxW="full"
         bottom={0}
@@ -280,6 +302,7 @@ export default function _id() {
         fontSize="10px"
         justify="space-between"
         color="muted"
+        borderBottomRadius={{ md: "xl" }}
       >
         <Text>Total {athleteList.length}</Text>
         <Text>Last Update {eqDate.displayTime(lastUpdate)}</Text>

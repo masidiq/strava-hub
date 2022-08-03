@@ -20,9 +20,12 @@ export default function PageHeader(props) {
       alignItems="center"
       position={{ base: "fixed", md: "initial" }}
       top="0"
-      pr={{ base: "15px", md: "0" }}
+      pr={{ base: "10px", md: "0" }}
       zIndex={2}
-      background="var(--chakra-colors-chakra-body-bg)"
+      background={{
+        base: "var(--chakra-colors-chakra-body-bg)",
+        md: "bg.base",
+      }}
       right="0"
       left="0"
       height={{ base: "60px", md: "auto" }}

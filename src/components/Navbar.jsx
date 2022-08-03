@@ -31,11 +31,11 @@ export default function Navbar() {
       position="sticky"
       top={0}
       bgColor="var(--chakra-colors-chakra-body-bg)"
-      zIndex={1}
+      zIndex={2}
       w="full"
     >
       <Container maxW="xl">
-        <Flex py="6px" alignItems="center" h={{ base: "60px", md: "auto" }}>
+        <Flex py="6px" alignItems="center" h={{ base: "59px", md: "auto" }}>
           <Box as={Link} to="/">
             <Flex alignItems="center">
               <Text fontWeight="semibold" fontSize="xl">

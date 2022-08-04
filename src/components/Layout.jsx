@@ -15,7 +15,11 @@ import { BsInstagram, BsStrava } from "react-icons/bs";
 
 export default function Layout() {
   return (
-    <Box bg="bg.base" minH="100vh" position="relative">
+    <Box
+      bg="bg.base"
+      minH={{ base: "calc(100vh - 80px)", md: "100vh" }}
+      position="relative"
+    >
       <Navbar />
       <Container maxW="xl" px="0" pb="90px" pt={{ md: "15px" }}>
         <Outlet />

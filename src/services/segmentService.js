@@ -26,7 +26,13 @@ export default {
     let param = {
       segmentId: id,
     };
-    return await eqHttp.getJson(endpoint.getListDate, param);
+    return await eqHttp.getJson(endpoint.getListDate, param).catch((error) => {
+      if (error.response.status == 403) {
+        return [];
+      } else {
+        return eqHttp.showError(error);
+      }
+    });
   },
   async getLeaderboard(id, date) {
     let notUseCache = false;
@@ -53,11 +59,14 @@ export default {
 
   async getList(isRealtime) {
     var url = endpoint.getList;
-
-    if (isRealtime) {
-      url += "?t=" + new Date().getTime();
+    let notUseCache = false;
+    if (eqDate.isMorning()) {
+      notUseCache = true;
     }
-    return await eqHttp.get(url);
+    if (isRealtime) {
+      notUseCache = true;
+    }
+    return await eqHttp.get(url, null, notUseCache);
   },
 
   async add(segmentId) {

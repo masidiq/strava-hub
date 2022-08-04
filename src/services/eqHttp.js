@@ -28,15 +28,9 @@ export default {
       url += "?t=" + new Date().getTime();
     }
 
-    return await axios
-      .get(url)
-      .then((response) => {
-        return response.data;
-      })
-      .catch((error) => {
-        this.showError(error);
-        throw error.response.data;
-      });
+    return await axios.get(url).then((response) => {
+      return response.data;
+    });
   },
 
   async get(url, param, notUseCache) {

@@ -54,6 +54,12 @@ export default function _id() {
     segSegmentDetail(segResult);
 
     var result = await segmentService.getListDate(id);
+    if (result.length == 0) {
+      setIsLoading(false);
+      setPageLoaded(true);
+      return;
+    }
+
     setListDate(result);
 
     if (!date) {

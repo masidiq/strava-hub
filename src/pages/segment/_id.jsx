@@ -48,6 +48,7 @@ export default function _id() {
   const filters = useSelector((state) => state.athlete.availableFilters);
   const genderFilter = useSelector((state) => state.athlete.filter);
   const getData = async () => {
+    dispatch(set([]));
     console.log("Load Data");
     setIsLoading(true);
     var segResult = await segmentService.get(id);
@@ -92,7 +93,7 @@ export default function _id() {
         subTitle={
           <Box>
             <Skeleton
-              isLoaded={listDate.length > 0}
+              isLoaded={listDate.length}
               minW="50px"
               maxW="150px"
               mt="2px"
@@ -136,7 +137,13 @@ export default function _id() {
         px={{ base: "10px", md: 0 }}
         justify="space-between"
         alignItems="center"
-        position="sticky"
+        position={
+          filters.filter((o) => o.isActive).length > 0 ||
+          genderFilter.isWomen.isActive ||
+          genderFilter.isMan.isActive
+            ? "sticky"
+            : "initial"
+        }
         top={{ base: "60px", md: "50px" }}
         background={{
           base: "bg.default",

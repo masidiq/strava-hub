@@ -17,7 +17,7 @@ export default function Layout() {
   return (
     <Box
       bg="bg.base"
-      minH={{ base: "calc(100vh - 80px)", md: "100vh" }}
+      minH={{ base: "calc(100vh - 60px)", md: "100vh" }}
       position="relative"
     >
       <Navbar />

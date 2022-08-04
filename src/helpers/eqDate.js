@@ -29,7 +29,7 @@ export default {
   isMorning() {
     var currentHour = moment().format("HH");
 
-    if (currentHour >= 6 && currentHour < 10) {
+    if (currentHour >= 6 && currentHour < 12) {
       return true;
     } else {
       return false;

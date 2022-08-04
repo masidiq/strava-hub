@@ -20,7 +20,7 @@ export default function AthleteRowSkeleton(props) {
     setWName(randomWidth);
   }, []);
   return (
-    <Tr>
+    <Tr borderWidth={{ base: "0", md: "1px" }}>
       <Td textAlign="center" px="3px" w="33px">
         <Flex justify="center">
           <Skeleton h="15px" w="15px" />

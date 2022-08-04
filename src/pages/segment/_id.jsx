@@ -263,7 +263,7 @@ export default function _id() {
         overflow="hidden"
       >
         <Thead background="bg.gray">
-          <Tr>
+          <Tr borderWidth={1}>
             <Th textAlign="left" pl="3px" colSpan={2}>
               Rank
             </Th>
@@ -302,24 +302,26 @@ export default function _id() {
         )}
       </Table>
 
-      <Flex
-        mt="-1px"
-        position="sticky"
-        w="xl"
-        maxW="full"
-        bottom={0}
-        bg="bg.gray"
-        alignItems="center"
-        py="5px"
-        px="10px"
-        fontSize="10px"
-        justify="space-between"
-        color="muted"
-        borderBottomRadius={{ md: "xl" }}
-      >
-        <Text>Total {athleteList.length}</Text>
-        <Text>Last Update {eqDate.displayTime(lastUpdate)}</Text>
-      </Flex>
+      <Box mt="-1px" position="sticky" bottom={0} bg="bg.base">
+        <Flex
+          w="xl"
+          maxW="full"
+          bg="bg.gray"
+          alignItems="center"
+          py="5px"
+          px="10px"
+          fontSize="10px"
+          justify="space-between"
+          color="muted"
+          borderBottomRadius={{ md: "xl" }}
+          borderTop={0}
+          borderWidth={{ base: "0", md: "1px" }}
+          borderBottomWidth={1}
+        >
+          <Text>Total {athleteList.length}</Text>
+          <Text>Last Update {eqDate.displayTime(lastUpdate)}</Text>
+        </Flex>
+      </Box>
     </>
   );
 }

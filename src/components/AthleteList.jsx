@@ -12,6 +12,8 @@ import {
   Td,
 } from "@chakra-ui/react";
 import AthleteRowSkeleton from "./segment/AthleteRowSkeleton";
+import ProfileModal from "./modals/ProfileModal";
+import { useState } from "react";
 
 export default function AthleteList(props) {
   function relativeDateView(date) {
@@ -23,10 +25,29 @@ export default function AthleteList(props) {
     return moment(date, "YYYY-MM-DD HH:mm").fromNow();
   }
 
+  const [openProfileCount, doOpenProfile] = useState(0);
+  const [athlete, setAthlete] = useState(null);
+
+  function openProfileModal(athlete) {
+    setAthlete(athlete);
+    doOpenProfile((prev) => prev + 1);
+  }
   return (
     <Tbody>
+      <Tr>
+        <Td display="none">
+          <ProfileModal isOpen={openProfileCount} athlete={athlete} />
+        </Td>
+      </Tr>
       {props.athletes.map((athlete, index) => (
-        <Tr key={index} bg="bg.default" borderWidth={{ base: "0", md: "1px" }}>
+        <Tr
+          key={index}
+          bg="bg.default"
+          borderWidth={{ base: "0", md: "1px" }}
+          onClick={() => openProfileModal(athlete)}
+          cursor="pointer"
+          _hover={{ background: "bg.gray" }}
+        >
           <Td textAlign="center" pl="3px" pr="5px" w="33px">
             <Text fontSize="xs">{index + 1}</Text>
           </Td>

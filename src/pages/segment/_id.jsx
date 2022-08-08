@@ -42,6 +42,7 @@ export default function _id() {
   const [isLoading, setIsLoading] = useState(false);
   const [openCount, doOpen] = useState(0);
   const [lastUpdate, setLastUpdate] = useState(null);
+
   const athleteList = useSelector((state) => state.athlete.filteredList);
 
   const dispatch = useDispatch();

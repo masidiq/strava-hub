@@ -13,12 +13,16 @@ import {
   Wrap,
   DrawerCloseButton,
   DrawerFooter,
+  Checkbox,
+  Icon,
+  HStack,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 
 import { doFilter } from "../../redux/athleteStore";
 import { useSelector, useDispatch } from "react-redux";
 import { IoFilterOutline } from "react-icons/io5";
+import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
 export default function FilterAthlete(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -53,26 +57,39 @@ export default function FilterAthlete(props) {
           <SimpleGrid spacing={2} columns={2}>
             <Button
               variant="outline"
+              colorScheme="blue"
               isActive={filter.isMan.isActive}
               onClick={(e) => dispatch(doFilter("man"))}
             >
-              {" "}
-              <Flex justifyContent="space-between" w="full">
-                <Text>Pria</Text>
-                <Text color="muted" fontWeight="thin">
+              <Flex alignItems="center" w="full">
+                {filter.isMan.isActive ? (
+                  <ImCheckboxChecked as={Icon} />
+                ) : (
+                  <ImCheckboxUnchecked as={Icon} />
+                )}
+
+                <Text ml="10px">Pria</Text>
+                <Text color="muted" fontWeight="thin" ml="auto">
                   {filter.isMan.total}
                 </Text>
               </Flex>
             </Button>
+
             <Button
               variant="outline"
+              colorScheme="blue"
               isActive={filter.isWomen.isActive}
               onClick={(e) => dispatch(doFilter("women"))}
             >
-              {" "}
-              <Flex justifyContent="space-between" w="full">
-                <Text>Wanita</Text>
-                <Text color="muted" fontWeight="thin">
+              <Flex alignItems="center" w="full">
+                {filter.isWomen.isActive ? (
+                  <ImCheckboxChecked as={Icon} />
+                ) : (
+                  <ImCheckboxUnchecked as={Icon} />
+                )}
+
+                <Text ml="10px">Wanita</Text>
+                <Text color="muted" fontWeight="thin" ml="auto">
                   {filter.isWomen.total}
                 </Text>
               </Flex>
@@ -85,13 +102,20 @@ export default function FilterAthlete(props) {
             {availableFilters.map((item, i) => (
               <Button
                 variant="outline"
+                colorScheme="blue"
                 key={i}
                 onClick={(e) => dispatch(doFilter(item.code))}
                 isActive={item.isActive}
               >
-                <Flex justifyContent="space-between" w="full">
-                  <Text>{item.name}</Text>
-                  <Text color="muted" fontWeight="thin">
+                <Flex alignItems="center" w="full">
+                  {item.isActive ? (
+                    <ImCheckboxChecked as={Icon} />
+                  ) : (
+                    <ImCheckboxUnchecked as={Icon} />
+                  )}
+
+                  <Text ml="10px">{item.name}</Text>
+                  <Text color="muted" fontWeight="thin" ml="auto">
                     {item.total}
                   </Text>
                 </Flex>

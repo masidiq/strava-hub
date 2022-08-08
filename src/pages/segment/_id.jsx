@@ -29,7 +29,7 @@ import FilterAthlete from "../../components/segment/FilterAthlete";
 import { IoFilterOutline } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
 import { set, doFilter } from "../../redux/athleteStore";
-
+import staticData from "@/helpers/eqStaticData";
 export default function _id() {
   const navigate = useNavigate();
   const [pageLoaded, setPageLoaded] = useState(false);
@@ -86,6 +86,15 @@ export default function _id() {
     date = dateId;
     getData();
   }
+  let raceInfoDay = null;
+
+  let segmentRaceFound = staticData.segmentRaceList.find(
+    (o) => o.segmentId == id
+  );
+  if (segmentRaceFound) {
+    raceInfoDay = segmentRaceFound.day;
+  }
+
   return (
     <>
       <PageHeader
@@ -111,6 +120,7 @@ export default function _id() {
                 {listDate.map((item, i) => (
                   <option key={i} value={item}>
                     {eqDate.displayDate(item)}
+                    {raceInfoDay == moment(item).day() && "🏁"}
                   </option>
                 ))}
               </Select>

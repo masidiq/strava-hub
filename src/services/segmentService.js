@@ -1,6 +1,7 @@
 import moment from "moment";
 import eqDate from "../helpers/eqDate";
 import eqHttp from "./eqHttp";
+import staticData from "@/helpers/eqStaticData";
 const storageHost = import.meta.env.VITE_HOST_STORAGE;
 const backEndHost = import.meta.env.VITE_HOST_API;
 
@@ -20,12 +21,35 @@ export default {
     if (eqDate.isMorning()) {
       notUseCache = true;
     }
-    return await eqHttp.get(endpoint.getFeeds, null, notUseCache);
+
+    return await eqHttp
+      .get(endpoint.getFeeds, null, notUseCache)
+      .then((feeds) => {
+        feeds.forEach((feed) => {
+          let dayOfWeek = moment(feed.DateId).day();
+          let segmentFounds = staticData.segmentRaceList.filter(
+            (o) => o.day == dayOfWeek
+          );
+
+          if (segmentFounds) {
+            segmentFounds.forEach((segmentFound) => {
+              feed.Segments.forEach((segment) => {
+                if (segment.SegmentId == segmentFound.segmentId) {
+                  segment.IsRace = true;
+                }
+              });
+            });
+          }
+        });
+
+        return feeds;
+      });
   },
   async getListDate(id) {
     let param = {
       segmentId: id,
     };
+
     return await eqHttp.getJson(endpoint.getListDate, param).catch((error) => {
       if (error.response.status == 403) {
         return [];

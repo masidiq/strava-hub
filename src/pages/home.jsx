@@ -24,6 +24,7 @@ import SegmentRow from "../components/segment/SegmentRow";
 import eqDate from "../helpers/eqDate";
 import SegmentRowSkeleton from "../components/segment/SegmentRowSkeleton";
 import FeedSkeleton from "./../components/segment/FeedSkeleton";
+import Segment1Row from "./../components/segment/Segment1Row";
 export default function Home() {
   const [feeds, setFeeds] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -56,7 +57,7 @@ export default function Home() {
             <Card p="0" mt="10px">
               <VStack spacing={0} divider={<Divider />} align="stretch">
                 {item.Segments.map((segment, segIdx) => (
-                  <SegmentRow
+                  <Segment1Row
                     p="10px 15px"
                     item={segment}
                     key={segment.SegmentId}

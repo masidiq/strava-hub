@@ -73,15 +73,18 @@ export default function ProfileModal(props) {
   }
   return (
     <Portal>
-      <Modal isOpen={isOpen} onClose={onClose} isCentered mx="10px">
-        <ModalOverlay />
+      <Modal isOpen={isOpen} onClose={onClose} isCentered size="xs">
+        <ModalOverlay
+          bg="blackAlpha.100"
+          backdropFilter="blur(5px) hue-rotate(90deg)"
+        />
         <ModalContent>
           {props.athlete && (
             <ModalBody mb="20px">
-              <VStack mt="-70px">
+              <VStack mt="-58px">
                 <Avatar
                   border="5px solid white"
-                  size="2xl"
+                  size="xl"
                   name={props.athlete.Name}
                   src={props.athlete.ImageUrl}
                 />
@@ -106,7 +109,7 @@ export default function ProfileModal(props) {
                     }
                     target="_blank"
                   >
-                    Strava Activity
+                    Strava
                   </Button>
                 </SimpleGrid>
               </VStack>

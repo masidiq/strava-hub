@@ -74,10 +74,7 @@ export default function ProfileModal(props) {
   return (
     <Portal>
       <Modal isOpen={isOpen} onClose={onClose} isCentered size="xs">
-        <ModalOverlay
-          bg="blackAlpha.100"
-          backdropFilter="blur(5px) hue-rotate(90deg)"
-        />
+        <ModalOverlay bg="blackAlpha.100" backdropFilter="blur(5px)" />
         <ModalContent>
           {props.athlete && (
             <ModalBody mb="20px">

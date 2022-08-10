@@ -12,7 +12,7 @@ import SegmentList from "./pages/segment";
 import SegmentDetail from "./pages/segment/_id";
 import AdminSegment from "./pages/admin/segment";
 import Admin from "./pages/admin";
-
+import KangPhoto from "./pages/admin/kang-photo";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { useEffect } from "react";
@@ -42,6 +42,7 @@ export default function Router() {
         <Route path="admin" element={<AdminLayout />}>
           <Route path="" element={<Admin />} />
           <Route path="segment/:id" element={<AdminSegment />} />
+          <Route path="kang-photo" element={<KangPhoto />} />
         </Route>
       </Routes>
     </BrowserRouter>

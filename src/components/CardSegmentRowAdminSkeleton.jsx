@@ -5,7 +5,13 @@ export default function CardSegmentRowAdminSkeleton(props) {
     return Math.floor(Math.random() * 40 + 30) + "%";
   }
   return (
-    <Box w="full" borderWidth="1px" borderRadius="lg" p="15px">
+    <Box
+      w="full"
+      borderWidth="1px"
+      borderRadius="lg"
+      p="15px"
+      bgColor="var(--chakra-colors-chakra-body-bg)"
+    >
       <Flex justify="space-between" alignItems="center">
         <Stack w="full">
           <Skeleton height="20px" w={randomWidth} />

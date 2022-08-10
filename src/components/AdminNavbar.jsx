@@ -1,4 +1,6 @@
 import { MoonIcon, SunIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { MdHome, MdOutlinePhotoLibrary } from "react-icons/md";
+MdOutlinePhotoLibrary;
 import {
   Avatar,
   Box,
@@ -19,6 +21,7 @@ import {
 } from "@chakra-ui/react";
 
 import { Link } from "react-router-dom";
+import { original } from "@reduxjs/toolkit";
 
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -26,20 +29,20 @@ export default function Navbar() {
   return (
     <Box
       as="nav"
+      bgColor="var(--chakra-colors-chakra-body-bg)"
       shadow={{ md: "md" }}
       borderBottomWidth="1px"
       position="sticky"
       top={0}
-      bgColor="var(--chakra-colors-chakra-body-bg)"
       zIndex={1}
       w="full"
     >
       <Container maxW="xl">
         <Flex py="6px" alignItems="center" h="60px">
-          <Box as={Link} to="/">
+          <Box as={Link} to="/admin">
             <Flex alignItems="center">
               <Text fontWeight="semibold" fontSize="xl">
-                <Text as="span" fontWeight="extrabold">
+                <Text as="span" fontWeight="extrabold" color="orange">
                   Admin GOWW
                 </Text>
               </Text>
@@ -48,6 +51,22 @@ export default function Navbar() {
 
           {/* RIGHT */}
           <HStack ml="auto" alignItems="center">
+            <Button
+              as={Link}
+              to="/admin/kang-photo"
+              size="sm"
+              icon={<MdOutlinePhotoLibrary />}
+              isRound={true}
+            >
+              Kang Photo
+            </Button>
+            <IconButton
+              as={Link}
+              to="/"
+              size="sm"
+              icon={<MdHome />}
+              isRound={true}
+            ></IconButton>
             <IconButton
               size="sm"
               icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}

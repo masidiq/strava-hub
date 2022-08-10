@@ -24,7 +24,13 @@ export default function CardSegmentRowAdmin(props) {
   }
 
   return (
-    <Box w="full" borderWidth="1px" borderRadius="lg" p="15px">
+    <Box
+      w="full"
+      borderWidth="1px"
+      borderRadius="lg"
+      p="15px"
+      bgColor="var(--chakra-colors-chakra-body-bg)"
+    >
       <Flex justify="space-between" alignItems="center">
         <Stack as={Link} to={"/admin/segment/" + item.Id} w="full">
           <Text noOfLines={1} height="22px">

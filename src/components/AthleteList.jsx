@@ -20,8 +20,11 @@ export default function AthleteList(props) {
     if (!date) {
       return "-";
     }
-    let time = moment().format("HH:mm");
-    date += " " + time;
+
+    if (date == moment().format("YYYY-MM-DD")) {
+      return "Hari ini";
+    }
+    date += " 23:59";
     return moment(date, "YYYY-MM-DD HH:mm").fromNow();
   }
 

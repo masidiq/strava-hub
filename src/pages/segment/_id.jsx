@@ -96,6 +96,12 @@ export default function _id() {
     raceInfoDay = segmentRaceFound.day;
   }
 
+  function renderAthleteList() {
+    if (athleteList.length > 0 && !isLoading) {
+      return <AthleteList athletes={athleteList} />;
+    }
+  }
+
   return (
     <>
       <PageHeader
@@ -307,10 +313,7 @@ export default function _id() {
             <AthleteRowSkeleton />
           </Tbody>
         )}
-
-        {athleteList.length > 0 && !isLoading && (
-          <AthleteList athletes={athleteList} />
-        )}
+        {renderAthleteList()}
       </Table>
 
       <Box mt="-1px" position="sticky" bottom={0} bg="bg.base">

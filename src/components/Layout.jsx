@@ -29,15 +29,6 @@ export default function Layout() {
         <Text textAlign="center" fontSize="sm">
           Develop by Sidiq
         </Text>
-
-        <HStack justify="center" mt="5px" color="muted">
-          <Link href="https://www.instagram.com/akbr.sidiq" target="_blank">
-            <BsInstagram as={Icon} />
-          </Link>{" "}
-          <Link href="https://www.strava.com/athletes/sidiq_" target="_blank">
-            <BsStrava as={Icon} />
-          </Link>
-        </HStack>
       </Box>
     </Box>
   );

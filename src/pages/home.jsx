@@ -25,6 +25,7 @@ import eqDate from "../helpers/eqDate";
 import SegmentRowSkeleton from "../components/segment/SegmentRowSkeleton";
 import FeedSkeleton from "./../components/segment/FeedSkeleton";
 import Segment1Row from "./../components/segment/Segment1Row";
+import staticData from "../helpers/eqStaticData";
 export default function Home() {
   const [feeds, setFeeds] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -48,6 +49,24 @@ export default function Home() {
   useEffect(() => {
     getFeeds();
   }, []);
+
+  function renderLink(segmentId, dateId) {
+    var segmentPath = staticData.segmentPaths.find(
+      (o) => o.segmentId == segmentId
+    );
+    let path = "";
+    if (segmentPath) {
+      path = "/" + segmentPath.path;
+    } else {
+      path = "/segment/" + segmentId;
+    }
+
+    if (dateId != moment().format("YYYY-MM-DD")) {
+      path += "/" + dateId;
+    }
+    return path;
+  }
+
   return (
     <Box mt={{ base: "10px" }} px="20px">
       <Stack spacing="10px">
@@ -62,7 +81,7 @@ export default function Home() {
                     item={segment}
                     key={segment.SegmentId}
                     as={Link}
-                    to={"/segment/" + segment.SegmentId + "/" + item.DateId}
+                    to={renderLink(segment.SegmentId, item.DateId)}
                   />
                 ))}
               </VStack>

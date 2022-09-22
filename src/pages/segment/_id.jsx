@@ -30,14 +30,28 @@ import { IoFilterOutline } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
 import { set, doFilter } from "../../redux/athleteStore";
 import staticData from "@/helpers/eqStaticData";
+
+import { useLocation } from "react-router-dom";
+
 export default function _id() {
+  const location = useLocation();
+
   const navigate = useNavigate();
   const [pageLoaded, setPageLoaded] = useState(false);
   const [segmentDetail, segSegmentDetail] = useState({
     Name: null,
   });
   const [listDate, setListDate] = useState([]);
+
   let { id, date } = useParams();
+  let pathAlias = "";
+  if (!id) {
+    let path = location.pathname.split("/")[1];
+    let segment = staticData.segmentPaths.find((o) => o.path == path);
+    id = segment.segmentId;
+
+    pathAlias = path;
+  }
   const [selectedDate, setSelectedDate] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [openCount, doOpen] = useState(0);
@@ -83,7 +97,12 @@ export default function _id() {
   }, [date]);
 
   function goTo(dateId) {
-    window.history.replaceState(null, "", "/segment/" + id + "/" + dateId);
+    if (pathAlias) {
+      window.history.replaceState(null, "", "/" + pathAlias + "/" + dateId);
+    } else {
+      window.history.replaceState(null, "", "/segment/" + id + "/" + dateId);
+    }
+
     date = dateId;
     getData();
   }

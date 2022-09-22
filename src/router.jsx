@@ -17,7 +17,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { useEffect } from "react";
 
+import eqStaticData from "./helpers/eqStaticData";
+
 export default function Router() {
+  let listSegmentPath = eqStaticData.segmentPaths.map((o) => o.path);
+
   useEffect(() => {
     ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
@@ -28,9 +32,12 @@ export default function Router() {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
 
-          <Route path="salasa-kahiji" element={<SalasaKahiji />} />
-          <Route path="gbla-loop" element={<GblaLoop />} />
-          <Route path="kbp-loop" element={<KbpLoop />} />
+          {listSegmentPath.map((item, i) => (
+            <Route path={item} key={i}>
+              <Route path="" element={<SegmentDetail />} />
+              <Route path=":date" element={<SegmentDetail />} />
+            </Route>
+          ))}
 
           <Route path="segment">
             <Route path="" element={<SegmentList />} />

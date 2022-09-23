@@ -39,7 +39,7 @@ export default {
       segmentId: "12945856",
     },
     {
-      path: "modas",
+      path: "kamis-kejetkeun",
       segmentId: "32782397",
     },
   ],

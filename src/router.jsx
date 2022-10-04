@@ -10,9 +10,12 @@ import GblaLoop from "./pages/gbla-loop";
 import KbpLoop from "./pages/kbp-loop";
 import SegmentList from "./pages/segment";
 import SegmentDetail from "./pages/segment/_id";
+
 import AdminSegment from "./pages/admin/segment";
 import Admin from "./pages/admin";
 import KangPhoto from "./pages/admin/kang-photo";
+import SchedulerPage from "./pages/admin/scheduler";
+import SchedulerDetail from "./pages/admin/scheduler/_dayName";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { useEffect } from "react";
@@ -50,6 +53,8 @@ export default function Router() {
           <Route path="" element={<Admin />} />
           <Route path="segment/:id" element={<AdminSegment />} />
           <Route path="kang-photo" element={<KangPhoto />} />
+          <Route path="scheduler" element={<SchedulerPage />} />
+          <Route path="scheduler/:dayName" element={<SchedulerDetail />} />
         </Route>
       </Routes>
     </BrowserRouter>

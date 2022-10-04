@@ -56,9 +56,16 @@ export default function Navbar() {
               to="/admin/kang-photo"
               size="sm"
               icon={<MdOutlinePhotoLibrary />}
-              isRound={true}
             >
               Kang Photo
+            </Button>
+            <Button
+              as={Link}
+              to="/admin/scheduler"
+              size="sm"
+              icon={<MdOutlinePhotoLibrary />}
+            >
+              Scheduler
             </Button>
             <IconButton
               as={Link}

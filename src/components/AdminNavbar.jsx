@@ -43,7 +43,7 @@ export default function Navbar() {
             <Flex alignItems="center">
               <Text fontWeight="semibold" fontSize="xl">
                 <Text as="span" fontWeight="extrabold" color="orange">
-                  Admin GOWW
+                  Admin-Page
                 </Text>
               </Text>
             </Flex>

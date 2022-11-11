@@ -27,7 +27,7 @@ export default function Layout() {
 
       <Box position="absolute" bottom="30px" w="full">
         <Text textAlign="center" fontSize="sm">
-          Develop by Sidiq
+          © 2022
         </Text>
       </Box>
     </Box>

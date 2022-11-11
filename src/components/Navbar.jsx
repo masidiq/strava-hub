@@ -39,9 +39,7 @@ export default function Navbar() {
           <Box as={Link} to="/">
             <Flex alignItems="center">
               <Text fontWeight="semibold" fontSize="xl">
-                <Text as="span" fontWeight="extrabold">
-                  GOWW
-                </Text>
+                <Text as="span">Comme Studios</Text>
               </Text>
             </Flex>
           </Box>

@@ -72,25 +72,7 @@ export default function SegmentList() {
           )}
         </VStack>
       </Card>
-      <Button
-        w="full"
-        colorScheme="blue"
-        mt="20px"
-        as="a"
-        href="https://docs.google.com/forms/d/e/1FAIpQLSdDBrHNZogYoT7DbASBneAgMA7py1ilapSrPOYQzN3DW5Q1Xg/viewform?usp=sf_link"
-      >
-        Tambah Segment
-      </Button>
-      <Button
-        w="full"
-        variant="outline"
-        colorScheme="blue"
-        mt="20px"
-        as="a"
-        href="https://docs.google.com/forms/d/e/1FAIpQLSdrkwzCu_yhkLFzoSj6-GAO6fujNH7wc-SH7e60Jh-A9eLbcA/viewform?usp=sf_link"
-      >
-        Kritik & Saran
-      </Button>
+
       <Box></Box>
     </Box>
   );

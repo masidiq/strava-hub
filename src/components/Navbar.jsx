@@ -23,6 +23,13 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
 
+  function renderImageByTheme() {
+    if (colorMode === "light") {
+      return <Image src="/logo.png" h="30px"></Image>;
+    } else {
+      return <Image src="/logo_darkmode.png" h="30px"></Image>;
+    }
+  }
   return (
     <Box
       as="nav"
@@ -39,7 +46,7 @@ export default function Navbar() {
           <Box as={Link} to="/">
             <Flex alignItems="center">
               <Text fontWeight="semibold" fontSize="xl">
-                <Text as="span">Comme Studios</Text>
+                {renderImageByTheme()}
               </Text>
             </Flex>
           </Box>

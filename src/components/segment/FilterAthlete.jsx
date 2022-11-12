@@ -16,14 +16,16 @@ import {
   Checkbox,
   Icon,
   HStack,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 
 import { doFilter } from "../../redux/athleteStore";
 import { useSelector, useDispatch } from "react-redux";
-import { IoFilterOutline } from "react-icons/io5";
+import { IoFastFood, IoFilterOutline } from "react-icons/io5";
 import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
 export default function FilterAthlete(props) {
+  const [isDesktopView] = useMediaQuery("(min-width: 590px)");
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const dispatch = useDispatch();
@@ -33,6 +35,11 @@ export default function FilterAthlete(props) {
 
   const filter = useSelector((state) => state.athlete.filter);
 
+  let placementFilter = "bottom";
+  if (isDesktopView) {
+    placementFilter = "left";
+  }
+
   useEffect(() => {
     if (props.openCount > 0) {
       onOpen();
@@ -40,7 +47,7 @@ export default function FilterAthlete(props) {
   }, [props.openCount]);
 
   return (
-    <Drawer placement="bottom" onClose={onClose} isOpen={isOpen}>
+    <Drawer placement={placementFilter} onClose={onClose} isOpen={isOpen}>
       <DrawerOverlay />
       <DrawerContent>
         <DrawerHeader borderBottomWidth="1px">
@@ -58,7 +65,6 @@ export default function FilterAthlete(props) {
             <Button
               variant="outline"
               colorScheme="blue"
-              isActive={filter.isMan.isActive}
               onClick={(e) => dispatch(doFilter("man"))}
             >
               <Flex alignItems="center" w="full">
@@ -78,7 +84,6 @@ export default function FilterAthlete(props) {
             <Button
               variant="outline"
               colorScheme="blue"
-              isActive={filter.isWomen.isActive}
               onClick={(e) => dispatch(doFilter("women"))}
             >
               <Flex alignItems="center" w="full">
@@ -105,7 +110,6 @@ export default function FilterAthlete(props) {
                 colorScheme="blue"
                 key={i}
                 onClick={(e) => dispatch(doFilter(item.code))}
-                isActive={item.isActive}
               >
                 <Flex alignItems="center" w="full">
                   {item.isActive ? (

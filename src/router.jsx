@@ -1,5 +1,5 @@
 import ReactGA from "react-ga";
-const TRACKING_ID = "UA-163692956-1"; // OUR_TRACKING_ID
+const TRACKING_ID = "UA-163692956-2"; // OUR_TRACKING_ID
 ReactGA.initialize(TRACKING_ID);
 
 import Layout from "./components/Layout";

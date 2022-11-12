@@ -83,45 +83,45 @@ function populateAgeFilters(state) {
       let filterShortName = athlete.Class;
       switch (athlete.Class) {
         case "0_19":
-          filterName = "U19 tahun";
+          filterName = "U19";
           filterShortName = "U19";
           break;
         case "0_24":
-          filterName = "U24 tahun";
+          filterName = "U24";
           filterShortName = "U24";
           break;
         case "20_24":
-          filterName = "20-24 tahun";
+          filterName = "20-24";
           break;
         case "25_34":
-          filterName = "25-34 tahun";
+          filterName = "25-34";
           break;
         case "35_44":
-          filterName = "35-44 tahun";
+          filterName = "35-44";
           break;
         case "45_54":
-          filterName = "45-54 tahun";
+          filterName = "45-54";
           break;
         case "55_64":
-          filterName = "55-64 tahun";
+          filterName = "55-64";
           break;
         case "55+":
-          filterName = "55 tahun ++";
+          filterName = "55 ++";
           break;
         case "65_69":
-          filterName = "65-70 tahun";
+          filterName = "65-70";
           break;
         case "70_74":
-          filterName = "70-74 tahun";
+          filterName = "70-74";
           break;
         case "75_plus":
-          filterName = "75 tahun ++";
+          filterName = "75 ++";
           filterShortName = "75++";
           break;
       }
 
       if (filterName == null) {
-        filterName = "Tidak diketahui";
+        filterName = "Unknown";
       }
 
       if (filterShortName != null) {

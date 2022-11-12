@@ -38,37 +38,37 @@ export default function ProfileModal(props) {
   function showAge(cls) {
     switch (cls) {
       case "0_19":
-        return "U19 tahun";
+        return "U19";
 
       case "0_24":
-        return "U24 tahun";
+        return "U24";
 
       case "20_24":
-        return "20-24 tahun";
+        return "20-24";
 
       case "25_34":
-        return "25-34 tahun";
+        return "25-34";
 
       case "35_44":
-        return "35-44 tahun";
+        return "35-44";
 
       case "45_54":
-        return "45-54 tahun";
+        return "45-54";
 
       case "55_64":
-        return "55-64 tahun";
+        return "55-64";
 
       case "55+":
-        return "55 tahun ++";
+        return "55 ++";
 
       case "65_69":
-        return "65-69 tahun";
+        return "65-69 ";
 
       case "70_74":
-        return "70-74 tahun";
+        return "70-74";
 
       case "75_plus":
-        return "75 tahun ++";
+        return "75++";
     }
   }
   return (

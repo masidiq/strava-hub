@@ -37,7 +37,7 @@ export default function Segment1Row(props) {
         <HStack>
           {item.AthleteCount > 0 && (
             <Text color="muted" fontSize="xs">
-              2
+              {item.AthleteCount}
             </Text>
           )}
 

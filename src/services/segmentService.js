@@ -16,7 +16,7 @@ const endpoint = {
 
 export default {
   async getFeeds() {
-    let notUseCache = false;
+    let notUseCache = true;
 
     if (eqDate.isMorning()) {
       notUseCache = true;

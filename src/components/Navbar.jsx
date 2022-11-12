@@ -25,9 +25,9 @@ export default function Navbar() {
 
   function renderImageByTheme() {
     if (colorMode === "light") {
-      return <Image src="/logo.png" h="32px"></Image>;
+      return <Image src="/logo.png" w="180px"></Image>;
     } else {
-      return <Image src="/logo_darkmode.png" h="32px"></Image>;
+      return <Image src="/logo_darkmode.png" w="180px"></Image>;
     }
   }
   return (
@@ -53,9 +53,9 @@ export default function Navbar() {
 
           {/* RIGHT */}
           <HStack ml="auto" alignItems="center">
-            <Button variant="ghost" fontWeight="light" as={Link} to="/segment">
+            {/* <Button variant="ghost" fontWeight="light" as={Link} to="/segment">
               Daftar Segment
-            </Button>{" "}
+            </Button>{" "} */}
             <IconButton
               size="sm"
               icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}

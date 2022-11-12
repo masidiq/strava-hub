@@ -6,27 +6,6 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
-import moment from "moment";
-import "moment/dist/locale/id";
-moment.defaultFormat = "YYYY-MM-DD";
-moment.locale("id", {
-  relativeTime: {
-    future: "dalam %s",
-    past: "%s lalu",
-    s: "beberapa detik",
-    ss: "%d detik",
-    m: "semenit",
-    mm: "%d menit",
-    h: "sejam",
-    hh: "%d jam",
-    d: "sehari",
-    dd: "%d hari",
-    M: "1 bulan",
-    MM: "%d bulan",
-    y: "1 tahun",
-    yy: "%d tahun",
-  },
-});
 
 import store from "./redux/store";
 import { Provider } from "react-redux";

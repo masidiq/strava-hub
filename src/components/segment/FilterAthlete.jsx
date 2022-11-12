@@ -47,7 +47,12 @@ export default function FilterAthlete(props) {
   }, [props.openCount]);
 
   return (
-    <Drawer placement={placementFilter} onClose={onClose} isOpen={isOpen}>
+    <Drawer
+      placement={placementFilter}
+      onClose={onClose}
+      isOpen={isOpen}
+      size="sm"
+    >
       <DrawerOverlay />
       <DrawerContent>
         <DrawerHeader borderBottomWidth="1px">
@@ -74,7 +79,7 @@ export default function FilterAthlete(props) {
                   <ImCheckboxUnchecked as={Icon} />
                 )}
 
-                <Text ml="10px">Pria</Text>
+                <Text ml="10px">Man</Text>
                 <Text color="muted" fontWeight="thin" ml="auto">
                   {filter.isMan.total}
                 </Text>
@@ -93,7 +98,7 @@ export default function FilterAthlete(props) {
                   <ImCheckboxUnchecked as={Icon} />
                 )}
 
-                <Text ml="10px">Wanita</Text>
+                <Text ml="10px">Women</Text>
                 <Text color="muted" fontWeight="thin" ml="auto">
                   {filter.isWomen.total}
                 </Text>
@@ -101,7 +106,7 @@ export default function FilterAthlete(props) {
             </Button>
           </SimpleGrid>
           <Text fontWeight="semibold" mb="5px" mt="20px">
-            Umur
+            Age
           </Text>
           <SimpleGrid spacing={2} columns={1}>
             {availableFilters.map((item, i) => (

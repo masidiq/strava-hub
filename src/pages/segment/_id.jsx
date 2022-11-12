@@ -232,7 +232,7 @@ export default function _id() {
                   colorScheme="blue"
                   flex="0 0 auto"
                 >
-                  <TagLabel>Wanita</TagLabel>
+                  <TagLabel>Women</TagLabel>
                   <TagCloseButton
                     ml="0"
                     onClick={(e) => dispatch(doFilter("women"))}
@@ -248,7 +248,7 @@ export default function _id() {
                   colorScheme="blue"
                   flex="0 0 auto"
                 >
-                  <TagLabel>Pria</TagLabel>
+                  <TagLabel>Man</TagLabel>
                   <TagCloseButton
                     ml="0"
                     onClick={(e) => dispatch(doFilter("man"))}
@@ -282,7 +282,7 @@ export default function _id() {
             <Box>
               <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">
                 <Text color="muted" fontSize="xs">
-                  Jarak
+                  Distance
                 </Text>
 
                 <Text fontSize="sm">{segmentDetail.Distance}km</Text>
@@ -291,7 +291,7 @@ export default function _id() {
             <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">
               <Box>
                 <Text color="muted" fontSize="xs">
-                  Elevasi
+                  Elevation
                 </Text>
                 <Text fontSize="sm">{segmentDetail.ElevGain}m</Text>
               </Box>
@@ -299,7 +299,7 @@ export default function _id() {
             <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">
               <Box>
                 <Text color="muted" fontSize="xs">
-                  Gradien
+                  Gradient
                 </Text>
                 <Text fontSize="sm">{segmentDetail.Gradient}%</Text>
               </Box>

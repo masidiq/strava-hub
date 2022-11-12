@@ -70,6 +70,22 @@ export default function _id() {
     segSegmentDetail(segResult);
 
     var result = await segmentService.getListDate(id);
+
+    // refetch data baru dari server
+    if (result.length == 0) {
+      result = await segmentService.getListDate(id, true);
+    }
+
+    // refetch untuk bukan hari ini yg latest nya
+    if (result.length > 0) {
+      var latestDate = result[0];
+      if (!eqDate.sameWithToday(latestDate)) {
+        result = await segmentService.getListDate(id, true);
+      }
+    }
+
+    moment(latestDate).istoda;
+
     if (result.length == 0) {
       setIsLoading(false);
       setPageLoaded(true);

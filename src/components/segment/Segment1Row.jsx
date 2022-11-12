@@ -18,6 +18,7 @@ export default function Segment1Row(props) {
   let item = {
     Id: "",
     Name: "",
+    AthleteCount: 0,
     IsRace: false,
   };
 
@@ -34,6 +35,12 @@ export default function Segment1Row(props) {
           </Text>
         </Stack>
         <HStack>
+          {item.AthleteCount > 0 && (
+            <Text color="muted" fontSize="xs">
+              2
+            </Text>
+          )}
+
           {item.IsRace && <FaFlagCheckered as={Icon} />}
 
           <BsChevronRight as={Icon} color="gray" />

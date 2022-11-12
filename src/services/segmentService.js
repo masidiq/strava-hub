@@ -45,10 +45,13 @@ export default {
         return feeds;
       });
   },
-  async getListDate(id) {
+  async getListDate(id, notUseCache) {
     let param = {
       segmentId: id,
     };
+    if (!notUseCache) {
+      notUseCache = false;
+    }
 
     return await eqHttp.getJson(endpoint.getListDate, param).catch((error) => {
       if (error.response.status == 403) {

@@ -25,9 +25,9 @@ export default function Navbar() {
 
   function renderImageByTheme() {
     if (colorMode === "light") {
-      return <Image src="/logo.png" h="30px"></Image>;
+      return <Image src="/logo.png" h="32px"></Image>;
     } else {
-      return <Image src="/logo_darkmode.png" h="30px"></Image>;
+      return <Image src="/logo_darkmode.png" h="32px"></Image>;
     }
   }
   return (

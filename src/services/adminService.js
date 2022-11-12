@@ -67,6 +67,7 @@ export default {
     let paramUrlStr = {
       params: {
         segmentId: segmentId,
+        dateRange: "this_month",
       },
     };
 

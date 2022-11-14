@@ -68,7 +68,7 @@ export default function Home() {
   }
 
   return (
-    <Box mt={{ base: "10px" }} px="20px">
+    <Box pt={{ base: "10px", md: 0 }} px="20px">
       <Stack spacing="10px">
         {feeds.map((item, index) => (
           <Box key={item.DateId}>

@@ -186,7 +186,7 @@ export default function _id() {
       <FilterAthlete openCount={openCount} />
       <Flex
         p="10px"
-        px={{ base: "10px", md: 0 }}
+        px={{ base: "10px", md: "10px" }}
         justify="space-between"
         alignItems="center"
         position={

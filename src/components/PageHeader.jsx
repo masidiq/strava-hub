@@ -24,7 +24,7 @@ export default function PageHeader(props) {
       zIndex={2}
       background={{
         base: "var(--chakra-colors-chakra-body-bg)",
-        md: "bg.base",
+        md: "none",
       }}
       right="0"
       left="0"
@@ -54,7 +54,9 @@ export default function PageHeader(props) {
 
         {props.subTitle}
       </Box>
-      <Box ml="auto">{props.rightSlot}</Box>
+      <Box ml="auto" mr={{ base: 0, md: "10px" }}>
+        {props.rightSlot}
+      </Box>
     </Flex>
   );
 }

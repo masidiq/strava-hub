@@ -81,7 +81,13 @@ export default {
     let param = {
       segmentId: id,
     };
-    return await eqHttp.getJson(url, param);
+    var result = await eqHttp.getJson(url, param);
+
+    result.Name = result.Name.replace(
+      "Comme//Studios™ Speed Demon Series // ",
+      ""
+    );
+    return result;
   },
 
   async getList(isRealtime) {
@@ -93,7 +99,16 @@ export default {
     if (isRealtime) {
       notUseCache = true;
     }
-    return await eqHttp.get(url, null, notUseCache);
+    let results = await eqHttp.get(url, null, notUseCache);
+
+    results.forEach((item) => {
+      item.Name = item.Name.replace(
+        "Comme//Studios™ Speed Demon Series // ",
+        ""
+      );
+    });
+
+    return results;
   },
 
   async add(segmentId) {

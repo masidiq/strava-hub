@@ -16,7 +16,7 @@ import { BsInstagram, BsStrava } from "react-icons/bs";
 export default function Layout() {
   return (
     <Box
-      backgroundImage="/bg.png"
+      backgroundImage="/bg.jpg"
       minH={{ base: "calc(100vh - 60px)", md: "100vh" }}
       position="relative"
     >

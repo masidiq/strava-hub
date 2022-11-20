@@ -21,23 +21,29 @@ export default function Layout() {
       position="relative"
     >
       <Navbar />
-      <Container maxW="xl" px="0" pb="90px" pt={{ md: "15px" }} bg="bg.base">
+      <Container
+        maxW="xl"
+        px="0"
+        pb="90px"
+        pt={{ md: "15px" }}
+        bg="bg.base"
+        position="relative"
+      >
         <Outlet />
+        <Box position="absolute" bottom="30px" w="full">
+          <HStack justify="center" mb="5px" color="muted">
+            <Link href="https://www.instagram.com/commestudios" target="_blank">
+              <BsInstagram as={Icon} />
+            </Link>{" "}
+            <Link href="https://www.strava.com/clubs/809598" target="_blank">
+              <BsStrava as={Icon} />
+            </Link>
+          </HStack>
+          <Text textAlign="center" fontSize="sm">
+            © 2022
+          </Text>
+        </Box>
       </Container>
-
-      <Box position="absolute" bottom="30px" w="full">
-        <HStack justify="center" mb="5px" color="muted">
-          <Link href="https://www.instagram.com/commestudios" target="_blank">
-            <BsInstagram as={Icon} />
-          </Link>{" "}
-          <Link href="https://www.strava.com/clubs/809598" target="_blank">
-            <BsStrava as={Icon} />
-          </Link>
-        </HStack>
-        <Text textAlign="center" fontSize="sm">
-          © 2022
-        </Text>
-      </Box>
     </Box>
   );
 }

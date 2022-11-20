@@ -35,11 +35,19 @@ export default function Home() {
     setIsLoading(false);
     result.forEach((feed) => {
       feed.Segments.forEach((seg) => {
-        var segDetail = masterSegments.filter((o) => o.Id == seg.SegmentId)[0];
-        seg.Name = segDetail.Name;
-        seg.Distance = segDetail.Distance;
-        seg.ElevDifference = segDetail.ElevDifference;
-        seg.Gradient = segDetail.Gradient;
+
+        let findSeg = seg.SegmentId;
+        if (findSeg === '33091433'){
+          findSeg = '33297824';
+        }
+        var segDetail = masterSegments.find((o) => o.Id == findSeg);
+
+        if (segDetail != null) {
+          seg.Name = segDetail.Name;
+          seg.Distance = segDetail.Distance;
+          seg.ElevDifference = segDetail.ElevDifference;
+          seg.Gradient = segDetail.Gradient;
+        }
       });
     });
 
@@ -93,6 +101,8 @@ export default function Home() {
       {isLoading && (
         <Stack spacing="10px">
           <FeedSkeleton rows={2} />
+          <FeedSkeleton rows={3} />
+          <FeedSkeleton rows={1} />
           <FeedSkeleton rows={3} />
           <FeedSkeleton rows={1} />
         </Stack>

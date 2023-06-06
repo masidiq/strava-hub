@@ -153,7 +153,20 @@ export default function _id() {
       />
 
       <FilterAthlete openCount={openCount} />
-      <Flex p="10px" px={{ base: "10px", md: "10px" }} justify="space-between" alignItems="center" position={filters.filter((o) => o.isActive).length > 0 || genderFilter.isWomen.isActive || genderFilter.isMan.isActive ? "sticky" : "initial"} top={{ base: "60px", md: "50px" }} zIndex="1" borderBottomWidth={{ base: "1px", md: "0px" }}>
+      <Flex
+        p="10px"
+        px={{ base: "10px", md: "10px" }}
+        justify="space-between"
+        alignItems="center"
+        position={filters.filter((o) => o.isActive).length > 0 || genderFilter.isWomen.isActive || genderFilter.isMan.isActive ? "sticky" : "initial"}
+        top={{ base: "-1px", md: "-1px" }}
+        background={{
+          base: "bg.default",
+          md: "bg.default",
+        }}
+        zIndex="1"
+        borderBottomWidth={{ base: "1px", md: "0px" }}
+      >
         <Box></Box>
         {pageLoaded && filters.length > 1 && (
           <>

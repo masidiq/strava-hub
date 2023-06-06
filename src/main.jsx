@@ -9,7 +9,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 import store from "./redux/store";
 import { Provider } from "react-redux";
-
+import moment from "moment";
+import "moment/dist/locale/id";
 const customTheme = extendTheme({
   semanticTokens: {
     colors: {

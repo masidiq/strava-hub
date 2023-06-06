@@ -1,4 +1,4 @@
-import { AlertDialog, Box, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogCloseButton, AlertDialogBody, AlertDialogFooter, AlertDescription, Button, useDisclosure, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Portal, Avatar, VStack, HStack, SimpleGrid } from "@chakra-ui/react";
+import { AlertDialog, Box, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogCloseButton, AlertDialogBody, AlertDialogFooter, AlertDescription, Button, useDisclosure, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Portal, Avatar, VStack, HStack, SimpleGrid, Badge, Tag } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 
@@ -12,38 +12,24 @@ export default function ProfileModal(props) {
 
   function showAge(cls) {
     switch (cls) {
-      case "0_19":
-        return "U19";
-
-      case "0_24":
-        return "U24";
-
-      case "20_24":
-        return "20-24";
-
+      case "0_25":
+        return "Men Elite";
       case "25_34":
-        return "25-34";
+        return "Master A (25-34)";
 
       case "35_44":
-        return "35-44";
+        return "Master B (35-44)";
 
       case "45_54":
-        return "45-54";
+        return "Master C (45-54)";
 
       case "55_64":
-        return "55-64";
+        return "Master D (55-64)";
 
-      case "55+":
-        return "55 ++";
-
-      case "65_69":
-        return "65-69 ";
-
-      case "70_74":
-        return "70-74";
-
-      case "75_plus":
-        return "75++";
+      case "65_plus":
+        return "Master D+ (65+)";
+      case "WOMEN":
+        return "Women Open";
     }
   }
   return (
@@ -56,10 +42,15 @@ export default function ProfileModal(props) {
               <VStack mt="-58px">
                 <Avatar border="5px solid white" size="xl" name={props.athlete.Name} src={props.athlete.ImageUrl} />
                 <Box textAlign="center">
-                  <Text fontSize="2xl" fontWeight="semibold">
+                  <Text fontSize="xl" fontWeight="semibold">
                     {props.athlete.Name}
                   </Text>
-                  <Text fontSize="sm">{showAge(props.athlete.Class)}</Text>
+                  <Text fontSize="sm">
+                    {showAge(props.athlete.Class)} - Rank {props.athlete.RankClass}
+                  </Text>
+                  <Tag variant="solid" colorScheme="teal" size="sm" mt="1">
+                    +{props.athlete.Point} point
+                  </Tag>
                 </Box>
 
                 <SimpleGrid columns={2} w="full" spacing="15px" pt="20px">

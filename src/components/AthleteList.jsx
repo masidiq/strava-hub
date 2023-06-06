@@ -1,16 +1,6 @@
 import { Avatar, Skeleton, SkeletonCircle } from "@chakra-ui/react";
 import moment from "moment";
-import {
-  Text,
-  Flex,
-  Box,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-} from "@chakra-ui/react";
+import { Text, Flex, Box, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 import AthleteRowSkeleton from "./segment/AthleteRowSkeleton";
 import ProfileModal from "./modals/ProfileModal";
 import { useState } from "react";
@@ -43,14 +33,7 @@ export default function AthleteList(props) {
         </Td>
       </Tr>
       {props.athletes.map((athlete, index) => (
-        <Tr
-          key={index}
-          bg="bg.default"
-          borderWidth={{ base: "0", md: "1px" }}
-          onClick={() => openProfileModal(athlete)}
-          cursor="pointer"
-          _hover={{ background: "bg.gray" }}
-        >
+        <Tr key={index} bg="bg.default" borderWidth={{ base: "0", md: "1px" }} onClick={() => openProfileModal(athlete)} cursor="pointer" _hover={{ background: "bg.gray" }}>
           <Td textAlign="center" pl="3px" pr="5px" w="33px">
             <Text fontSize="xs">{index + 1}</Text>
           </Td>
@@ -99,11 +82,7 @@ export default function AthleteList(props) {
                 </Box>
               )}
               <Box>
-                <Text
-                  textAlign="right"
-                  noOfLines={1}
-                  fontSize={athlete.Time.length < 6 ? "xs" : "11px"}
-                >
+                <Text textAlign="right" noOfLines={1} fontSize={athlete.Time.length < 6 ? "xs" : "11px"}>
                   {athlete.Time}
                 </Text>
               </Box>

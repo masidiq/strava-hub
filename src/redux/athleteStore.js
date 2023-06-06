@@ -100,6 +100,10 @@ function populateAgeFilters(state) {
           filterName = "Master D+ (65+)";
           filterShortName = "Master D+ (65+)";
           break;
+        case "WOMEN":
+          filterName = "Women Open";
+          filterShortName = "Women Open";
+          break;
       }
 
       if (filterName == null) {

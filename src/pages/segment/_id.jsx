@@ -138,7 +138,6 @@ export default function _id() {
                 {listDate.map((item, i) => (
                   <option key={i} value={item}>
                     {eqDate.displayDate(item)}
-                    {raceInfoDay == moment(item).day() && "🏁"}
                   </option>
                 ))}
               </Select>

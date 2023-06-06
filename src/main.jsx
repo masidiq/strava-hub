@@ -11,6 +11,26 @@ import store from "./redux/store";
 import { Provider } from "react-redux";
 import moment from "moment";
 import "moment/dist/locale/id";
+moment.defaultFormat = "YYYY-MM-DD";
+moment.locale("id", {
+  relativeTime: {
+    future: "dalam %s",
+    past: "%s lalu",
+    s: "beberapa detik",
+    ss: "%d detik",
+    m: "semenit",
+    mm: "%d menit",
+    h: "sejam",
+    hh: "%d jam",
+    d: "sehari",
+    dd: "%d hari",
+    M: "1 bulan",
+    MM: "%d bulan",
+    y: "1 tahun",
+    yy: "%d tahun",
+  },
+});
+
 const customTheme = extendTheme({
   semanticTokens: {
     colors: {

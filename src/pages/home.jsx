@@ -1,18 +1,4 @@
-import {
-  Divider,
-  Text,
-  Box,
-  Heading,
-  Stack,
-  Button,
-  useColorMode,
-  IconButton,
-  Flex,
-  useStatStyles,
-  VStack,
-  StackDivider,
-  Icon,
-} from "@chakra-ui/react";
+import { Divider, Text, Box, Heading, Stack, Button, useColorMode, IconButton, Flex, useStatStyles, VStack, StackDivider, Icon, Image } from "@chakra-ui/react";
 
 import { useEffect, useState } from "react";
 import segmentService from "../services/segmentService";
@@ -35,10 +21,9 @@ export default function Home() {
     setIsLoading(false);
     result.forEach((feed) => {
       feed.Segments.forEach((seg) => {
-
         let findSeg = seg.SegmentId;
-        if (findSeg === '33091433'){
-          findSeg = '33297824';
+        if (findSeg === "33091433") {
+          findSeg = "33297824";
         }
         var segDetail = masterSegments.find((o) => o.Id == findSeg);
 
@@ -59,9 +44,7 @@ export default function Home() {
   }, []);
 
   function renderLink(segmentId, dateId) {
-    var segmentPath = staticData.segmentPaths.find(
-      (o) => o.segmentId == segmentId
-    );
+    var segmentPath = staticData.segmentPaths.find((o) => o.segmentId == segmentId);
     let path = "";
     if (segmentPath) {
       path = "/" + segmentPath.path;
@@ -77,6 +60,10 @@ export default function Home() {
 
   return (
     <Box pt={{ base: "10px", md: 0 }} px="20px">
+      <VStack align="center" mb="25" mt="25">
+        <Image src="/salasa-kahiji-logo-landsapce.png" w="180px"></Image>
+      </VStack>
+
       <Stack spacing="10px">
         {feeds.map((item, index) => (
           <Box key={item.DateId}>
@@ -84,13 +71,7 @@ export default function Home() {
             <Card p="0" mt="10px">
               <VStack spacing={0} divider={<Divider />} align="stretch">
                 {item.Segments.map((segment, segIdx) => (
-                  <Segment1Row
-                    p="10px 15px"
-                    item={segment}
-                    key={segment.SegmentId}
-                    as={Link}
-                    to={renderLink(segment.SegmentId, item.DateId)}
-                  />
+                  <Segment1Row p="10px 15px" item={segment} key={segment.SegmentId} as={Link} to={renderLink(segment.SegmentId, item.DateId)} />
                 ))}
               </VStack>
             </Card>

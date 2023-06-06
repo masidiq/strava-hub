@@ -37,15 +37,11 @@ export const athleteSlice = createSlice({
       }
 
       if (state.filter.isWomen.isActive != state.filter.isMan.isActive) {
-        filteredList = state.list.filter(
-          (o) => o.IsWomen == state.filter.isWomen.isActive
-        );
+        filteredList = state.list.filter((o) => o.IsWomen == state.filter.isWomen.isActive);
       }
 
       // FILTER BY AGE
-      const oneFilter = state.availableFilters.find(
-        (o) => o.code == action.payload
-      );
+      const oneFilter = state.availableFilters.find((o) => o.code == action.payload);
       if (oneFilter) {
         oneFilter.isActive = !oneFilter.isActive;
       }
@@ -55,9 +51,7 @@ export const athleteSlice = createSlice({
       if (filterActives.length > 0) {
         let filterCodes = filterActives.map((item) => item.code);
 
-        state.filteredList = filteredList.filter((o) =>
-          filterCodes.includes(o.Class)
-        );
+        state.filteredList = filteredList.filter((o) => filterCodes.includes(o.Class));
       } else {
         state.filteredList = filteredList;
       }
@@ -82,41 +76,29 @@ function populateAgeFilters(state) {
       let filterName = athlete.Class;
       let filterShortName = athlete.Class;
       switch (athlete.Class) {
-        case "0_19":
-          filterName = "U19";
-          filterShortName = "U19";
-          break;
-        case "0_24":
-          filterName = "U24";
-          filterShortName = "U24";
-          break;
-        case "20_24":
-          filterName = "20-24";
+        case "0_25":
+          filterName = "Men Elite";
+          filterShortName = "Men Elite";
           break;
         case "25_34":
-          filterName = "25-34";
+          filterName = "Master A (25-34)";
+          filterShortName = "Master A (25-34)";
           break;
         case "35_44":
-          filterName = "35-44";
+          filterName = "Master B (35-44)";
+          filterShortName = "Master B (35-44)";
           break;
         case "45_54":
-          filterName = "45-54";
+          filterName = "Master C (45-54)";
+          filterShortName = "Master C (45-54)";
           break;
         case "55_64":
-          filterName = "55-64";
+          filterName = "Master D (55-64)";
+          filterShortName = "Master D (55-64)";
           break;
-        case "55+":
-          filterName = "55 ++";
-          break;
-        case "65_69":
-          filterName = "65-70";
-          break;
-        case "70_74":
-          filterName = "70-74";
-          break;
-        case "75_plus":
-          filterName = "75 ++";
-          filterShortName = "75++";
+        case "65_plus":
+          filterName = "Master D+ (65+)";
+          filterShortName = "Master D+ (65+)";
           break;
       }
 

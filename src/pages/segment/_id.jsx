@@ -1,21 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  HStack,
-  Select,
-  Skeleton,
-  Stack,
-  Table,
-  Tag,
-  TagCloseButton,
-  TagLabel,
-  Tbody,
-  Text,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, HStack, Select, Skeleton, Stack, Table, Tag, TagCloseButton, TagLabel, Tbody, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import AthleteList from "../../components/AthleteList";
@@ -124,9 +107,7 @@ export default function _id() {
   }
   let raceInfoDay = null;
 
-  let segmentRaceFound = staticData.segmentRaceList.find(
-    (o) => o.segmentId == id
-  );
+  let segmentRaceFound = staticData.segmentRaceList.find((o) => o.segmentId == id);
   if (segmentRaceFound) {
     raceInfoDay = segmentRaceFound.day;
   }
@@ -143,12 +124,7 @@ export default function _id() {
         title={segmentDetail.Name}
         subTitle={
           <Box>
-            <Skeleton
-              isLoaded={listDate.length}
-              minW="50px"
-              maxW="150px"
-              mt="2px"
-            >
+            <Skeleton isLoaded={listDate.length} minW="50px" maxW="150px" mt="2px">
               <Select
                 size="xs"
                 minW="120px"
@@ -170,107 +146,40 @@ export default function _id() {
           </Box>
         }
         rightSlot={
-          <Button
-            size="xs"
-            as="a"
-            target="_blank"
-            href={"https://www.strava.com/segments/" + segmentDetail.Id}
-            rightIcon={<ArrowForwardIcon ml="-5px" />}
-            colorScheme="orange"
-          >
+          <Button size="xs" as="a" target="_blank" href={"https://www.strava.com/segments/" + segmentDetail.Id} rightIcon={<ArrowForwardIcon ml="-5px" />} colorScheme="orange">
             strava
           </Button>
         }
       />
 
       <FilterAthlete openCount={openCount} />
-      <Flex
-        p="10px"
-        px={{ base: "10px", md: "10px" }}
-        justify="space-between"
-        alignItems="center"
-        position={
-          filters.filter((o) => o.isActive).length > 0 ||
-          genderFilter.isWomen.isActive ||
-          genderFilter.isMan.isActive
-            ? "sticky"
-            : "initial"
-        }
-        top={{ base: "60px", md: "50px" }}
-        background={{
-          base: "bg.default",
-          md: "bg.base",
-        }}
-        zIndex="1"
-        borderBottomWidth={{ base: "1px", md: "0px" }}
-      >
+      <Flex p="10px" px={{ base: "10px", md: "10px" }} justify="space-between" alignItems="center" position={filters.filter((o) => o.isActive).length > 0 || genderFilter.isWomen.isActive || genderFilter.isMan.isActive ? "sticky" : "initial"} top={{ base: "60px", md: "50px" }} zIndex="1" borderBottomWidth={{ base: "1px", md: "0px" }}>
         <Box></Box>
         {pageLoaded && filters.length > 1 && (
           <>
-            <Button
-              variant="outline"
-              size="sm"
-              flex="0 0 auto"
-              mr="5px"
-              onClick={() => doOpen((prev) => prev + 1)}
-              leftIcon={<IoFilterOutline />}
-            >
+            <Button variant="outline" size="sm" flex="0 0 auto" mr="5px" onClick={() => doOpen((prev) => prev + 1)} leftIcon={<IoFilterOutline />}>
               Filter
             </Button>
-            <HStack
-              overflow="auto"
-              w="full"
-              alignItems="center"
-              pb="2px"
-              mt="2px"
-            >
+            <HStack overflow="auto" w="full" alignItems="center" pb="2px" mt="2px">
               {genderFilter.isWomen.isActive && (
-                <Tag
-                  size="sm"
-                  borderRadius="full"
-                  variant="outline"
-                  colorScheme="blue"
-                  flex="0 0 auto"
-                >
+                <Tag size="sm" borderRadius="full" variant="outline" colorScheme="blue" flex="0 0 auto">
                   <TagLabel>Women</TagLabel>
-                  <TagCloseButton
-                    ml="0"
-                    onClick={(e) => dispatch(doFilter("women"))}
-                  />
+                  <TagCloseButton ml="0" onClick={(e) => dispatch(doFilter("women"))} />
                 </Tag>
               )}
 
               {genderFilter.isMan.isActive && (
-                <Tag
-                  size="sm"
-                  borderRadius="full"
-                  variant="outline"
-                  colorScheme="blue"
-                  flex="0 0 auto"
-                >
+                <Tag size="sm" borderRadius="full" variant="outline" colorScheme="blue" flex="0 0 auto">
                   <TagLabel>Man</TagLabel>
-                  <TagCloseButton
-                    ml="0"
-                    onClick={(e) => dispatch(doFilter("man"))}
-                  />
+                  <TagCloseButton ml="0" onClick={(e) => dispatch(doFilter("man"))} />
                 </Tag>
               )}
               {filters.map(
                 (item, i) =>
                   item.isActive && (
-                    <Tag
-                      size="sm"
-                      borderRadius="full"
-                      variant="outline"
-                      colorScheme="blue"
-                      key={i}
-                      flex="0 0 auto"
-                    >
+                    <Tag size="sm" borderRadius="full" variant="outline" colorScheme="blue" key={i} flex="0 0 auto">
                       <TagLabel> {item.shortName}</TagLabel>
-                      <TagCloseButton
-                        ml="0"
-                        onClick={(e) => dispatch(doFilter(item.code))}
-                      />
+                      <TagCloseButton ml="0" onClick={(e) => dispatch(doFilter(item.code))} />
                     </Tag>
                   )
               )}
@@ -308,12 +217,7 @@ export default function _id() {
         )}
       </Flex>
 
-      <Table
-        size="sm"
-        colorScheme="teal"
-        borderTopRadius={{ md: "lg" }}
-        overflow="hidden"
-      >
+      <Table size="sm" colorScheme="teal" borderTopRadius={{ md: "lg" }} overflow="hidden">
         <Thead background="bg.gray">
           <Tr borderWidth={1}>
             <Th textAlign="left" pl="3px" colSpan={2}>
@@ -352,21 +256,7 @@ export default function _id() {
       </Table>
 
       <Box mt="-1px" position="sticky" bottom={0} bg="bg.base">
-        <Flex
-          w="xl"
-          maxW="full"
-          bg="bg.gray"
-          alignItems="center"
-          py="5px"
-          px="10px"
-          fontSize="10px"
-          justify="space-between"
-          color="muted"
-          borderBottomRadius={{ md: "xl" }}
-          borderTop={0}
-          borderWidth={{ base: "0", md: "1px" }}
-          borderBottomWidth={1}
-        >
+        <Flex w="xl" maxW="full" bg="bg.gray" alignItems="center" py="5px" px="10px" fontSize="10px" justify="space-between" color="muted" borderBottomRadius={{ md: "xl" }} borderTop={0} borderWidth={{ base: "0", md: "1px" }} borderBottomWidth={1}>
           <Text>Total {athleteList.length}</Text>
           <Text>Last Update {eqDate.displayTime(lastUpdate)}</Text>
         </Flex>

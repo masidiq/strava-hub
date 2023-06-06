@@ -1,22 +1,5 @@
 import { MoonIcon, SunIcon, HamburgerIcon } from "@chakra-ui/icons";
-import {
-  Avatar,
-  Box,
-  Container,
-  Flex,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Text,
-  useColorMode,
-  Image,
-  useDisclosure,
-  Button,
-  Hide,
-  HStack,
-} from "@chakra-ui/react";
+import { Avatar, Box, Container, Flex, IconButton, Menu, MenuButton, MenuItem, MenuList, Text, useColorMode, Image, useDisclosure, Button, Hide, HStack } from "@chakra-ui/react";
 
 import { Link } from "react-router-dom";
 
@@ -25,22 +8,13 @@ export default function Navbar() {
 
   function renderImageByTheme() {
     if (colorMode === "light") {
-      return <Image src="/logo.png" w="180px"></Image>;
+      return "Salasa Kahiji";
     } else {
-      return <Image src="/logo_darkmode.png" w="180px"></Image>;
+      return "Salasa Kahiji";
     }
   }
   return (
-    <Box
-      as="nav"
-      shadow={{ md: "md" }}
-      borderBottomWidth="1px"
-      position="sticky"
-      top={0}
-      bgColor="var(--chakra-colors-chakra-body-bg)"
-      zIndex={2}
-      w="full"
-    >
+    <Box as="nav" shadow={{ md: "md" }} borderBottomWidth="1px" position="sticky" top={0} bgColor="var(--chakra-colors-chakra-body-bg)" zIndex={2} w="full">
       <Container maxW="xl">
         <Flex py="6px" alignItems="center" h={{ base: "59px", md: "auto" }}>
           <Box as={Link} to="/">
@@ -56,12 +30,6 @@ export default function Navbar() {
             {/* <Button variant="ghost" fontWeight="light" as={Link} to="/segment">
               Daftar Segment
             </Button>{" "} */}
-            <IconButton
-              size="sm"
-              icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-              onClick={toggleColorMode}
-              isRound={true}
-            />
           </HStack>
         </Flex>
       </Container>

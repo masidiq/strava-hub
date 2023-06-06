@@ -1,29 +1,4 @@
-import {
-  AlertDialog,
-  Box,
-  AlertDialogOverlay,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogCloseButton,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDescription,
-  Button,
-  useDisclosure,
-  Text,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Portal,
-  Avatar,
-  VStack,
-  HStack,
-  SimpleGrid,
-} from "@chakra-ui/react";
+import { AlertDialog, Box, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogCloseButton, AlertDialogBody, AlertDialogFooter, AlertDescription, Button, useDisclosure, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Portal, Avatar, VStack, HStack, SimpleGrid } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 
@@ -79,12 +54,7 @@ export default function ProfileModal(props) {
           {props.athlete && (
             <ModalBody mb="20px">
               <VStack mt="-58px">
-                <Avatar
-                  border="5px solid white"
-                  size="xl"
-                  name={props.athlete.Name}
-                  src={props.athlete.ImageUrl}
-                />
+                <Avatar border="5px solid white" size="xl" name={props.athlete.Name} src={props.athlete.ImageUrl} />
                 <Box textAlign="center">
                   <Text fontSize="2xl" fontWeight="semibold">
                     {props.athlete.Name}
@@ -96,16 +66,7 @@ export default function ProfileModal(props) {
                   <Button variant="outline" onClick={onClose}>
                     Close
                   </Button>
-                  <Button
-                    colorScheme="orange"
-                    rightIcon={<ArrowForwardIcon />}
-                    as="a"
-                    href={
-                      "https://www.strava.com/segment_efforts/" +
-                      props.athlete.ActivityId
-                    }
-                    target="_blank"
-                  >
+                  <Button colorScheme="orange" rightIcon={<ArrowForwardIcon />} as="a" href={"https://www.strava.com/segment_efforts/" + props.athlete.ActivityId} target="_blank">
                     Strava
                   </Button>
                 </SimpleGrid>

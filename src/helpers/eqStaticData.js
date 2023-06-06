@@ -21,26 +21,5 @@ export default {
       segmentId: "30202654",
     },
   ],
-  segmentPaths: [
-    {
-      path: "salasa-kahiji",
-      segmentId: "30711569",
-    },
-    {
-      path: "kbp-loop",
-      segmentId: "31253449",
-    },
-    {
-      path: "gbla-loop",
-      segmentId: "30202654",
-    },
-    {
-      path: "mcd-warungnangka",
-      segmentId: "12945856",
-    },
-    {
-      path: "kamis-kejetkeun",
-      segmentId: "32782397",
-    },
-  ],
+  segmentPaths: [],
 };

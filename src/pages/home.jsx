@@ -66,12 +66,12 @@ export default function Home() {
 
       <Stack spacing="10px">
         {feeds.map((item, index) => (
-          <Box key={item.DateId}>
-            <Text fontWeight="semibold">{eqDate.displayDate(item.DateId)}</Text>
+          <Box key={item.MonthYear}>
+            <Text fontWeight="semibold">{item.MonthName}</Text>
             <Card p="0" mt="10px">
               <VStack spacing={0} divider={<Divider />} align="stretch">
                 {item.Segments.map((segment, segIdx) => (
-                  <Segment1Row p="10px 15px" item={segment} key={segment.SegmentId} as={Link} to={renderLink(segment.SegmentId, item.DateId)} />
+                  <Segment1Row p="10px 15px" item={segment} key={segment.SegmentId} as={Link} to={renderLink(segment.SegmentId, segment.Tanggal)} />
                 ))}
               </VStack>
             </Card>

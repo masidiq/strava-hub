@@ -6,7 +6,7 @@ const storageHost = import.meta.env.VITE_HOST_STORAGE;
 const backEndHost = import.meta.env.VITE_HOST_API;
 
 const endpoint = {
-  getFeeds: storageHost + "/feeds.json",
+  getFeeds: storageHost + "/feeds-bymonth.json",
   getListDate: storageHost + "/date-list/{segmentId}.json",
   getLeaderboard: storageHost + "/leaderboard/{segmentId}/{date}.json",
   get: storageHost + "/segments/{segmentId}.json",
@@ -22,28 +22,24 @@ export default {
       notUseCache = true;
     }
 
-    return await eqHttp
-      .get(endpoint.getFeeds, null, notUseCache)
-      .then((feeds) => {
-        feeds.forEach((feed) => {
-          let dayOfWeek = moment(feed.DateId).day();
-          let segmentFounds = staticData.segmentRaceList.filter(
-            (o) => o.day == dayOfWeek
-          );
+    return await eqHttp.get(endpoint.getFeeds, null, notUseCache).then((feeds) => {
+      feeds.forEach((feed) => {
+        let dayOfWeek = moment(feed.DateId).day();
+        let segmentFounds = staticData.segmentRaceList.filter((o) => o.day == dayOfWeek);
 
-          if (segmentFounds) {
-            segmentFounds.forEach((segmentFound) => {
-              feed.Segments.forEach((segment) => {
-                if (segment.SegmentId == segmentFound.segmentId) {
-                  segment.IsRace = true;
-                }
-              });
+        if (segmentFounds) {
+          segmentFounds.forEach((segmentFound) => {
+            feed.Segments.forEach((segment) => {
+              if (segment.SegmentId == segmentFound.segmentId) {
+                segment.IsRace = true;
+              }
             });
-          }
-        });
-
-        return feeds;
+          });
+        }
       });
+
+      return feeds;
+    });
   },
   async getListDate(id, notUseCache) {
     let param = {
@@ -83,10 +79,7 @@ export default {
     };
     var result = await eqHttp.getJson(url, param);
 
-    result.Name = result.Name.replace(
-      "Comme//Studios™ Speed Demon Series // ",
-      ""
-    );
+    result.Name = result.Name.replace("Comme//Studios™ Speed Demon Series // ", "");
     return result;
   },
 
@@ -102,10 +95,7 @@ export default {
     let results = await eqHttp.get(url, null, notUseCache);
 
     results.forEach((item) => {
-      item.Name = item.Name.replace(
-        "Comme//Studios™ Speed Demon Series // ",
-        ""
-      );
+      item.Name = item.Name.replace("Comme//Studios™ Speed Demon Series // ", "");
     });
 
     return results;

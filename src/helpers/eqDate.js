@@ -10,6 +10,15 @@ export default {
     return dMoment.format("dddd, D MMM ");
   },
 
+  displayFullDate(d) {
+    let dateNow = moment();
+    var dMoment = moment(d);
+    if (dMoment.year() != dateNow.year()) {
+      return dMoment.format("dddd, D MMM YYYY");
+    }
+    return dMoment.format("dddd, D MMMM YYYY ");
+  },
+
   displayTime(d) {
     if (!d) {
       return "";

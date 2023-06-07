@@ -60,9 +60,16 @@ export default function Home() {
 
   return (
     <Box pt={{ base: "10px", md: 0 }} px="20px">
-      <VStack align="center" mb="25" mt="25">
-        <Image src="/salasa-kahiji-logo-landsapce.png" w="180px"></Image>
-      </VStack>
+      <Box align="center" mb="25" mt="3">
+        <Image src="/salasa-kahiji-logo-landsapce.png" h="100px"></Image>
+
+        <Box color="#1d253b" mt="3" fontWeight="semibold">
+          Klasemen Strava
+        </Box>
+        <Box fontSize="xs" mt="-3px">
+          Selasaan Race RSHS - GH Lembang (Masri)
+        </Box>
+      </Box>
 
       <Stack spacing="10px">
         {feeds.map((item, index) => (

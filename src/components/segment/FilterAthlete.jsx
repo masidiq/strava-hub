@@ -39,7 +39,7 @@ export default function FilterAthlete(props) {
         <DrawerBody>
           <SimpleGrid spacing={2} columns={1}>
             {availableFilters.map((item, i) => (
-              <Button variant="outline" colorScheme="blue" key={i} onClick={(e) => dispatch(doFilter(item.code))}>
+              <Button variant="outline" colorScheme="teal" key={i} onClick={(e) => dispatch(doFilter(item.code))}>
                 <Flex alignItems="center" w="full">
                   {item.isActive ? <ImCheckboxChecked as={Icon} /> : <ImCheckboxUnchecked as={Icon} />}
 
@@ -53,7 +53,7 @@ export default function FilterAthlete(props) {
           </SimpleGrid>
         </DrawerBody>
         <DrawerFooter>
-          <Button w="full" colorScheme="blue" onClick={onClose}>
+          <Button w="full" colorScheme="teal" onClick={onClose}>
             Done
           </Button>
         </DrawerFooter>

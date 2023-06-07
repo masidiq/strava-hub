@@ -24,19 +24,6 @@ export default function FilterSection() {
               Filter
             </Button>
             <HStack overflow="auto" w="full" alignItems="center" pb="2px" mt="2px">
-              {genderFilter.isWomen.isActive && (
-                <Tag size="sm" borderRadius="full" variant="outline" colorScheme="blue" flex="0 0 auto">
-                  <TagLabel>Wanita</TagLabel>
-                  <TagCloseButton ml="0" onClick={(e) => dispatch(doFilter("women"))} />
-                </Tag>
-              )}
-
-              {genderFilter.isMan.isActive && (
-                <Tag size="sm" borderRadius="full" variant="outline" colorScheme="blue" flex="0 0 auto">
-                  <TagLabel>Pria</TagLabel>
-                  <TagCloseButton ml="0" onClick={(e) => dispatch(doFilter("man"))} />
-                </Tag>
-              )}
               {filters.map(
                 (item, i) =>
                   item.isActive && (
@@ -49,7 +36,7 @@ export default function FilterSection() {
             </HStack>
           </>
         )}
-        {filters.filter((o) => o.isActive).length < 4 && (
+        {filters.filter((o) => o.isActive).length == 0 && (
           <HStack spacing="25px" textAlign="right">
             <Box>
               <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">

@@ -144,11 +144,6 @@ export default function _id() {
             </Skeleton>
           </Box>
         }
-        rightSlot={
-          <Button size="xs" as="a" target="_blank" href={"https://www.strava.com/segments/" + segmentDetail.Id} rightIcon={<ArrowForwardIcon ml="-5px" />} colorScheme="orange">
-            strava
-          </Button>
-        }
       />
 
       <FilterAthlete openCount={openCount} />
@@ -174,19 +169,6 @@ export default function _id() {
               Filter
             </Button>
             <HStack overflow="auto" w="full" alignItems="center" pb="2px" mt="2px">
-              {genderFilter.isWomen.isActive && (
-                <Tag size="sm" borderRadius="full" variant="outline" colorScheme="blue" flex="0 0 auto">
-                  <TagLabel>Women</TagLabel>
-                  <TagCloseButton ml="0" onClick={(e) => dispatch(doFilter("women"))} />
-                </Tag>
-              )}
-
-              {genderFilter.isMan.isActive && (
-                <Tag size="sm" borderRadius="full" variant="outline" colorScheme="blue" flex="0 0 auto">
-                  <TagLabel>Man</TagLabel>
-                  <TagCloseButton ml="0" onClick={(e) => dispatch(doFilter("man"))} />
-                </Tag>
-              )}
               {filters.map(
                 (item, i) =>
                   item.isActive && (
@@ -199,7 +181,7 @@ export default function _id() {
             </HStack>
           </>
         )}
-        {filters.filter((o) => o.isActive).length < 4 && (
+        {filters.filter((o) => o.isActive).length == 0 && (
           <HStack spacing={{ base: "5px", md: "25px" }} textAlign="right">
             <Box>
               <Skeleton isLoaded={segmentDetail.Name != null} minW="50px">

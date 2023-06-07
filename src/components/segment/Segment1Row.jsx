@@ -23,7 +23,7 @@ export default function Segment1Row(props) {
       <Flex justify="space-between" alignItems="center">
         <Stack w="full">
           <Text noOfLines={1} height="22px">
-            {eqDate.displayFullDate(item.DateId)}
+            {eqDate.displayFullDate(item.Tanggal)}
           </Text>
         </Stack>
         <HStack>

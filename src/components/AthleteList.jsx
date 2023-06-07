@@ -11,10 +11,23 @@ export default function AthleteList(props) {
       return "-";
     }
 
+    var dateMoment = moment(date, "YYYY-MM-DD");
+
+    // kalo hari ini
     if (date == moment().format("YYYY-MM-DD")) {
       return "Hari ini";
     }
     date += " 23:59";
+
+    // klo lebih dari setaun lengkap aja
+    if (moment().diff(dateMoment, "days") > 320) {
+      return moment(date, "YYYY-MM-DD HH:mm").format("D MMM YYYY");
+    }
+
+    // klo kurang dari 24 jam
+    if (moment().diff(dateMoment, "days") == 1) {
+      return "Kemarin";
+    }
     return moment(date, "YYYY-MM-DD HH:mm").fromNow();
   }
 

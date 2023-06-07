@@ -61,7 +61,7 @@ export default function Home() {
   return (
     <Box pt={{ base: "10px", md: 0 }} px="20px">
       <Box align="center" mb="25" mt="3">
-        <Image src="/salasa-kahiji-logo-landsapce.png" h="100px"></Image>
+        <Image src="/logo.png" h="100px"></Image>
 
         <Box color="#1d253b" mt="3" fontWeight="semibold">
           Klasemen Strava

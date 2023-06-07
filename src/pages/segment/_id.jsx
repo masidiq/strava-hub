@@ -172,9 +172,9 @@ export default function _id() {
               {filters.map(
                 (item, i) =>
                   item.isActive && (
-                    <Tag size="sm" borderRadius="full" variant="outline" colorScheme="blue" key={i} flex="0 0 auto">
+                    <Tag borderRadius="full" key={i} flex="0 0 auto">
                       <TagLabel> {item.shortName}</TagLabel>
-                      <TagCloseButton ml="0" onClick={(e) => dispatch(doFilter(item.code))} />
+                      <TagCloseButton ml="1" onClick={(e) => dispatch(doFilter(item.code))} />
                     </Tag>
                   )
               )}

@@ -8,7 +8,7 @@ import { BsInstagram, BsStrava } from "react-icons/bs";
 
 export default function Layout() {
   return (
-    <Box minH={{ base: "calc(100vh - 30px)", md: "100vh" }} position="relative">
+    <Box minH={{ base: "calc(100vh - 60px)", md: "100vh" }} position="relative">
       <Container maxW="xl" px="0" pb="90px" pt={{ md: "15px" }} position="relative">
         <Outlet />
       </Container>

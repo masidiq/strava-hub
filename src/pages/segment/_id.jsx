@@ -62,9 +62,11 @@ export default function _id() {
     // refetch untuk bukan hari ini yg latest nya
     if (result.length > 0) {
       var latestDate = result[0];
-      if (!eqDate.sameWithToday(latestDate)) {
-        result = await segmentService.getListDate(id, true);
-      }
+
+      result = await segmentService.getListDate(id, true);
+      // if (!eqDate.sameWithToday(latestDate)) {
+
+      // }
     }
 
     moment(latestDate).istoda;

@@ -45,9 +45,9 @@ export default {
     let param = {
       segmentId: id,
     };
-    notUseCache = false;
+    notUseCache = true;
 
-    return await eqHttp.getJson(endpoint.getListDate, param).catch((error) => {
+    return await eqHttp.getJson(endpoint.getListDate, param, notUseCache).catch((error) => {
       if (error.response.status == 403) {
         return [];
       } else {

@@ -48,9 +48,9 @@ export default function ProfileModal(props) {
                   <Text fontSize="sm">
                     {showAge(props.athlete.Class)} - Rank {props.athlete.RankClass}
                   </Text>
-                  <Tag variant="solid" colorScheme="teal" size="sm" mt="1">
+                  {/* <Tag variant="solid" colorScheme="teal" size="sm" mt="1">
                     +{props.athlete.Point} point
-                  </Tag>
+                  </Tag> */}
                 </Box>
 
                 <SimpleGrid columns={2} w="full" spacing="15px" pt="20px">

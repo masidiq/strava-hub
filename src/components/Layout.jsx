@@ -14,7 +14,7 @@ export default function Layout() {
       </Container>
       <Box position="absolute" bottom="20px" w="full">
         <HStack justify="center" mb="10px" color="muted" spacing="10px">
-          <Link href="https://linktr.ee/salasakahij1" target="_blank" title="linktree">
+          <Link href="https://linktr.ee/salasakahiji2023" target="_blank" title="linktree">
             <SiLinktree as={Icon} />
           </Link>
           <Link href="https://www.instagram.com/salasakahijibandung" target="_blank">

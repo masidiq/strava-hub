@@ -76,9 +76,13 @@ function populateAgeFilters(state) {
       let filterName = athlete.Class;
       let filterShortName = athlete.Class;
       switch (athlete.Class) {
-        case "0_25":
-          filterName = "Men Elite";
-          filterShortName = "Men Elite";
+        case "0_19":
+          filterName = "Yunior (Under 19)";
+          filterShortName = "Yunior (Under 19)";
+          break;
+        case "20_24":
+          filterName = "Men Elite (25-34)";
+          filterShortName = "Men Elite (25-34)";
           break;
         case "25_34":
           filterName = "Master A (25-34)";

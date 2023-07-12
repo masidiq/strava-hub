@@ -12,20 +12,18 @@ export default function ProfileModal(props) {
 
   function showAge(cls) {
     switch (cls) {
-      case "0_25":
-        return "Men Elite";
+      case "0_19":
+        return "Yunior (Under 19)";
+      case "20_24":
+        return "Men Elite (20-24)";
       case "25_34":
         return "Master A (25-34)";
-
       case "35_44":
         return "Master B (35-44)";
-
       case "45_54":
         return "Master C (45-54)";
-
       case "55_64":
         return "Master D (55-64)";
-
       case "65_plus":
         return "Master D+ (65+)";
       case "WOMEN":

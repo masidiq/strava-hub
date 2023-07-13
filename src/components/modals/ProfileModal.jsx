@@ -1,12 +1,34 @@
-import { AlertDialog, Box, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogCloseButton, AlertDialogBody, AlertDialogFooter, AlertDescription, Button, useDisclosure, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Portal, Avatar, VStack, HStack, SimpleGrid, Badge, Tag } from "@chakra-ui/react";
+import { AlertDialog, Box, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogCloseButton, AlertDialogBody, AlertDialogFooter, AlertDescription, Button, useDisclosure, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Portal, Avatar, VStack, HStack, SimpleGrid, Badge, Tag, Divider, Icon, Link } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
+import segmentService from "@/services/segmentService";
+import eqDate from "../../helpers/eqDate";
+
+import { BsChevronRight } from "react-icons/bs";
 
 export default function ProfileModal(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [history, setHistory] = useState({
+    Pr: {
+      ActivityId: "",
+    },
+    Items: [],
+  });
+  let segmentId = "";
+  let athleteId = "";
+
+  const getHistory = async () => {
+    const result = await segmentService.getHistory(segmentId, athleteId);
+    setHistory(result);
+  };
+
   useEffect(() => {
     if (props.isOpen) {
       onOpen();
+
+      athleteId = props.athlete.Id;
+      segmentId = props.segmentId;
+      getHistory();
     }
   }, [props.isOpen]);
 
@@ -30,35 +52,68 @@ export default function ProfileModal(props) {
         return "Women Open";
     }
   }
+
+  function renderLink(activityId) {
+    return "https://www.strava.com/segment_efforts/" + activityId;
+  }
+
+  function renderHistoryItem(item) {
+    if (item.Time == null) {
+      return (
+        <HStack fontSize="sm">
+          <Text mr="auto"> {eqDate.displayShortDate(item.ActivityDate)}</Text>
+          <Text width="40px">-</Text>
+        </HStack>
+      );
+    }
+
+    return (
+      <HStack fontSize="sm" as={Link} href={renderLink(item.ActivityId)} target="_blank">
+        <Text mr="auto"> {eqDate.displayShortDate(item.ActivityDate)}</Text>
+        <Text>{item.Time}</Text>
+        <BsChevronRight as={Icon} color="gray" />
+      </HStack>
+    );
+  }
+
   return (
     <Portal>
       <Modal isOpen={isOpen} onClose={onClose} isCentered size="xs">
-        <ModalOverlay bg="blackAlpha.100" backdropFilter="blur(5px)" />
+        <ModalOverlay bg="blackAlpha.100" backdropFilter="blur(1px)" />
         <ModalContent>
           {props.athlete && (
-            <ModalBody mb="20px">
-              <VStack mt="-58px">
-                <Avatar border="5px solid white" size="xl" name={props.athlete.Name} src={props.athlete.ImageUrl} />
-                <Box textAlign="center">
-                  <Text fontSize="xl" fontWeight="semibold">
-                    {props.athlete.Name}
-                  </Text>
-                  <Text fontSize="sm">
-                    {showAge(props.athlete.Class)} - Rank {props.athlete.RankClass}
-                  </Text>
-                  {/* <Tag variant="solid" colorScheme="teal" size="sm" mt="1">
-                    +{props.athlete.Point} point
-                  </Tag> */}
-                </Box>
+            <ModalBody p="0">
+              <HStack px="10px" py="10px" spacing="15px">
+                <Avatar size="lg" name={props.athlete.Name} src={props.athlete.ImageUrl} />
+                <VStack>
+                  <Box>
+                    <Text fontSize="lg" fontWeight="semibold">
+                      {props.athlete.Name}
+                    </Text>
+                    <Text fontSize="sm" mt="-5px">
+                      {showAge(props.athlete.Class)} • Rank {props.athlete.RankClass}
+                    </Text>
 
-                <SimpleGrid columns={2} w="full" spacing="15px" pt="20px">
-                  <Button variant="outline" onClick={onClose}>
-                    Close
-                  </Button>
-                  <Button colorScheme="orange" rightIcon={<ArrowForwardIcon />} as="a" href={"https://www.strava.com/segment_efforts/" + props.athlete.ActivityId} target="_blank">
-                    Strava
-                  </Button>
-                </SimpleGrid>
+                    <HStack mt="5px" as={Link} href={renderLink(history.Pr.ActivityId)} target="_blank">
+                      <Box textAlign="left" ml="-5px">
+                        <div className="icon-pr"></div>
+                      </Box>
+                      <Text fontSize="xs">{history.Pr.Time}</Text>
+                      <Text fontSize="xs" color="muted">
+                        {eqDate.displayDate(history.Pr.ActivityDate)}
+                      </Text>
+                    </HStack>
+                  </Box>
+                </VStack>
+              </HStack>
+              <Divider my="10px" />
+
+              <VStack pl="15px" pr="10px" py="10px">
+                {history.Items.map((item, index) => (
+                  <Box key={index} width="100%">
+                    {renderHistoryItem(item)}
+                  </Box>
+                ))}
               </VStack>
             </ModalBody>
           )}

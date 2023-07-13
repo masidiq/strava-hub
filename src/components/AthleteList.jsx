@@ -42,7 +42,7 @@ export default function AthleteList(props) {
     <Tbody>
       <Tr>
         <Td display="none">
-          <ProfileModal isOpen={openProfileCount} athlete={athlete} />
+          <ProfileModal isOpen={openProfileCount} athlete={athlete} segmentId={props.segmentId} />
         </Td>
       </Tr>
       {props.athletes.map((athlete, index) => (

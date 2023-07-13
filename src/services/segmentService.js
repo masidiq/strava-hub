@@ -12,6 +12,7 @@ const endpoint = {
   get: storageHost + "/segments/{segmentId}.json",
   getList: storageHost + "/segment-list.json",
   crudSegment: backEndHost + "/segment",
+  getHistory: storageHost + "/history/{segmentId}/{athleteId}.json",
 };
 
 export default {
@@ -67,6 +68,15 @@ export default {
       date: date,
     };
     return await eqHttp.getJson(endpoint.getLeaderboard, param, notUseCache);
+  },
+
+  async getHistory(segmentId, athleteId) {
+    let notUseCache = false;
+    let param = {
+      segmentId: segmentId,
+      athleteId: athleteId,
+    };
+    return await eqHttp.getJson(endpoint.getHistory, param, notUseCache);
   },
 
   async get(id) {

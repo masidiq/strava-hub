@@ -28,7 +28,9 @@ export default function ProfileModal(props) {
 
       athleteId = props.athlete.Id;
       segmentId = props.segmentId;
-      getHistory();
+      if (props.segmentId == "30711569") {
+        getHistory();
+      }
     }
   }, [props.isOpen]);
 
@@ -60,15 +62,15 @@ export default function ProfileModal(props) {
   function renderHistoryItem(item) {
     if (item.Time == null) {
       return (
-        <HStack fontSize="sm">
+        <HStack fontSize="sm" pl="20px" py="5px">
           <Text mr="auto"> {eqDate.displayShortDate(item.ActivityDate)}</Text>
-          <Text width="40px">-</Text>
+          <Text width="50px">-</Text>
         </HStack>
       );
     }
 
     return (
-      <HStack fontSize="sm" as={Link} href={renderLink(item.ActivityId)} target="_blank">
+      <HStack fontSize="sm" as={Link} href={renderLink(item.ActivityId)} target="_blank" _hover={{ background: "bg.gray" }} pl="20px" pr="10px" py="5px">
         <Text mr="auto"> {eqDate.displayShortDate(item.ActivityDate)}</Text>
         <Text>{item.Time}</Text>
         <BsChevronRight as={Icon} color="gray" />
@@ -79,42 +81,45 @@ export default function ProfileModal(props) {
   return (
     <Portal>
       <Modal isOpen={isOpen} onClose={onClose} isCentered size="xs">
-        <ModalOverlay bg="blackAlpha.100" backdropFilter="blur(1px)" />
+        <ModalOverlay backdropFilter="blur(3px)" />
         <ModalContent>
           {props.athlete && (
-            <ModalBody p="0">
-              <HStack px="10px" py="10px" spacing="15px">
+            <ModalBody p="0" borderRadius="10px" overflow="hidden">
+              <HStack px="20px" py="20px" spacing="20px" bg="#f5f5f5">
                 <Avatar size="lg" name={props.athlete.Name} src={props.athlete.ImageUrl} />
                 <VStack>
                   <Box>
-                    <Text fontSize="lg" fontWeight="semibold">
+                    <Text fontSize="lg" fontWeight="semibold" noOfLines="1">
                       {props.athlete.Name}
                     </Text>
-                    <Text fontSize="sm" mt="-5px">
+                    <Text fontSize="xs" mt="-3px">
                       {showAge(props.athlete.Class)} • Rank {props.athlete.RankClass}
                     </Text>
 
-                    <HStack mt="5px" as={Link} href={renderLink(history.Pr.ActivityId)} target="_blank">
-                      <Box textAlign="left" ml="-5px">
+                    <HStack mt="5px" as={Link} href={renderLink(props.athlete.PrActivityId)} target="_blank">
+                      <Box textAlign="left" ml="-2px">
                         <div className="icon-pr"></div>
                       </Box>
-                      <Text fontSize="xs">{history.Pr.Time}</Text>
+                      <Text fontSize="xs">{props.athlete.Pr}</Text>
                       <Text fontSize="xs" color="muted">
-                        {eqDate.displayDate(history.Pr.ActivityDate)}
+                        {eqDate.displayFullDate(props.athlete.PrDate)}
                       </Text>
                     </HStack>
                   </Box>
                 </VStack>
               </HStack>
-              <Divider my="10px" />
 
-              <VStack pl="15px" pr="10px" py="10px">
-                {history.Items.map((item, index) => (
-                  <Box key={index} width="100%">
-                    {renderHistoryItem(item)}
-                  </Box>
-                ))}
-              </VStack>
+              {history.Items.length > 0 && (
+                <>
+                  <VStack spacing="0" my="10px">
+                    {history.Items.map((item, index) => (
+                      <Box key={index} width="100%">
+                        {renderHistoryItem(item)}
+                      </Box>
+                    ))}
+                  </VStack>
+                </>
+              )}
             </ModalBody>
           )}
         </ModalContent>

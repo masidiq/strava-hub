@@ -59,6 +59,24 @@ export default function ProfileModal(props) {
     return "https://www.strava.com/segment_efforts/" + activityId;
   }
 
+  function renderPr(athlete) {
+    let pr = athlete.Pr;
+    let prDate = athlete.PrDate;
+    let activityId = athlete.PrActivityId;
+
+    return (
+      <HStack mt="5px" as={Link} href={renderLink(activityId)} target="_blank">
+        <Box textAlign="left" ml="-2px">
+          <div className="icon-pr"></div>
+        </Box>
+        <Text fontSize="xs">{pr}</Text>
+        <Text fontSize="xs" color="muted">
+          {eqDate.displayFullDate(prDate)}
+        </Text>
+      </HStack>
+    );
+  }
+
   function renderHistoryItem(item) {
     if (item.Time == null) {
       return (
@@ -96,15 +114,7 @@ export default function ProfileModal(props) {
                       {showAge(props.athlete.Class)} • Rank {props.athlete.RankClass}
                     </Text>
 
-                    <HStack mt="5px" as={Link} href={renderLink(props.athlete.PrActivityId)} target="_blank">
-                      <Box textAlign="left" ml="-2px">
-                        <div className="icon-pr"></div>
-                      </Box>
-                      <Text fontSize="xs">{props.athlete.Pr}</Text>
-                      <Text fontSize="xs" color="muted">
-                        {eqDate.displayFullDate(props.athlete.PrDate)}
-                      </Text>
-                    </HStack>
+                    {renderPr(props.athlete)}
                   </Box>
                 </VStack>
               </HStack>

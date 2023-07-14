@@ -81,8 +81,8 @@ function populateAgeFilters(state) {
           filterShortName = "Yunior (Under 19)";
           break;
         case "20_24":
-          filterName = "Men Elite (25-34)";
-          filterShortName = "Men Elite (25-34)";
+          filterName = "Men Elite (20-24)";
+          filterShortName = "Men Elite (20-24)";
           break;
         case "25_34":
           filterName = "Master A (25-34)";

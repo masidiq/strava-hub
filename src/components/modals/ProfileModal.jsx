@@ -59,10 +59,10 @@ export default function ProfileModal(props) {
     return "https://www.strava.com/segment_efforts/" + activityId;
   }
 
-  function renderPr(athlete) {
-    let pr = athlete.Pr;
-    let prDate = athlete.PrDate;
-    let activityId = athlete.PrActivityId;
+  function renderPr(history) {
+    let pr = history.Pr.Time;
+    let prDate = history.Pr.ActivityDate;
+    let activityId = history.Pr.ActivityId;
 
     return (
       <HStack mt="5px" as={Link} href={renderLink(activityId)} target="_blank">
@@ -107,14 +107,14 @@ export default function ProfileModal(props) {
                 <Avatar size="lg" name={props.athlete.Name} src={props.athlete.ImageUrl} />
                 <VStack>
                   <Box>
-                    <Text fontSize="lg" fontWeight="semibold" noOfLines="1">
+                    <Text fontSize="lg" fontWeight="semibold" noOfLines="1" as={Link} href={"https://www.strava.com/athletes/" + props.athlete.Id} target="_blank">
                       {props.athlete.Name}
                     </Text>
                     <Text fontSize="xs" mt="-3px">
                       {showAge(props.athlete.Class)} • Rank {props.athlete.RankClass}
                     </Text>
 
-                    {renderPr(props.athlete)}
+                    {renderPr(history)}
                   </Box>
                 </VStack>
               </HStack>

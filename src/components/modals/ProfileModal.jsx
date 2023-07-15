@@ -59,10 +59,12 @@ export default function ProfileModal(props) {
     return "https://www.strava.com/segment_efforts/" + activityId;
   }
 
-  function renderPr(history) {
+  function renderPr(history, athlete) {
     let pr = history.Pr.Time;
     let prDate = history.Pr.ActivityDate;
     let activityId = history.Pr.ActivityId;
+
+    // TODO: replace PR jika today
 
     return (
       <HStack mt="5px" as={Link} href={renderLink(activityId)} target="_blank">
@@ -109,7 +111,7 @@ export default function ProfileModal(props) {
 
   return (
     <Portal>
-      <Modal isOpen={isOpen} onClose={onClose} isCentered size="xs">
+      <Modal isOpen={isOpen} onClose={onClose} size="xs">
         <ModalOverlay backdropFilter="blur(3px)" />
         <ModalContent>
           {props.athlete && (

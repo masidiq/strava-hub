@@ -1,4 +1,4 @@
-import { Box, Button, Flex, HStack, Select, Skeleton, Stack, Table, Tag, TagCloseButton, TagLabel, Tbody, Text, Th, Thead, Tr } from "@chakra-ui/react";
+import { Box, Button, Flex, HStack, Select, Skeleton, Spacer, Stack, Table, Tag, TagCloseButton, TagLabel, Tbody, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import AthleteList from "../../components/AthleteList";
@@ -125,7 +125,7 @@ export default function _id() {
       <PageHeader
         title={segmentDetail.Name}
         subTitle={
-          <Box>
+          <HStack width="100%">
             <Skeleton isLoaded={listDate.length} minW="50px" maxW="150px" mt="2px">
               <Select
                 size="xs"
@@ -144,7 +144,12 @@ export default function _id() {
                 ))}
               </Select>
             </Skeleton>
-          </Box>
+
+            <Spacer />
+            <Button size="xs" as="a" target="_blank" href={"https://www.strava.com/segments/" + segmentDetail.Id} rightIcon={<ArrowForwardIcon ml="-5px" />} colorScheme="orange" fontSize="11px" px="10px" py="2px" h="20px">
+              strava
+            </Button>
+          </HStack>
         }
       />
 

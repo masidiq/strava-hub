@@ -1,12 +1,4 @@
-import {
-  Box,
-  Flex,
-  IconButton,
-  Heading,
-  Button,
-  Text,
-  Skeleton,
-} from "@chakra-ui/react";
+import { Box, Flex, IconButton, Heading, Button, Text, Skeleton } from "@chakra-ui/react";
 import { FiArrowLeft, FiChevronRight } from "react-icons/fi";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -45,14 +37,13 @@ export default function PageHeader(props) {
         />
       )}
 
-      <Box>
+      <Box width="100%">
         {!props.title && <Skeleton height="20px" w="200px"></Skeleton>}
 
         <Heading noOfLines={1} size={{ base: "sm", md: "md" }}>
           {props.title}
         </Heading>
-
-        {props.subTitle}
+        <Box width="100%">{props.subTitle}</Box>
       </Box>
       <Box ml="auto" mr={{ base: 0, md: "10px" }}>
         {props.rightSlot}

@@ -116,7 +116,7 @@ export default function _id() {
 
   function renderAthleteList() {
     if (athleteList.length > 0 && !isLoading) {
-      return <AthleteList athletes={athleteList} segmentId={id} />;
+      return <AthleteList athletes={athleteList} segmentId={id} date={selectedDate} />;
     }
   }
 

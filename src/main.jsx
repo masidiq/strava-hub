@@ -57,11 +57,8 @@ const customTheme = extendTheme({
 import { createStandaloneToast } from "@chakra-ui/toast";
 
 const { ToastContainer } = createStandaloneToast();
-import ReactGA from "react-ga";
+
 import Router from "./router";
-
-const TRACKING_ID = "UA-220438183-5"; // OUR_TRACKING_ID
-
 root.render(
   <React.StrictMode>
     <Provider store={store}>

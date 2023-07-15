@@ -4,6 +4,7 @@ import { Text, Flex, Box, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/rea
 import AthleteRowSkeleton from "./segment/AthleteRowSkeleton";
 import ProfileModal from "./modals/ProfileModal";
 import { useState } from "react";
+import ReactGA from "react-ga";
 
 export default function AthleteList(props) {
   function relativeDateView(date) {
@@ -37,12 +38,17 @@ export default function AthleteList(props) {
   function openProfileModal(athlete) {
     setAthlete(athlete);
     doOpenProfile((prev) => prev + 1);
+
+    ReactGA.event({
+      category: "Show Profile",
+      action: athlete.Name,
+    });
   }
   return (
     <Tbody>
       <Tr>
         <Td display="none">
-          <ProfileModal isOpen={openProfileCount} athlete={athlete} segmentId={props.segmentId} />
+          <ProfileModal isOpen={openProfileCount} athlete={athlete} segmentId={props.segmentId} date={props.date} />
         </Td>
       </Tr>
       {props.athletes.map((athlete, index) => (

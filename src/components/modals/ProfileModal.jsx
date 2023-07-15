@@ -96,6 +96,17 @@ export default function ProfileModal(props) {
     );
   }
 
+  function renderTodayActivity(athlete, date) {
+    if (eqDate.sameWithToday(date)) {
+      let item = {
+        ActivityDate: date,
+        Time: athlete.Time,
+      };
+      return <Box width="100%">{renderHistoryItem(item)}</Box>;
+    }
+    return <></>;
+  }
+
   return (
     <Portal>
       <Modal isOpen={isOpen} onClose={onClose} isCentered size="xs">
@@ -122,6 +133,7 @@ export default function ProfileModal(props) {
               {history.Items.length > 0 && (
                 <>
                   <VStack spacing="0" my="10px">
+                    {renderTodayActivity(props.athlete, props.date)}
                     {history.Items.map((item, index) => (
                       <Box key={index} width="100%">
                         {renderHistoryItem(item)}

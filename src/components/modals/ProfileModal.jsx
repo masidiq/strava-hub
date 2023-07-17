@@ -94,12 +94,15 @@ export default function ProfileModal(props) {
         <Text mr="auto"> {eqDate.displayShortDate(item.ActivityDate)}</Text>
 
         <HStack justifyContent="right">
-          <Text fontSize="xs" mr="30px">
-            {item.Speed}{" "}
-            <Text as="span" color="muted" fontSize="10px" letterSpacing="0px">
-              km/h
+          {!!item.Speed == true && (
+            <Text fontSize="xs" mr="30px">
+              {item.Speed}{" "}
+              <Text as="span" color="muted" fontSize="10px" letterSpacing="0px">
+                km/h
+              </Text>
             </Text>
-          </Text>
+          )}
+
           <Text>{item.Time}</Text>
           <BsChevronRight as={Icon} color="gray" />
         </HStack>

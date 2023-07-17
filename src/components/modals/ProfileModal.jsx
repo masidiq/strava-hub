@@ -143,7 +143,7 @@ export default function ProfileModal(props) {
 
               {history.Items.length > 0 && (
                 <>
-                  <VStack spacing="0" borderTop="1px solid #ddd">
+                  <VStack spacing="0" borderTop="1px solid #ddd" mb="5px">
                     {renderTodayActivity(props.athlete, props.date)}
                     {history.Items.map((item, index) => (
                       <Box width="100%" key={index} borderTop="1px solid #ddd">

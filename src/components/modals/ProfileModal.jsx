@@ -1,4 +1,4 @@
-import { AlertDialog, Box, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogCloseButton, AlertDialogBody, AlertDialogFooter, AlertDescription, Button, useDisclosure, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Portal, Avatar, VStack, HStack, SimpleGrid, Badge, Tag, Divider, Icon, Link } from "@chakra-ui/react";
+import { AlertDialog, Box, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogCloseButton, AlertDialogBody, AlertDialogFooter, AlertDescription, Button, useDisclosure, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Portal, Avatar, VStack, HStack, SimpleGrid, Badge, Tag, Divider, Icon, Link, StackDivider } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import segmentService from "@/services/segmentService";
@@ -92,8 +92,17 @@ export default function ProfileModal(props) {
     return (
       <HStack fontSize="sm" as={Link} href={renderLink(item.ActivityId)} target="_blank" _hover={{ background: "bg.gray" }} pl="20px" pr="10px" py="5px">
         <Text mr="auto"> {eqDate.displayShortDate(item.ActivityDate)}</Text>
-        <Text>{item.Time}</Text>
-        <BsChevronRight as={Icon} color="gray" />
+
+        <HStack justifyContent="right">
+          <Text fontSize="xs" mr="30px">
+            {item.Speed}{" "}
+            <Text as="span" color="muted" fontSize="10px" letterSpacing="0px">
+              km/h
+            </Text>
+          </Text>
+          <Text>{item.Time}</Text>
+          <BsChevronRight as={Icon} color="gray" />
+        </HStack>
       </HStack>
     );
   }
@@ -116,7 +125,7 @@ export default function ProfileModal(props) {
         <ModalContent>
           {props.athlete && (
             <ModalBody p="0" borderRadius="10px" overflow="hidden">
-              <HStack px="20px" py="20px" spacing="20px" bg="#f5f5f5">
+              <HStack px="20px" py="20px" spacing="20px">
                 <Avatar size="lg" name={props.athlete.Name} src={props.athlete.ImageUrl} />
                 <VStack>
                   <Box>
@@ -134,10 +143,10 @@ export default function ProfileModal(props) {
 
               {history.Items.length > 0 && (
                 <>
-                  <VStack spacing="0" my="10px">
+                  <VStack spacing="0" borderTop="1px solid #ddd">
                     {renderTodayActivity(props.athlete, props.date)}
                     {history.Items.map((item, index) => (
-                      <Box key={index} width="100%">
+                      <Box width="100%" key={index} borderTop="1px solid #ddd">
                         {renderHistoryItem(item)}
                       </Box>
                     ))}

@@ -82,7 +82,7 @@ export default function ProfileModal(props) {
   function renderHistoryItem(item) {
     if (item.Time == null) {
       return (
-        <HStack fontSize="sm" pl="20px" py="5px">
+        <HStack color="muted" fontSize="sm" pl="20px" py="5px">
           <Text mr="auto"> {eqDate.displayShortDate(item.ActivityDate)}</Text>
           <Text width="50px">-</Text>
         </HStack>
@@ -91,7 +91,10 @@ export default function ProfileModal(props) {
 
     return (
       <HStack fontSize="sm" as={Link} href={renderLink(item.ActivityId)} target="_blank" _hover={{ background: "bg.gray" }} pl="20px" pr="10px" py="5px">
-        <Text mr="auto"> {eqDate.displayShortDate(item.ActivityDate)}</Text>
+        <Text mr="auto" fontWeight="semibold">
+          {" "}
+          {eqDate.displayShortDate(item.ActivityDate)}
+        </Text>
 
         <HStack justifyContent="right">
           {!!item.Speed == true && (
@@ -103,7 +106,9 @@ export default function ProfileModal(props) {
             </Text>
           )}
 
-          <Text>{item.Time}</Text>
+          <Text width="50px" align="right">
+            {item.Time}
+          </Text>
           <BsChevronRight as={Icon} color="gray" />
         </HStack>
       </HStack>
@@ -116,6 +121,7 @@ export default function ProfileModal(props) {
         ActivityDate: date,
         Time: athlete.Time,
         Speed: athlete.Speed,
+        ActivityId: athlete.ActivityId,
       };
       return <Box width="100%">{renderHistoryItem(item)}</Box>;
     }

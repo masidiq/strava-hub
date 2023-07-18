@@ -76,7 +76,46 @@ export default {
       segmentId: segmentId,
       athleteId: athleteId,
     };
-    return await eqHttp.getJson(endpoint.getHistory, param, notUseCache);
+    let result = await eqHttp.getJson(endpoint.getHistory, param, notUseCache);
+
+    let today = new Date();
+
+    // if today is salasa
+    if (today.getDay() != 2) {
+      return result;
+    }
+
+    // minggu lalu
+    today.setDate(today.getDate() - 7);
+
+    // ada gak di history ?
+    var prevSalasaDateId = moment(today).format("YYYY-MM-DD");
+    var mustFillDate = !result.Items.some((o) => o.ActivityDate == prevSalasaDateId);
+
+    // kudu di isi kekosongan
+    if (mustFillDate) {
+      var currentDate = new Date();
+      var minDate = new Date("2023-06-06");
+      while (currentDate > minDate) {
+        currentDate.setDate(currentDate.getDate() - 7);
+
+        var currentDateId = moment(currentDate).format("YYYY-MM-DD");
+        var anyPrevSalasa = result.Items.some((o) => o.ActivityDate == currentDateId);
+
+        if (anyPrevSalasa) {
+          break;
+        } else {
+          result.Items.push({
+            ActivityDate: currentDateId,
+          });
+        }
+      }
+    }
+
+    // sort desc
+    result.Items.sort((a, b) => b.ActivityDate.localeCompare(a.ActivityDate));
+
+    return result;
   },
 
   async get(id) {

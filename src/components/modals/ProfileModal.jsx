@@ -115,6 +115,7 @@ export default function ProfileModal(props) {
       let item = {
         ActivityDate: date,
         Time: athlete.Time,
+        Speed: athlete.Speed,
       };
       return <Box width="100%">{renderHistoryItem(item)}</Box>;
     }

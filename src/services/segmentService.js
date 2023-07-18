@@ -76,8 +76,14 @@ export default {
       segmentId: segmentId,
       athleteId: athleteId,
     };
+
     let result = await eqHttp.getJson(endpoint.getHistory, param, notUseCache);
 
+    if (!!result == false) {
+      result = {
+        Items: [],
+      };
+    }
     let today = new Date();
 
     // if today is salasa

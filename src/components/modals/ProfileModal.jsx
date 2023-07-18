@@ -6,6 +6,7 @@ import eqDate from "../../helpers/eqDate";
 
 import { BsChevronRight } from "react-icons/bs";
 
+import moment from "moment";
 export default function ProfileModal(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [history, setHistory] = useState({
@@ -53,6 +54,8 @@ export default function ProfileModal(props) {
       case "WOMEN":
         return "Women Open";
     }
+
+    return "Unknown Class";
   }
 
   function renderLink(activityId) {
@@ -60,12 +63,25 @@ export default function ProfileModal(props) {
   }
 
   function renderPr(history, athlete) {
-    let pr = history.Pr.Time;
-    let prDate = history.Pr.ActivityDate;
-    let activityId = history.Pr.ActivityId;
+    // default PR yang ada di row athlete
+    let pr = athlete.Pr;
+    let prDate = athlete.PrDate;
+    let activityId = athlete.PrActivityId;
 
-    // TODO: replace PR jika today
-
+    // overide jika today isNewPR
+    var todayStr = moment().format("YYYY-MM-DD");
+    if (athlete.IsNewPr == true && props.date == todayStr) {
+      pr = athlete.Time;
+      prDate = todayStr;
+      activityId = athlete.ActivityId;
+    } else {
+      // isi PR dari history kalo ada
+      if (!!history.Pr == true) {
+        pr = history.Pr.Time;
+        prDate = history.Pr.ActivityDate;
+        activityId = history.Pr.ActivityId;
+      }
+    }
     return (
       <HStack mt="5px" as={Link} href={renderLink(activityId)} target="_blank">
         <Box textAlign="left" ml="-2px">
@@ -82,7 +98,7 @@ export default function ProfileModal(props) {
   function renderHistoryItem(item) {
     if (item.Time == null) {
       return (
-        <HStack color="muted" fontSize="sm" pl="20px" py="5px">
+        <HStack fontWeight="light" color="muted" fontSize="sm" pl="20px" py="5px">
           <Text mr="auto"> {eqDate.displayShortDate(item.ActivityDate)}</Text>
           <Text width="50px">-</Text>
         </HStack>
@@ -91,10 +107,7 @@ export default function ProfileModal(props) {
 
     return (
       <HStack fontSize="sm" as={Link} href={renderLink(item.ActivityId)} target="_blank" _hover={{ background: "bg.gray" }} pl="20px" pr="10px" py="5px">
-        <Text mr="auto" fontWeight="semibold">
-          {" "}
-          {eqDate.displayShortDate(item.ActivityDate)}
-        </Text>
+        <Text mr="auto"> {eqDate.displayShortDate(item.ActivityDate)}</Text>
 
         <HStack justifyContent="right">
           {!!item.Speed == true && (
@@ -143,10 +156,11 @@ export default function ProfileModal(props) {
                       {props.athlete.Name}
                     </Text>
                     <Text fontSize="xs" mt="-3px">
-                      {showAge(props.athlete.Class)} • Rank {props.athlete.RankClass}
+                      {showAge(props.athlete.Class)}
+                      {!!props.athlete.Class == true && <span> • Rank {props.athlete.RankClass}</span>}
                     </Text>
 
-                    {renderPr(history)}
+                    {renderPr(history, props.athlete)}
                   </Box>
                 </VStack>
               </HStack>

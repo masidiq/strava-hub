@@ -76,7 +76,7 @@ export default function ProfileModal(props) {
       activityId = athlete.ActivityId;
     } else {
       // isi PR dari history kalo ada
-      if (!!history.Pr == true) {
+      if (!!history.Pr == true && history.Pr.ActivityId != "") {
         pr = history.Pr.Time;
         prDate = history.Pr.ActivityDate;
         activityId = history.Pr.ActivityId;
@@ -165,18 +165,18 @@ export default function ProfileModal(props) {
                 </VStack>
               </HStack>
 
-              {history.Items.length > 0 && (
-                <>
-                  <VStack spacing="0" borderTop="1px solid #ddd" mb="5px">
-                    {renderTodayActivity(props.athlete, props.date)}
+              <VStack spacing="0" borderTop="1px solid #ddd" mb="5px">
+                {renderTodayActivity(props.athlete, props.date)}
+                {history.Items.length > 0 && (
+                  <>
                     {history.Items.map((item, index) => (
                       <Box width="100%" key={index} borderTop="1px solid #ddd">
                         {renderHistoryItem(item)}
                       </Box>
                     ))}
-                  </VStack>
-                </>
-              )}
+                  </>
+                )}
+              </VStack>
             </ModalBody>
           )}
         </ModalContent>

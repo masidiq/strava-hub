@@ -20,6 +20,8 @@ export default function Segment1Row(props) {
 
     if (item.SegmentId == "34705519") {
       item.ShortName = "SummaLoop";
+    } else if (item.SegmentId == "32371867") {
+      item.ShortName = "Cikole";
     }
   }
 

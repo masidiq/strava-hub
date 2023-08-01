@@ -1,25 +1,10 @@
-import {
-  FormControl,
-  FormLabel,
-  Input,
-  Box,
-  FormErrorMessage,
-  FormHelperText,
-  Button,
-  Flex,
-  Text,
-  HStack,
-  RadioGroup,
-  Stack,
-  Radio,
-  Select,
-  Progress,
-} from "@chakra-ui/react";
+import { FormControl, FormLabel, Input, Box, FormErrorMessage, FormHelperText, Button, Flex, Text, HStack, RadioGroup, Stack, Radio, Select, Progress, Link } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PageHeader from "../../components/PageHeader";
 import adminService from "../../services/adminService";
 import segmentService from "../../services/segmentService";
+import Card from "@/components/atom/Card";
 export default function Segment() {
   const { id } = useParams();
   const [segment, setSegment] = useState({
@@ -121,6 +106,10 @@ export default function Segment() {
       <PageHeader title={segment.Name} subTitle={segment.Id} />
       <Box p="20px">
         <Stack spacing="20px">
+          <Card as={Link} href={"https://salasakahiji.s3.ap-southeast-3.amazonaws.com/alltime/" + segment.Id + ".json"} target="_blank">
+            <Text>ALL TIME PR</Text>
+          </Card>
+
           <Box>
             <RadioGroup onChange={setSyncType} value={syncType}>
               <Stack>
@@ -132,13 +121,7 @@ export default function Segment() {
               </Stack>
             </RadioGroup>
           </Box>
-          <Button
-            colorScheme="blue"
-            w="100%"
-            mt="20px"
-            isLoading={isLoading}
-            onClick={submit}
-          >
+          <Button colorScheme="blue" w="100%" mt="20px" isLoading={isLoading} onClick={submit}>
             Sync
           </Button>
           <Box>

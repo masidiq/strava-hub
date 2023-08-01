@@ -171,7 +171,7 @@ export default function ProfileModal(props) {
                   <>
                     {history.Items.map((item, index) => (
                       <Box width="100%" key={index} borderTop="1px solid #ddd">
-                        {renderHistoryItem(item)}
+                        {eqDate.sameWithToday(item.ActivityDate) == false && renderHistoryItem(item)}
                       </Box>
                     ))}
                   </>
